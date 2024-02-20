@@ -1,13 +1,7 @@
-export const USER = `
-  id
-  email
-  firstName
-  lastName
-`
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const gql = async (query: string): Promise<any> => {
   try {
+    console.log('working');
     const res = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/graphql`, {
       method: 'POST',
       credentials: 'include',

@@ -3,8 +3,19 @@ import { Config } from '../pl-types';
 
 export default function Posts({ posts }: { posts: Config['collections']['posts'][] }) {
 
-    console.log(posts);
-    console.log(posts[0].hero.richText);
+    if (!posts || posts.length === 0) {
+        return <div>No posts available</div>;
+    }
+
+
+    // Log authors
+    posts.map((post) => {
+        if (post.populatedAuthors && post.populatedAuthors.length > 0) {
+            console.log(post.populatedAuthors[0].name);
+        }
+
+        console.log(post.hero.richText);
+    });
 
     return (
         <div>
@@ -22,18 +33,13 @@ export default function Posts({ posts }: { posts: Config['collections']['posts']
                             Date: {post.updatedAt}
                         </li>
                         <li>
-                            {/* {post.hero.richText.map((richText: any, index) => (
-                                <div key={index}>
-                                    {richText}
-                                </div>
-                            ))} */}
+                            Slug: {post.slug}
                         </li>
+
                         <li>
-                            {/* Authors: {post.authors.map(author => author.name).join(', ')} */}
+                            Name: {post.populatedAuthors && post.populatedAuthors.length > 0 ? post.populatedAuthors[0].name : null}
                         </li>
-                        <li>
-                            {/* Hero Content: {post.hero.richText} */}
-                        </li>
+
                     </div>
                 ))}
             </ul>
@@ -45,22 +51,29 @@ export async function getServerSideProps() {
     try {
         const query = `
       query Posts {
-        Posts(limit: 1) {
+        Posts(limit: 20) {
           docs {
+            title
             id
             slug
             updatedAt
-            authors {
-              id
-              name
-            }
-            hero {
-              richText
-            }
+
+            publishedAt  
+            populatedAuthors {
+                    id 
+                    name
+                  }
+      
+                  hero {
+                    richText
+                  } 
           }
         }
       }
     `;
+
+
+
         const data = await gql(query);
         const posts = data.Posts.docs;
 
