@@ -3,13 +3,14 @@ import type { SerializedListItemNode, SerializedListNode } from '@lexical/list'
 import type { SerializedHeadingNode, SerializedQuoteNode } from '@lexical/rich-text'
 import type { LinkFields, SerializedLinkNode } from '@payloadcms/richtext-lexical'
 import type { SerializedElementNode, SerializedLexicalNode, SerializedTextNode } from 'lexical'
+// import type { Page } from '../../../pl-types'
 
 import escapeHTML from 'escape-html'
 import Link from 'next/link'
 import React, { Fragment } from 'react'
 
 import { Label } from '../../Label'
-import { LargeBody } from '../../LargeBody'
+// import { LargeBody } from '../../LargeBody'
 import {
     IS_BOLD,
     IS_CODE,
@@ -18,6 +19,8 @@ import {
     IS_SUBSCRIPT,
     IS_SUPERSCRIPT,
     IS_UNDERLINE,
+    IS_ALIGN_RIGHT,
+    IS_ALIGN_LEFT,
 } from './nodeFormat'
 
 interface Props {
@@ -112,9 +115,10 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                     case 'label':
                         return <Label key={index}>{serializedChildren}</Label>
 
-                    case 'largeBody': {
-                        return <LargeBody key={index}>{serializedChildren}</LargeBody>
-                    }
+                    // case 'largeBody': {
+                    //     return <LargeBody key={index}>{serializedChildren}</LargeBody>
+                    // }
+
                     case 'list': {
                         const node = _node as SerializedListNode
 
@@ -190,6 +194,6 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                         return null
                 }
             })}
-        </Fragment>
+        </Fragment >
     )
 }
