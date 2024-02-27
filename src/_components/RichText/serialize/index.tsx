@@ -3,14 +3,12 @@ import type { SerializedListItemNode, SerializedListNode } from '@lexical/list'
 import type { SerializedHeadingNode, SerializedQuoteNode } from '@lexical/rich-text'
 import type { LinkFields, SerializedLinkNode } from '@payloadcms/richtext-lexical'
 import type { SerializedElementNode, SerializedLexicalNode, SerializedTextNode } from 'lexical'
-// import type { Page } from '../../../pl-types'
 
 import escapeHTML from 'escape-html'
 import Link from 'next/link'
 import React, { Fragment } from 'react'
 
 import { Label } from '../../Label'
-// import { LargeBody } from '../../LargeBody'
 import {
     IS_BOLD,
     IS_CODE,
@@ -19,51 +17,58 @@ import {
     IS_SUBSCRIPT,
     IS_SUPERSCRIPT,
     IS_UNDERLINE,
-    IS_ALIGN_RIGHT,
-    IS_ALIGN_LEFT,
 } from './nodeFormat'
 
 interface Props {
     nodes: SerializedLexicalNode[]
 }
 
+function getAlignment(node: SerializedElementNode) {
+    switch (node.format) {
+        case 'left':
+            return 'align-lft';
+        case 'right':
+            return 'align-rht';
+        case 'center':
+            return 'align-cnt';
+        case 'justify':
+            return 'align-jstf';
+        case 'start':
+            return 'align-start';
+        case 'end':
+            return 'align-end';
+        default:
+            return '';
+    }
+}
+
+
 export function serializeLexical({ nodes }: Props): JSX.Element {
     return (
         <Fragment>
             {nodes?.map((_node, index): JSX.Element | null => {
+
+
                 if (_node.type === 'text') {
                     const node = _node as SerializedTextNode
                     let text = (
                         <span dangerouslySetInnerHTML={{ __html: escapeHTML(node.text) }} key={index} />
                     )
-                    if (node.format & IS_BOLD) {
-                        text = <strong key={index}>{text}</strong>
-                    }
-                    if (node.format & IS_ITALIC) {
-                        text = <em key={index}>{text}</em>
-                    }
-                    if (node.format & IS_STRIKETHROUGH) {
-                        text = (
-                            <span key={index} style={{ textDecoration: 'line-through' }}>
-                                {text}
-                            </span>
-                        )
-                    }
-                    if (node.format & IS_UNDERLINE) {
-                        text = (
-                            <span key={index} style={{ textDecoration: 'underline' }}>
-                                {text}
-                            </span>
-                        )
-                    }
-                    if (node.format & IS_CODE) {
-                        text = <code key={index}>{text}</code>
-                    }
-                    if (node.format & IS_SUBSCRIPT) {
-                        text = <sub key={index}>{text}</sub>
-                    }
-                    if (node.format & IS_SUPERSCRIPT) {
-                        text = <sup key={index}>{text}</sup>
+
+                    const formatComponents = [
+                        { format: IS_BOLD, component: <strong /> },
+                        { format: IS_ITALIC, component: <em /> },
+                        { format: IS_STRIKETHROUGH, component: <span style={{ textDecoration: 'line-through' }} /> },
+                        { format: IS_UNDERLINE, component: <span style={{ textDecoration: 'underline' }} /> },
+                        { format: IS_CODE, component: <code /> },
+                        { format: IS_SUBSCRIPT, component: <sub /> },
+                        { format: IS_SUPERSCRIPT, component: <sup /> },
+                    ];
+
+                    for (const { format, component } of formatComponents) {
+                        if (node.format & format) {
+                            text = React.cloneElement(component, { key: index }, text);
+                        }
                     }
 
                     return text
@@ -73,10 +78,8 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                     return null
                 }
 
-                // NOTE: Hacky fix for
-                // https://github.com/facebook/lexical/blob/d10c4e6e55261b2fdd7d1845aed46151d0f06a8c/packages/lexical-list/src/LexicalListItemNode.ts#L133
-                // which does not return checked: false (only true - i.e. there is no prop for false)
                 const serializedChildrenFn = (node: SerializedElementNode): JSX.Element | null => {
+
                     if (node.children == null) {
                         return null
                     } else {
@@ -103,8 +106,9 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                         return <br key={index} />
                     }
                     case 'paragraph': {
-                        return <p key={index}>{serializedChildren}</p>
+                        return <p className={`${getAlignment(_node as SerializedElementNode)}`} key={index}>{serializedChildren}</p>;
                     }
+
                     case 'heading': {
                         const node = _node as SerializedHeadingNode
 
@@ -142,7 +146,6 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                                         : 'component--list-item-checked-unchecked'
                                         }`}
                                     key={index}
-                                    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
                                     role="checkbox"
                                     tabIndex={-1}
                                     value={node?.value}
@@ -159,7 +162,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                         }
                     }
                     case 'quote': {
-                        const node = _node as SerializedQuoteNode
+                        // const node = _node as SerializedQuoteNode
 
                         return <blockquote key={index}>{serializedChildren}</blockquote>
                     }
@@ -169,7 +172,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                         const fields: LinkFields = node.fields
 
                         if (fields.linkType === 'custom') {
-                            const rel = fields.newTab ? 'noopener noreferrer' : undefined
+                            // const rel = fields.newTab ? 'noopener noreferrer' : undefined
 
                             return (
                                 <Link

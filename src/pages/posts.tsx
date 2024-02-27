@@ -2,6 +2,10 @@
 import { gql } from '../_graphql/gql';
 import { Config } from '../pl-types';
 import RichText from '@/_components/RichText';
+import { formatDateTime } from '@/_utilities/formatDateTime';
+
+import '../_css/globals.scss';
+
 
 // Define the functional component
 export default function Posts({ posts }: { posts: Config['collections']['posts'][] }) {
@@ -12,7 +16,9 @@ export default function Posts({ posts }: { posts: Config['collections']['posts']
         return <div>No posts available</div>;
     }
 
-    console.log(posts[3].hero.richText)
+    // for (let i = 0; i < posts.length; i++) {
+    //     console.log(posts[i].hero.richText);
+    // }
 
     return (
         <div>
@@ -22,7 +28,7 @@ export default function Posts({ posts }: { posts: Config['collections']['posts']
                     <div key={index}>
                         <li>Title: {post.title}</li>
                         <li>ID: {post.id}</li>
-                        <li>Date: {post.updatedAt}</li>
+                        <li>Date: {formatDateTime(post.updatedAt)}</li>
                         <li>Slug: {post.slug}</li>
                         <li>Name: {post.populatedAuthors && post.populatedAuthors.length > 0 ? post.populatedAuthors[0].name : null}</li>
 
