@@ -1,5 +1,3 @@
-import './_css/app.scss'
-
 export const metadata = {
   title: 'aa',
   description: 'aa',

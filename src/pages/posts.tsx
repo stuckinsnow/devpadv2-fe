@@ -1,10 +1,10 @@
 // Import necessary modules
-import { gql } from '../_graphql/gql';
+import { gql } from '../app/_graphql/gql';
 import { Config } from '../pl-types';
-import RichText from '@/_components/RichText';
-import { formatDateTime } from '@/_utilities/formatDateTime';
+import RichText from '@/app/_components/RichText';
+import { formatDateTime } from '@/app/_utilities/formatDateTime';
 
-import '../_css/globals.scss';
+import '@/app/_css/globals.scss';
 
 
 // Define the functional component
