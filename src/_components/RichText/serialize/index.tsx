@@ -23,7 +23,7 @@ interface Props {
     nodes: SerializedLexicalNode[]
 }
 
-function getAlignment(node: SerializedElementNode) {
+function alignElementNode(node: SerializedElementNode) {
     switch (node.format) {
         case 'left':
             return 'align-lft';
@@ -47,7 +47,6 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
     return (
         <Fragment>
             {nodes?.map((_node, index): JSX.Element | null => {
-
 
                 if (_node.type === 'text') {
                     const node = _node as SerializedTextNode
@@ -106,7 +105,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                         return <br key={index} />
                     }
                     case 'paragraph': {
-                        return <p className={`${getAlignment(_node as SerializedElementNode)}`} key={index}>{serializedChildren}</p>;
+                        return <p className={`${alignElementNode(_node as SerializedElementNode)}`} key={index}>{serializedChildren}</p>;
                     }
 
                     case 'heading': {
