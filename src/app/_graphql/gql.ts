@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const gql = async (query: string): Promise<any> => {
+export const gql = async (query: string, slug: any): Promise<any> => {
   try {
-    console.log('working');
+    // console.log('working');
     const res = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/graphql`, {
       method: 'POST',
       credentials: 'include',
@@ -10,6 +10,9 @@ export const gql = async (query: string): Promise<any> => {
       },
       body: JSON.stringify({
         query,
+        variables: {
+          slug,
+        },
       }),
     })
 
