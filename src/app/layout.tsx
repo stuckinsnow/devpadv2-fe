@@ -9,9 +9,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <div
-
-        >
+        <div>
           <main>{children}</main>
         </div>
       </body>
