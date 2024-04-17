@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'aa',
-  description: 'aa',
+  title: 'Blog Posts',
+  description: 'Blog Posts',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {

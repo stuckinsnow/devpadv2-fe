@@ -14,16 +14,16 @@ export default async function PostsPage() {
     const posts: Post[] = await getPosts();
 
 
-    // console.log(posts);
-    // console.log(posts[0].hero.richText);
-
     if (!posts || posts.length === 0) {
         return <div>No posts available</div>;
     }
 
-    // for (let i = 0; i < posts.length; i++) {
-    //     console.log(posts[i].hero.richText);
-    // }
+    for (let i = 0; i < posts.length; i++) {
+        console.log(posts[i].hero.media);
+    }
+
+    console.log(process.env.DB_API_KEY);
+
 
     return (
 

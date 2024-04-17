@@ -1,38 +1,14 @@
-// Import necessary modules
 import { gql } from '../_graphql/gql';
+import { POSTS } from '../_graphql/posts'; // Import the POSTS query from the queries file
 
 export async function getPosts() {
     try {
-        const query = `
-            query Posts {
-                Posts(limit: 20) {
-                    docs {
-                        title
-                        id
-                        slug
-                        updatedAt
-                        publishedAt  
-                        populatedAuthors {
-                            id 
-                            name
-                          }
-              
-                          hero {
-                            richText
-                          } 
-          
-                    }
-                }
-            }
-        `;
-
-        const data = await gql(query);
+        const data = await gql(POSTS);
         const posts = data.Posts.docs;
 
-        return posts; // Return the posts directly, without wrapping it in a props object
+        return posts;
     } catch (error) {
         console.error('Error fetching posts:', error);
-        // If an error occurs, return an empty array as posts
         return [];
     }
 }
