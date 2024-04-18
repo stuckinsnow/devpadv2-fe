@@ -19,11 +19,7 @@ export default async function PostPage({
         return <div>No posts available</div>;
     }
 
-
     console.log(post[0]?.hero.media)
-
-
-
     console.log(process.env.DB_API_KEY);
 
     return (
@@ -33,14 +29,11 @@ export default async function PostPage({
             <ul>
                 {post.map((post, index) => (
 
-
-
                     <div key={index}>
-                        {/* <li>Img: {post.media}</li> */}
                         <li>Title: {post.title}</li>
                         <li>ID: {post.id}</li>
                         <li>Date: {formatDateTime(post.updatedAt)}</li>
-                        {/* <li>Slug: {post.slug}</li> */}
+                        <li>Slug: {post.slug}</li>
                         <li>Name: {post.populatedAuthors && post.populatedAuthors.length > 0 ? post.populatedAuthors[0].name : null}</li>
 
                         <RichText content={post.hero.richText} />

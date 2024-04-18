@@ -1,7 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 // Overloaded versions of gql function
 export async function gql(query: string): Promise<any>;
-export async function gql(query: string, slug: string): Promise<any>;
 export async function gql(query: string, slug?: string): Promise<any> {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/graphql`, {

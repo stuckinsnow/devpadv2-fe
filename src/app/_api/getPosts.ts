@@ -1,4 +1,4 @@
-import { gql } from '../_graphql/gql';
+import { gql } from './gql';
 import { POSTS } from '../_graphql/posts'; // Import the POSTS query from the queries file
 
 export async function getPosts() {

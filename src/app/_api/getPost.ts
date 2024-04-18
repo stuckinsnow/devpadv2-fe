@@ -1,4 +1,4 @@
-import { gql } from "../_graphql/gql";
+import { gql } from "./gql";
 
 export const getPost = async (slug: string) => {
     try {
