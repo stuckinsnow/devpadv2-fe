@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { getPage } from '../../_api/getPage';
 import { PAGE } from '../../_graphql/pages';
 
-import '../../_css/globals.scss';
+import './page.scss';
 
 import RichText from '@/app/_components/RichText';
 
