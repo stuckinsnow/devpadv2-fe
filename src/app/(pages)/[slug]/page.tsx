@@ -1,55 +1,67 @@
 import Head from 'next/head';
 import { getPage } from '../../_api/getPage';
-import { PAGES } from '../../_graphql/pages';
+import { PAGE } from '../../_graphql/pages';
+import RichText from '@/app/_components/RichText';
 
 export const dynamic = 'force-dynamic';
 
-export default async function PagesPage() {
+export default async function Page({ params }: { params: { slug: string } }) {
     try {
-        const data = await getPage(PAGES);
-        const pages = data?.Pages?.docs || [];
+        const data = await getPage(PAGE, params.slug);
+        const page = data?.Pages?.docs[0] || null;
+
+        console.log(data);
+
+        if (!page) {
+            return (
+                <div>
+                    <Head>
+                        <title>Page Not Found</title>
+                    </Head>
+                    <main>
+                        <h1>Page Not Found</h1>
+                        <p>The requested page could not be found.</p>
+                    </main>
+                </div>
+            );
+        }
 
         console.log(data);
 
         return (
             <div>
                 <Head>
-                    <title>Next.js TypeScript Boilerplate</title>
+                    <title>{page.title}</title>
                     <meta name="description" content="Your description here" />
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
 
                 <main>
                     <h1>Welcome to Next.js with TypeScript</h1>
-                    <p>Edit <code>pages/index.tsx</code> and save to reload.</p>
+                    <p>Edit <code>page/index.tsx</code> and save to reload.</p>
 
-                    {/* Display fetched pages */}
+                    <RichText content={page.hero.richText} />
 
-                    {pages.map((page: any) => (
-                        <div key={page.id}>
-                            <h2>{page.title}</h2>
-                            {/* Log media URL */}
-                            {page.hero && page.hero.media && console.log(page.hero.media.url)}
+                    {/* Display fetched page */}
+                    <div key={page.id}>
+                        <h2>{page.title}</h2>
+                        {/* Log media URL */}
+                        {page.hero && page.hero.media && console.log(page.hero.media.url)}
 
-                            {page.hero && page.hero.media && (
-                                <img src={`http://localhost:3000${page.hero.media.url}`} alt="Hero Image" />
-                            )}
+                        {page.hero && page.hero.media && (
+                            <img src={`http://localhost:3000${page.hero.media.url}`} alt="Hero Image" />
+                        )}
 
-                        </div>
-                    ))}
+                    </div>
 
+                    {/* Render other page data here */}
+                    {/* Modify as needed */}
 
-                    {pages.map((page: any) => (
-                        <div key={page.id}>
-                            <h2>{page.title}</h2>
-                            {/* Render other page data here */}
-                        </div>
-                    ))}
                 </main>
             </div>
         );
     } catch (error) {
-        console.error('Error fetching pages:', error);
+        console.error('Error fetching page:', error);
         return (
             <div>
                 <Head>
@@ -57,7 +69,7 @@ export default async function PagesPage() {
                 </Head>
                 <main>
                     <h1>Error</h1>
-                    <p>Failed to fetch pages.</p>
+                    <p>Failed to fetch page.</p>
                 </main>
             </div>
         );

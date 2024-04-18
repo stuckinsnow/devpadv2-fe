@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 // Overloaded versions of gql function
 
-export async function getPage(query: string, variables?: Record<string, any>) {
+export async function getPage(query: string, slug: string) {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/graphql`, {
             method: 'POST',
@@ -12,7 +12,7 @@ export async function getPage(query: string, variables?: Record<string, any>) {
             },
             body: JSON.stringify({
                 query,
-                variables,
+                variables: slug ? { slug } : undefined,
             }),
         });
 
