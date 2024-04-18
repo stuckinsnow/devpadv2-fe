@@ -1,7 +1,7 @@
 import { getPost } from '../../../_api/getPost'
 import { Post } from '../../../../pl-types';
 import RichText from '../../../_components/RichText';
-import { formatDateTime } from '../../_utilities/formatDateTime';
+import { formatDateTime } from '../../../_utilities/formatDateTime';
 import Link from 'next/link';
 
 import '../../../_css/globals.scss';

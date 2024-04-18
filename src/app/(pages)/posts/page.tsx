@@ -3,7 +3,7 @@
 import { getPosts } from '../../_api/getPosts'
 import { Post } from '../../../pl-types';
 import RichText from '../../_components/RichText';
-import { formatDateTime } from '../_utilities/formatDateTime';
+import { formatDateTime } from '../../_utilities/formatDateTime';
 
 import '../../_css/globals.scss';
 import Link from 'next/link';
