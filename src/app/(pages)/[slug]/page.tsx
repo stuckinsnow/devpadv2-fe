@@ -1,6 +1,9 @@
 import Head from 'next/head';
 import { getPage } from '../../_api/getPage';
 import { PAGE } from '../../_graphql/pages';
+
+import '../../_css/globals.scss';
+
 import RichText from '@/app/_components/RichText';
 
 export const dynamic = 'force-dynamic';
@@ -38,9 +41,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
                 <main>
                     <h1>Welcome to Next.js with TypeScript</h1>
-                    <p>Edit <code>page/index.tsx</code> and save to reload.</p>
 
-                    <RichText content={page.hero.richText} />
+                    <RichText content={page.hero && page.hero.media && page.hero.richText} />
 
                     {/* Display fetched page */}
                     <div key={page.id}>
