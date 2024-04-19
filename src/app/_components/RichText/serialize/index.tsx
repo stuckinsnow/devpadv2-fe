@@ -97,10 +97,39 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                     }
                 }
 
+
+
+
+                // console.log('iamanidiot', _node);
+
+                // if (_node.type === 'upload') {
+                //     console.log(_node.type);
+
+                // }
+
+
+
+
+
                 const serializedChildren =
                     'children' in _node ? serializedChildrenFn(_node as SerializedElementNode) : ''
 
                 switch (_node.type) {
+
+                    case 'upload': {
+
+                        if (_node && 'value' in _node) {
+                            // Check if _node has a 'value' property
+                            // console.log(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}${(_node as any).value.url}`);
+                            return <img key={index} src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL}${(_node as any).value.url}`} />
+                        } else {
+                            // Handle the case where _node doesn't have a 'value' property
+                            return null; // Or some other fallback
+                        }
+
+                    }
+
+
                     case 'linebreak': {
                         return <br key={index} />
                     }

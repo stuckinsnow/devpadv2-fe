@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         const data = await getPage(PAGE, params.slug);
         const page = data?.Pages?.docs[0] || null;
 
-        console.log(data);
+        // console.log(data);
 
         if (!page) {
             return (
@@ -28,8 +28,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 </div>
             );
         }
-
-        console.log(data);
 
         return (
             <div>
@@ -48,16 +46,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
                     <div key={page.id}>
                         <h2>{page.title}</h2>
                         {/* Log media URL */}
-                        {page.hero && page.hero.media && console.log(page.hero.media.url)}
+                        {/* <div>page slug img: {page.hero && page.hero.media && console.log(page.hero.media.url)}</div> */}
 
                         {page.hero && page.hero.media && (
-                            <img src={`http://localhost:3000${page.hero.media.url}`} alt="Hero Image" />
+                            <img src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + page.hero.media.url}`} alt="Hero Image" />
                         )}
 
                     </div>
-
-                    {/* Render other page data here */}
-                    {/* Modify as needed */}
 
                 </main>
             </div>

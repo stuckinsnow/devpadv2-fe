@@ -10,6 +10,7 @@ export const LowImpactHero: React.FC<Page['hero']> = ({ richText }) => {
     <div className={classes.lowImpactHero}>
       <div className={classes.content}>
         <div>
+          <h1>Low impact</h1>
           <RichText className={classes.richText} content={richText} />
         </div>
       </div>
