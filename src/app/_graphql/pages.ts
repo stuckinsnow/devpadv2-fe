@@ -1,6 +1,9 @@
+import { CONTENT, MEDIA_BLOCK } from './blocks'
+import { MEDIA } from './media'
+
 export const PAGES = `
-query Pages {
-    Pages(limit: 20) {
+  query Pages {
+    Pages(limit: 300)  {
       docs {
         title
         id
@@ -15,27 +18,68 @@ query Pages {
               } 
       }
     }
-} 
+  }
 `
 
-
 export const PAGE = `
-query Page($slug: String, $draft: Boolean) {
-  Pages(where: { slug: { equals: $slug }}, limit: 1, draft: $draft) {
-    docs {
-      slug
-      updatedAt
-      publishedAt 
-      id
-      title
-      hero {
-        type
-        richText
-        media {
-          url
+  query Page($slug: String, $draft: Boolean) {
+    Pages(where: { slug: { equals: $slug }}, limit: 1, draft: $draft) {
+      docs {
+        id
+        title
+        hero {
+          type
+          richText
+          media {
+            url
+          } 
+        }
+        layout {
+          ${CONTENT} 
         }
       }
     }
   }
-}
 `
+
+// export const PAGES = `
+// query Pages {
+//     Pages(limit: 20) {
+//       docs {
+//         title
+//         id
+//         slug
+//         updatedAt
+//         publishedAt
+//               hero {
+//                 richText
+//                 media {
+//                   url
+//                 }
+//               }
+//       }
+//     }
+// }
+// `
+
+
+// export const PAGE = `
+// query Page($slug: String, $draft: Boolean) {
+//   Pages(where: { slug: { equals: $slug }}, limit: 1, draft: $draft) {
+//     docs {
+//       slug
+//       updatedAt
+//       publishedAt
+//       id
+//       title
+//       hero {
+//         type
+//         richText
+//         media {
+//           url
+//         }
+//       }
+//     }
+//   }
+// }
+// `

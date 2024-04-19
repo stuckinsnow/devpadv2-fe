@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         const data = await getPage(PAGE, params.slug);
         const page = data?.Pages?.docs[0] || null;
 
-        // console.log(data);
+        // console.log(page.layout[0]?.columns[0]?.richText?.root);
 
         if (!page) {
             return (
@@ -37,12 +37,28 @@ export default async function Page({ params }: { params: { slug: string } }) {
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
 
+                {/* hero.richtext
+                layout.columns.content.richtext */}
+
                 <main>
                     <h1>Welcome to Next.js with TypeScript</h1>
 
                     <RichText content={page.hero && page.hero.media && page.hero.richText} />
 
-                    {/* Display fetched page */}
+                    {page.layout.map((layout: any, layoutIndex: number) => (
+                        layout.columns.map((column: any, columnIndex: number) => {
+                            if (column.richText) {
+                                return (
+                                    <RichText key={`${layoutIndex}-${columnIndex}`} content={column.richText} />
+                                );
+                            }
+                            return null;
+                        })
+                    ))}
+
+
+                    {/* <RichText content={page.layout[0]?.columns[0].richText} /> */}
+
                     <div key={page.id}>
                         <h2>{page.title}</h2>
                         {/* Log media URL */}
