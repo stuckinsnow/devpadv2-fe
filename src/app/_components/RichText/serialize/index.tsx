@@ -23,6 +23,13 @@ interface Props {
     nodes: SerializedLexicalNode[]
 }
 
+interface SerializedUploadNode extends SerializedLexicalNode {
+    value: {
+        url: string;
+    };
+}
+
+
 function alignElementNode(node: SerializedElementNode) {
     switch (node.format) {
         case 'left':
@@ -107,25 +114,14 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 
                 // }
 
-
-
-
-
                 const serializedChildren =
                     'children' in _node ? serializedChildrenFn(_node as SerializedElementNode) : ''
+
 
                 switch (_node.type) {
 
                     case 'upload': {
-
-                        if (_node && 'value' in _node) {
-                            // Check if _node has a 'value' property
-                            // console.log(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}${(_node as any).value.url}`);
-                            return <img key={index} src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL}${(_node as any).value.url}`} />
-                        } else {
-                            // Handle the case where _node doesn't have a 'value' property
-                            return null; // Or some other fallback
-                        }
+                        return <img key={index} src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL}${(_node as SerializedUploadNode).value.url}`} />
 
                     }
 
