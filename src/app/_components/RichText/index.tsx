@@ -10,8 +10,7 @@ const RichText: React.FC<{ className?: string; content: any }> = ({ className, c
 
   return (
     <div className={[classes.richText, className].filter(Boolean).join(' ')}>
-      {
-        serializeLexical({ nodes: content?.root?.children })}
+      {serializeLexical({ nodes: content?.root?.children })}
     </div>
   )
 

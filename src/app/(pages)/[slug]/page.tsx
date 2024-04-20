@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         const data = await getPage(PAGE, params.slug);
         const page = data?.Pages?.docs[0] || null;
 
-        // console.log(page.layout[0]?.columns[0]?.richText?.root);
+        // console.log('bobbbbbb', page.layout[0]?.columns[0]?.richText?.root);
 
         if (!page) {
             return (
@@ -29,6 +29,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
             );
         }
 
+        // console.log('bebop', page?.layout[0]?.blockType);
+
         return (
             <div>
                 <Head>
@@ -41,34 +43,41 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 layout.columns.content.richtext */}
 
                 <main>
-                    <h1>Welcome to Next.js with TypeScript</h1>
 
-                    <RichText content={page.hero && page.hero.media && page.hero.richText} />
-
-                    {page.layout.map((layout: any, layoutIndex: number) => (
-                        layout.columns.map((column: any, columnIndex: number) => {
-                            if (column.richText) {
-                                return (
-                                    <RichText key={`${layoutIndex}-${columnIndex}`} content={column.richText} />
-                                );
-                            }
-                            return null;
-                        })
-                    ))}
-
-
-                    {/* <RichText content={page.layout[0]?.columns[0].richText} /> */}
 
                     <div key={page.id}>
                         <h2>{page.title}</h2>
                         {/* Log media URL */}
                         {/* <div>page slug img: {page.hero && page.hero.media && console.log(page.hero.media.url)}</div> */}
 
+                        <div className='highlight'><h2>main hero image</h2></div>
                         {page.hero && page.hero.media && (
                             <img src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + page.hero.media.url}`} alt="Hero Image" />
                         )}
 
                     </div>
+
+                    <div className='highlight'><h2>main hero richText</h2></div>
+                    {/* <RichText content={page.hero && page.hero.media && page.hero.richText} /> */}
+
+                    <div className='highlight'><h2>main content richText</h2></div>
+
+                    {page?.layout?.map((layout: any, layoutIndex: number) => {
+
+                        if (layout.blockType === 'content') {
+                            return layout.columns.map((column: any, columnIndex: number) => (
+                                column.richText && (
+                                    <RichText key={`${layoutIndex}-${columnIndex}`} content={column.richText} />
+                                )
+                            ));
+                        } else if (layout?.blockType == 'mediaBlock') {
+                            return (
+                                < img key={layoutIndex} src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + layout?.media.url}`
+                                } />
+                            )
+                        }
+                        return null;
+                    })}
 
                 </main>
             </div>

@@ -36,6 +36,7 @@ export const PAGE = `
         }
         layout {
           ${CONTENT} 
+          ${MEDIA_BLOCK}
         }
       }
     }
