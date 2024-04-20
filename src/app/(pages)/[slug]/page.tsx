@@ -67,13 +67,16 @@ export default async function Page({ params }: { params: { slug: string } }) {
                         if (layout.blockType === 'content') {
                             return layout.columns.map((column: any, columnIndex: number) => (
                                 column.richText && (
-                                    <RichText key={`${layoutIndex}-${columnIndex}`} content={column.richText} />
+                                    <div className='highlight'><h3>content richText</h3>
+                                        <RichText key={`${layoutIndex}-${columnIndex}`} content={column.richText} />
+                                    </div>
                                 )
                             ));
                         } else if (layout?.blockType == 'mediaBlock') {
                             return (
-                                < img key={layoutIndex} src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + layout?.media.url}`
-                                } />
+                                <div className='highlight'><h3>content mediaBlock</h3>
+                                    <img key={layoutIndex} src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + layout?.media.url}`} />
+                                </div>
                             )
                         }
                         return null;
