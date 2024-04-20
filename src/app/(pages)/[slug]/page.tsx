@@ -58,7 +58,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                     </div>
 
                     <div className='highlight'><h2>main hero richText</h2></div>
-                    {/* <RichText content={page.hero && page.hero.media && page.hero.richText} /> */}
+                    <RichText content={page.hero && page.hero.media && page.hero.richText} />
 
                     <div className='highlight'><h2>main content richText</h2></div>
 
