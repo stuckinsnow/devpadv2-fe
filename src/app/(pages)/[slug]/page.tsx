@@ -8,12 +8,12 @@ import RichText from '@/app/_components/RichText';
 
 export const dynamic = 'force-dynamic';
 
+// things to fix include any types, css classnames
+
 export default async function Page({ params }: { params: { slug: string } }) {
     try {
         const data = await getPage(PAGE, params.slug);
         const page = data?.Pages?.docs[0] || null;
-
-        // console.log('bobbbbbb', page.layout[0]?.columns[0]?.richText?.root);
 
         if (!page) {
             return (
@@ -44,7 +44,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
                 <main>
 
-
                     <div key={page.id}>
                         <h2>{page.title}</h2>
                         {/* Log media URL */}
@@ -52,30 +51,30 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
                         <div className='highlight'><h2>main hero image</h2></div>
                         {page.hero && page.hero.media && (
-                            <img src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + page.hero.media.url}`} alt="Hero Image" />
+                            <img className="great-hero" src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + page.hero.media.url}`} alt="Hero Image" />
                         )}
 
                     </div>
 
-                    <div className='highlight'><h2>main hero richText</h2></div>
+                    <div className='ab1'><h2>main hero richText</h2></div>
                     <RichText content={page.hero && page.hero.media && page.hero.richText} />
 
-                    <div className='highlight'><h2>main content richText</h2></div>
+                    <div className='ab2'><h2>main content richText</h2></div>
 
                     {page?.layout?.map((layout: any, layoutIndex: number) => {
 
                         if (layout.blockType === 'content') {
                             return layout.columns.map((column: any, columnIndex: number) => (
                                 column.richText && (
-                                    <div className='highlight'><h3>content richText</h3>
+                                    <div className='ab3'><h3>content richText</h3>
                                         <RichText key={`${layoutIndex}-${columnIndex}`} content={column.richText} />
                                     </div>
                                 )
                             ));
                         } else if (layout?.blockType == 'mediaBlock') {
                             return (
-                                <div className='highlight'><h3>content mediaBlock</h3>
-                                    <img key={layoutIndex} src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + layout?.media.url}`} />
+                                <div className='ab4'><h3>content mediaBlock</h3>
+                                    <img className="mediablock-image" key={layoutIndex} src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + layout?.media.url}`} />
                                 </div>
                             )
                         }

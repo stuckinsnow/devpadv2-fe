@@ -19,11 +19,13 @@ export default async function PostsPage() {
     }
 
     for (let i = 0; i < posts.length; i++) {
-        console.log(posts[i].hero.media);
+        console.log(posts[i].hero);
     }
 
-    console.log(process.env.DB_API_KEY);
+    // console.log(process.env.DB_API_KEY);
 
+    console.log(posts[0].hero.media);
+    // <img src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + post.hero.media.url}`} alt="Hero Image"
 
     return (
 
@@ -39,6 +41,9 @@ export default async function PostsPage() {
                         <li>Name: {post.populatedAuthors && post.populatedAuthors.length > 0 ? post.populatedAuthors[0].name : null}</li>
 
                         <RichText content={post.hero.richText} />
+
+                        {/* {post.hero && post.hero.media && ( */}
+                        {/* )} */}
                     </div>
                 ))}
             </ul>

@@ -20,7 +20,7 @@ export default async function PostPage({
     }
 
     console.log(post[0]?.hero.media)
-    console.log(process.env.DB_API_KEY);
+    // console.log(process.env.DB_API_KEY);
 
     return (
 
