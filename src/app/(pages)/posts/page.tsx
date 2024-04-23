@@ -32,19 +32,26 @@ export default async function PostsPage() {
         // <img src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + post.hero.media.url}`} alt="Hero Image"
 
 
-        console.log(posts.Posts.docs[0].title);
+        console.log(posts.Posts.docs[0]?.categories);
+
 
         return (
             <div>
                 <h1>Posts example</h1>
                 <ul>
-                    {posts.Posts.docs.map((post: Post) => (
+                    {posts.Posts.docs.map((post: Post, i: any) => (
                         <div key={post.id}>
                             <li>{post.title}</li>
                             <li>ID: {post.id}</li>
+
+                            <li>Categories: {post?.categories?.map((category: any) => category.title).join(', ')}</li>
+
                             <li>Date: {formatDateTime(post.updatedAt)}</li>
                             <Link href={process.env.NEXT_PUBLIC_SERVER_URL + '/posts/' + (post.slug ?? '')}><li>Slug: {post.slug}</li></Link>
                             <li>Name: {post.populatedAuthors && post.populatedAuthors.length > 0 ? post.populatedAuthors[0].name : null}</li>
+
+                            {/* <img src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + post.hero.media.url}`} alt="Hero Image" /> */}
+
                             <RichText content={post.hero.richText} />
                         </div>
                     ))}

@@ -9,6 +9,10 @@ query Posts {
           slug
           updatedAt
           publishedAt  
+          categories {
+            id
+            title
+          }
           populatedAuthors {
               id 
               name
@@ -60,6 +64,10 @@ query Posts($slug: String!) {
           slug
           updatedAt
           publishedAt
+          categories {
+            id
+            title
+          }
           populatedAuthors {
               id
               name
