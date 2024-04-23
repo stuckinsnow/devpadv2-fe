@@ -1,14 +1,42 @@
-import { gql } from './gql';
-import { POSTS } from '../_graphql/posts'; // Import the POSTS query from the queries file
+import { PAGES } from '../_graphql/pages';
+import { POSTS } from '../_graphql/posts';
+import { Config } from '../../pl-types';
 
-export async function getPosts() {
+const queryMap = {
+    pages: PAGES,
+    posts: POSTS,
+};
+
+export async function getPosts(collection: keyof typeof queryMap): Promise<Config | undefined> {
     try {
-        const data = await gql(POSTS);
-        const posts = data.Posts.docs;
+        const res = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/graphql`, {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `users API-Key ${process.env.DB_API_KEY}`,
+            },
+            body: JSON.stringify({
+                query: queryMap[collection],
+            }),
+        });
 
-        return posts;
-    } catch (error) {
-        console.error('Error fetching posts:', error);
-        return [];
+        // console.log('slug', slug);
+
+        const { data, errors } = await res.json();
+
+        if (errors) {
+            throw new Error(errors[0].message);
+        }
+
+        if (res.ok && data) {
+            return data;
+        }
+
+        throw new Error('Failed to fetch data');
+    } catch (e) {
+        throw new Error(e as string);
     }
 }
+
+

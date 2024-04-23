@@ -6,11 +6,11 @@ import { formatDateTime } from '@/app/_utilities/formatDateTime';
 
 import { Post, Media } from '../../../../pl-types';
 
-// todo: fix type
+// todo: add types
 
 export const dynamic = 'force-dynamic'
 
-export default async function PostsPage({ params }: { params: { slug: string } }) {
+export default async function PostPage({ params }: { params: { slug: string } }) {
     try {
         const data: any = await getPage("posts", params.slug);
 
@@ -18,7 +18,6 @@ export default async function PostsPage({ params }: { params: { slug: string } }
 
         // console.log(newData.layout[0])
         // console.log(data);
-
 
         return (
             <div>

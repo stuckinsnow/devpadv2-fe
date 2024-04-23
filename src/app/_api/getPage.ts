@@ -22,7 +22,7 @@ export async function getPage(collection: keyof typeof queryMap, slug: string): 
             }),
         });
 
-        console.log('slug', slug);
+        // console.log('slug', slug);
 
         const { data, errors } = await res.json();
 
