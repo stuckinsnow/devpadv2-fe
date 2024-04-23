@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { getPage } from '../../_api/getPage';
 import { PAGE } from '../../_graphql/pages';
 import Image from 'next/image';
+import { Page as PageType, Media } from '../../../pl-types';
 
 import './page.scss';
 
@@ -9,7 +10,9 @@ import RichText from '@/app/_components/RichText';
 
 export const dynamic = 'force-dynamic';
 
-// things to fix include any types, css classnames
+// things to fix include css classnames
+
+export type MediaBlock = Extract<PageType['layout'][number], { blockType: 'mediaBlock' }>;
 
 export default async function Page({ params }: { params: { slug: string } }) {
     try {
@@ -31,8 +34,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
             );
         }
 
-        // console.log('bebop', page?.layout[0]?.blockType);
-
         return (
             <div>
                 <Head>
@@ -41,16 +42,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
 
-                {/* hero.richtext
-                layout.columns.content.richtext */}
-
                 <main>
 
                     <div key={page.id}>
                         <h2>{page.title}</h2>
-                        {/* Log media URL */}
-                        {/* <div>page slug img: {page.hero && page.hero.media && console.log(page.hero.media.url)}</div> */}
-
                         <div className='highlight'><h2>main hero image</h2></div>
                         {page.hero && page.hero.media &&
                             (
@@ -72,9 +67,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
                     <div className='ab2'><h2>main content richText</h2></div>
 
-                    {page?.layout?.map((layout: any, layoutIndex: number) => {
+                    {page?.layout?.map((layout: Extract<PageType['layout'][number], { blockType: 'content' | 'mediaBlock' }>, layoutIndex: number) => {
                         if (layout.blockType === 'content') {
-                            return layout.columns.map((column: any, columnIndex: number) => (
+                            return layout.columns?.map((column, columnIndex) => (
                                 column.richText && (
                                     <div className='ab3' key={`${layoutIndex}-${columnIndex}`}>
                                         <h3>content richText</h3>
@@ -82,13 +77,15 @@ export default async function Page({ params }: { params: { slug: string } }) {
                                     </div>
                                 )
                             ));
-                        } else if (layout?.blockType == 'mediaBlock') {
+                        } else if (layout.blockType === 'mediaBlock') {
+                            const layoutMedia = layout.media as Media;
                             return (
                                 <div className='ab4' key={layoutIndex}>
                                     <h3>content mediaBlock</h3>
-                                    <img className="mediablock-image" src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + layout?.media.url}`} />
+                                    <img className="mediablock-image" src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL}${layoutMedia.url}`} />
                                 </div>
-                            )
+                            );
+
                         }
                         return null;
                     })}
