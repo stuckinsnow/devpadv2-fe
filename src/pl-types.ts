@@ -11,6 +11,7 @@ export interface Config {
     posts: Post;
     pages: Page;
     users: User;
+    categories: Category;
     media: Media;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -24,14 +25,15 @@ export interface Config {
 export interface Post {
   id: number;
   title: string;
+  categories?: (number | Category)[] | null;
   publishedAt?: string | null;
   authors?: (number | User)[] | null;
   populatedAuthors?:
-  | {
-    id?: string | null;
-    name?: string | null;
-  }[]
-  | null;
+    | {
+        id?: string | null;
+        name?: string | null;
+      }[]
+    | null;
   hero: {
     type: 'highImpact' | 'lowImpact';
     richText: {
@@ -53,46 +55,56 @@ export interface Post {
   };
   layout: (
     | {
-      columns?:
-      | {
-        size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-        richText: {
-          root: {
-            children: {
-              type: string;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            type: string;
-            version: number;
-          };
-          [k: string]: unknown;
-        };
-        enableLink?: boolean | null;
+        columns?:
+          | {
+              size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
+              richText: {
+                root: {
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  type: string;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              enableLink?: boolean | null;
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
-      }[]
-      | null;
-      id?: string | null;
-      blockName?: string | null;
-      blockType: 'content';
-    }
+        blockName?: string | null;
+        blockType: 'content';
+      }
     | {
-      invertBackground?: boolean | null;
-      position?: ('default' | 'fullscreen') | null;
-      media: number | Media;
-      id?: string | null;
-      blockName?: string | null;
-      blockType: 'mediaBlock';
-    }
+        invertBackground?: boolean | null;
+        position?: ('default' | 'fullscreen') | null;
+        media: number | Media;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'mediaBlock';
+      }
   )[];
   relatedPosts?: (number | Post)[] | null;
   slug?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: number;
+  title?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -187,40 +199,40 @@ export interface Page {
   };
   layout: (
     | {
-      columns?:
-      | {
-        size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-        richText: {
-          root: {
-            children: {
-              type: string;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            type: string;
-            version: number;
-          };
-          [k: string]: unknown;
-        };
-        enableLink?: boolean | null;
+        columns?:
+          | {
+              size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
+              richText: {
+                root: {
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  type: string;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              enableLink?: boolean | null;
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
-      }[]
-      | null;
-      id?: string | null;
-      blockName?: string | null;
-      blockType: 'content';
-    }
+        blockName?: string | null;
+        blockType: 'content';
+      }
     | {
-      invertBackground?: boolean | null;
-      position?: ('default' | 'fullscreen') | null;
-      media: number | Media;
-      id?: string | null;
-      blockName?: string | null;
-      blockType: 'mediaBlock';
-    }
+        invertBackground?: boolean | null;
+        position?: ('default' | 'fullscreen') | null;
+        media: number | Media;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'mediaBlock';
+      }
   )[];
   slug?: string | null;
   updatedAt: string;
@@ -239,14 +251,14 @@ export interface PayloadPreference {
   };
   key?: string | null;
   value?:
-  | {
-    [k: string]: unknown;
-  }
-  | unknown[]
-  | string
-  | number
-  | boolean
-  | null;
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -260,4 +272,9 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
-} 
+}
+
+
+declare module 'payload' {
+  export interface GeneratedTypes extends Config {}
+}
