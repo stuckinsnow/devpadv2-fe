@@ -14,23 +14,23 @@ export default async function PostPage({ params }: { params: { slug: string } })
     try {
         const data: any = await getPage("posts", params.slug);
 
-        const newData: any = data.Posts.docs[0];
+        const rData: any = data.Posts.docs[0];
 
-        // console.log(newData.layout[0])
+        // console.log(rData.layout[0])
         // console.log(data);
 
         return (
             <div>
 
-                <li>Title: {newData.title}</li>
-                <li>ID: {newData.id}</li>
-                <li>Date:    {newData.slug}</li>
-                <li>Slug: {formatDateTime(newData.updatedAt)}</li>
-                <li>Name: {newData.populatedAuthors && newData.populatedAuthors.length > 0 ? newData.populatedAuthors[0].name : null}</li>
-                <RichText content={newData.hero.richText} />
+                <li>Title: {rData.title}</li>
+                <li>ID: {rData.id}</li>
+                <li>Date:    {rData.slug}</li>
+                <li>Slug: {formatDateTime(rData.updatedAt)}</li>
+                <li>Name: {rData.populatedAuthors && rData.populatedAuthors.length > 0 ? rData.populatedAuthors[0].name : null}</li>
+                <RichText content={rData.hero.richText} />
                 <Link href={process.env.NEXT_PUBLIC_SERVER_URL + '/posts/'}><h3>Show all posts</h3></Link>
 
-                {newData?.layout?.map((layout: Extract<Post['layout'][number], { blockType: 'content' | 'mediaBlock' }>, layoutIndex: number) => {
+                {rData?.layout?.map((layout: Extract<Post['layout'][number], { blockType: 'content' | 'mediaBlock' }>, layoutIndex: number) => {
                     if (layout.blockType === 'content') {
                         return layout.columns?.map((column, columnIndex) => (
                             column.richText && (
