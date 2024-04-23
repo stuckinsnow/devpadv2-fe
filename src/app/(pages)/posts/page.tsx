@@ -32,14 +32,14 @@ export default async function PostsPage() {
         // <img src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + post.hero.media.url}`} alt="Hero Image"
 
 
-        console.log(posts.Posts.docs[0]?.categories);
+        // console.log(posts.Posts.docs[0]?.categories[0].title);
 
 
         return (
             <div>
                 <h1>Posts example</h1>
                 <ul>
-                    {posts.Posts.docs.map((post: Post, i: any) => (
+                    {posts.Posts.docs.map((post: Post) => (
                         <div key={post.id}>
                             <li>{post.title}</li>
                             <li>ID: {post.id}</li>
