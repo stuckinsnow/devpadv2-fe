@@ -1,7 +1,13 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// Overloaded versions of gql function
+import { PAGE } from '../_graphql/pages';
+import { POST } from '../_graphql/posts';
+import { Config } from '../../pl-types';
 
-export async function getPage(query: string, slug: string) {
+const queryMap = {
+    pages: PAGE,
+    posts: POST,
+};
+
+export async function getPage(collection: keyof typeof queryMap, slug: string): Promise<Config | undefined> {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/graphql`, {
             method: 'POST',
@@ -11,10 +17,12 @@ export async function getPage(query: string, slug: string) {
                 Authorization: `users API-Key ${process.env.DB_API_KEY}`,
             },
             body: JSON.stringify({
-                query,
+                query: queryMap[collection],
                 variables: slug ? { slug } : undefined,
             }),
         });
+
+        console.log('slug', slug);
 
         const { data, errors } = await res.json();
 
@@ -25,7 +33,61 @@ export async function getPage(query: string, slug: string) {
         if (res.ok && data) {
             return data;
         }
+
+        throw new Error('Failed to fetch data');
     } catch (e) {
         throw new Error(e as string);
     }
 }
+
+
+
+
+
+
+
+
+
+
+// import { PAGE } from '../_graphql/pages';
+// import { POST } from '../_graphql/posts';
+// import { Config } from '../../pl-types';
+
+// const queryMap = {
+//     pages: PAGE,
+//     posts: POST,
+// };
+
+
+
+// export const getPage = async ({ collection, slug }: { collection: keyof typeof queryMap; slug: string }): Promise<Config> => {
+//     try {
+//         const res = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/graphql`, {
+//             method: 'POST',
+//             credentials: 'include',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 Authorization: `users API-Key ${process.env.DB_API_KEY}`,
+//             },
+//             body: JSON.stringify({
+//                 query: queryMap[collection],
+//                 variables: slug ? { slug } : undefined,
+//             }),
+//         });
+
+//         const { data, errors } = await res.json();
+
+//         if (errors) {
+//             throw new Error(errors[0].message);
+//         }
+
+//         if (res.ok && data) {
+//             return data;
+//         }
+
+//         throw new Error('Failed to fetch data');
+//     } catch (e) {
+//         throw new Error(e as string);
+//     }
+// };
+

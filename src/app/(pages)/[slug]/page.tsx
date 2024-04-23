@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { getPage } from '../../_api/getPage';
-import { PAGE } from '../../_graphql/pages';
+// import { PAGE } from '../../_graphql/pages';
 import Image from 'next/image';
 import { Page as PageType, Media } from '../../../pl-types';
 
@@ -10,14 +10,17 @@ import RichText from '@/app/_components/RichText';
 
 export const dynamic = 'force-dynamic';
 
-// things to fix include css classnames
+// things to fix include type and css classnames
 
 export type MediaBlock = Extract<PageType['layout'][number], { blockType: 'mediaBlock' }>;
 
 export default async function Page({ params }: { params: { slug: string } }) {
     try {
-        const data = await getPage(PAGE, params.slug);
-        const page = data?.Pages?.docs[0] || null;
+        const data = await getPage("pages", params.slug);
+
+
+        const dataType = data as any;
+        const page = dataType?.Pages?.docs[0] || null;
 
 
         if (!page) {
