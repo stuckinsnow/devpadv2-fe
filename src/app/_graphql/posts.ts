@@ -1,4 +1,4 @@
-import { MEDIA } from './media'
+import { CONTENT, MEDIA_BLOCK } from './blocks'
 
 export const POSTS = `
 query Posts {
@@ -30,6 +30,27 @@ query Posts {
   }
 }
 `
+// export const POST = `
+// query Posts($slug: String!) {
+//   Posts(where: { slug: { equals: $slug }}, limit: 1) {
+//       docs {
+//           title
+//           id
+//           slug
+//           updatedAt
+//           publishedAt
+//           populatedAuthors {
+//               id
+//               name
+//           }
+//           hero {
+//               richText
+//           }
+//       }
+//   }
+// } `
+
+
 export const POST = `
 query Posts($slug: String!) {
   Posts(where: { slug: { equals: $slug }}, limit: 1) {
@@ -46,9 +67,16 @@ query Posts($slug: String!) {
           hero {
               richText
           }
+
+          layout {
+            ${CONTENT} 
+            ${MEDIA_BLOCK}
+          }
       }
   }
 } `
+
+
 
 // export const POST = `
 //   query Posts {
