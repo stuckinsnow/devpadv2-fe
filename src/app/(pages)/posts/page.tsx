@@ -1,12 +1,6 @@
-// Import necessary modules
-// import { gql } from '../../_graphql/gql';
-import { getPosts } from '../../_api/getPosts'
-import { Post } from '../../../pl-types';
-import RichText from '../../_components/RichText';
-import { formatDateTime } from '../../_utilities/formatDateTime';
-
+import { getDocs } from '../../_api/getDocs'
 import '../../_css/globals.scss';
-import Link from 'next/link';
+import PostBlock from '@/app/_blocks/PostBlock';
 
 export const dynamic = 'force-dynamic'
 
@@ -16,7 +10,7 @@ export default async function PostsPage() {
 
     try {
 
-        const posts: any = await getPosts("posts");
+        const posts: any = await getDocs("posts");
 
         if (!posts || posts.length === 0) {
             return <div>No posts available</div>;
@@ -28,34 +22,12 @@ export default async function PostsPage() {
 
         // console.log(process.env.DB_API_KEY);
 
-        // console.log(posts[0].hero.media);
-        // <img src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + post.hero.media.url}`} alt="Hero Image"
-
-
-        // console.log(posts.Posts.docs[0]?.categories[0].title);
-
-
         return (
             <div>
                 <h1>Posts example</h1>
-                <ul>
-                    {posts.Posts.docs.map((post: Post) => (
-                        <div key={post.id}>
-                            <li>{post.title}</li>
-                            <li>ID: {post.id}</li>
 
-                            <li>Categories: {post?.categories?.map((category: any) => category.title).join(', ')}</li>
+                <PostBlock posts={posts.Posts.docs} />
 
-                            <li>Date: {formatDateTime(post.updatedAt)}</li>
-                            <Link href={process.env.NEXT_PUBLIC_SERVER_URL + '/posts/' + (post.slug ?? '')}><li>Slug: {post.slug}</li></Link>
-                            <li>Name: {post.populatedAuthors && post.populatedAuthors.length > 0 ? post.populatedAuthors[0].name : null}</li>
-
-                            {/* <img src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + post.hero.media.url}`} alt="Hero Image" /> */}
-
-                            <RichText content={post.hero.richText} />
-                        </div>
-                    ))}
-                </ul>
             </div>
         );
 

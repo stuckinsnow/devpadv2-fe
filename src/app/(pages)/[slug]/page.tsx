@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { getPage } from '../../_api/getPage';
+import { getDoc } from '../../_api/getDoc';
 // import { PAGE } from '../../_graphql/pages';
 import Image from 'next/image';
 import { Page as PageType, Media } from '../../../pl-types';
@@ -16,7 +16,7 @@ export type MediaBlock = Extract<PageType['layout'][number], { blockType: 'media
 
 export default async function Page({ params }: { params: { slug: string } }) {
     try {
-        const data = await getPage("pages", params.slug);
+        const data = await getDoc("pages", params.slug);
 
 
         const dataType = data as any;

@@ -7,7 +7,7 @@ const queryMap = {
     posts: POSTS,
 };
 
-export async function getPosts(collection: keyof typeof queryMap): Promise<Config | undefined> {
+export async function getDocs(collection: keyof typeof queryMap): Promise<Config | undefined> {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/graphql`, {
             method: 'POST',

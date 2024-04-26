@@ -20,14 +20,14 @@ query Posts {
 
             hero {
               richText
-            } 
+              media {
+                url
+              }
+            }  
 
             layout {
-              ... on MediaBlock {
-                media {
-                  url
-                }
-              }
+              ${CONTENT} 
+              ${MEDIA_BLOCK}
             }
 
       }
