@@ -2,6 +2,9 @@ import React from 'react';
 import RichText from '../../_components/RichText';
 import { Post, Media } from '../../../pl-types';
 
+// todo: add types
+// line 10
+
 type ContentOrMediaBlockLayout = Extract<Post['layout'][number], { blockType: 'content' | 'mediaBlock' }>
 
 const ContentAndMediaBlock: React.FC<any> = (rData) => {
