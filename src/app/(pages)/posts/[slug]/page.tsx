@@ -37,7 +37,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
 
                 <Link href={process.env.NEXT_PUBLIC_SERVER_URL + '/posts/'}><h3>Show all posts</h3></Link>
 
-                <ContentAndMediaBlock rData={... rData} />
+                <ContentAndMediaBlock rData={data.Posts.docs[0]} />
 
             </React.Fragment>
 
