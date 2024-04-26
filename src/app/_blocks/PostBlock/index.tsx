@@ -2,10 +2,12 @@ import React from 'react';
 import Link from 'next/link';
 import { Post, Media } from '../../../pl-types';
 import { formatDateTime } from '../../_utilities/formatDateTime';
-import RichText from '../../_components/RichText';
+// import RichText from '../../_components/RichText';
 import './postblock.scss';
 import '../../_css/globals.scss';
 
+// todo: add types
+// line 23, 29
 
 interface MediaExtended extends Media {
     url: string;
@@ -28,7 +30,7 @@ const PostBlock: React.FC<{ posts: Post[] }> = ({ posts }) => {
                         <li className='postblock-item__slug'><Link href={`${process.env.NEXT_PUBLIC_SERVER_URL}/posts/${post.slug}`}>Slug: {post.slug}</Link></li>
 
                         {post.hero.media && (
-                            <img className='postblock-item__hero-photo' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (post.hero.media as MediaExtended)?.url}`} alt="Hero Image" />
+                            <img className='postblock-item__hero-photo' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (post.hero.media as MediaExtended)?.url}`} alt={post.title + '-hero-photo'} />
                         )}
 
                     </ul>

@@ -1,10 +1,11 @@
 import { getDocs } from '../../_api/getDocs'
-import '../../_css/globals.scss';
 import PostBlock from '@/app/_blocks/PostBlock';
+import '../../_css/globals.scss';
 
 export const dynamic = 'force-dynamic'
 
 // todo: add types
+// line 14
 
 export default async function PostsPage() {
 
@@ -16,19 +17,13 @@ export default async function PostsPage() {
             return <div>No posts available</div>;
         }
 
-        // for (let i = 0; i < posts.length; i++) {
-        //     console.log(posts[i].hero);
-        // }
-
-        // console.log(process.env.DB_API_KEY);
-
         return (
-            <div>
+            <main className='content'>
                 <h1>Posts example</h1>
 
                 <PostBlock posts={posts.Posts.docs} />
 
-            </div>
+            </main>
         );
 
     } catch (error) {

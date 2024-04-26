@@ -16,6 +16,8 @@ export default async function PostPage({ params }: { params: { slug: string } })
 
         const rData: Post = data?.Posts.docs[0];
 
+        console.log(rData);
+
         return (
 
             <React.Fragment>
