@@ -4,7 +4,10 @@ import '../../../_css/globals.scss';
 import { getDoc } from '../../../_api/getDoc';
 import RichText from '@/app/_components/RichText';
 import { formatDateTime } from '@/app/_utilities/formatDateTime';
-import { Config, Post } from '../../../../pl-types';
+import { Post } from '../../../../pl-types';
+
+// todo: add types
+// line 18
 
 import ContentAndMediaBlock from '../../../_blocks/ContentAndMediaBlock';
 
@@ -16,10 +19,6 @@ export default async function PostPage({ params }: { params: { slug: string } })
 
         const rData: Post = data?.Posts.docs[0] || null;
 
-
-        const dataType = data as any;
-        const post = dataType?.Posts?.docs[0] || null;
-
         // console.log('bebop', data.Posts.docs[0].layout);
 
         // console.log(data.Posts.docs[0].layout[0]);
@@ -30,8 +29,9 @@ export default async function PostPage({ params }: { params: { slug: string } })
 
                 <li>Title: {rData.title}</li>
                 <li>ID: {rData.id}</li>
-                <li>Date: {rData.slug}</li>
-                <li>Slug: {formatDateTime(rData.updatedAt)}</li>
+                <li>Slug: {rData.slug}</li>
+                <li>Update Date: {formatDateTime(rData.updatedAt)}</li>
+                <li>Publish Date: {formatDateTime(rData.publishedAt ?? ' ')}</li>
                 <li>Name: {rData.populatedAuthors && rData.populatedAuthors.length > 0 ? rData.populatedAuthors[0].name : null}</li>
                 <RichText content={rData.hero.richText} />
 
