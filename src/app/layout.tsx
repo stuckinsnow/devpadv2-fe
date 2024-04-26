@@ -1,3 +1,5 @@
+import Header from "./_components/Header"
+
 export const metadata = {
   title: 'Blog Posts',
   description: 'Blog Posts',
@@ -10,6 +12,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en">
       <body>
         <div>
+          <Header />
           <main>{children}</main>
         </div>
       </body>

@@ -18,12 +18,12 @@ export default async function PostsPage() {
         }
 
         return (
-            <main className='content'>
+            <div className='content'>
                 <h1>Posts example</h1>
 
                 <PostBlock posts={posts.Posts.docs} />
 
-            </main>
+            </div>
         );
 
     } catch (error) {
