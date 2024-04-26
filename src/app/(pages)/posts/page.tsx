@@ -1,5 +1,5 @@
 import { getDocs } from '../../_api/getDocs'
-import PostBlock from '@/app/_blocks/PostBlock';
+import PostBlock from '../../_blocks/PostBlock';
 import '../../_css/globals.scss';
 
 export const dynamic = 'force-dynamic'

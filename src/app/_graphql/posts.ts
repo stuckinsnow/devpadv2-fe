@@ -74,6 +74,9 @@ query Posts($slug: String!) {
           }
           hero {
               richText
+              media {
+                url
+              }
           }
 
           layout {
@@ -83,6 +86,7 @@ query Posts($slug: String!) {
       }
   }
 } `
+
 
 
 

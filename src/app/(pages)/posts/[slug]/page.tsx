@@ -14,9 +14,15 @@ export default async function PostPage({ params }: { params: { slug: string } })
     try {
         const data: any = await getDoc("posts", params.slug);
 
-        const rData: Post = data?.Posts.docs[0];
+        const rData: Post = data?.Posts.docs[0] || null;
 
-        console.log(rData);
+
+        const dataType = data as any;
+        const post = dataType?.Posts?.docs[0] || null;
+
+        // console.log('bebop', data.Posts.docs[0].layout);
+
+        // console.log(data.Posts.docs[0].layout[0]);
 
         return (
 
@@ -28,9 +34,10 @@ export default async function PostPage({ params }: { params: { slug: string } })
                 <li>Slug: {formatDateTime(rData.updatedAt)}</li>
                 <li>Name: {rData.populatedAuthors && rData.populatedAuthors.length > 0 ? rData.populatedAuthors[0].name : null}</li>
                 <RichText content={rData.hero.richText} />
+
                 <Link href={process.env.NEXT_PUBLIC_SERVER_URL + '/posts/'}><h3>Show all posts</h3></Link>
 
-                <ContentAndMediaBlock rData={rData} />
+                <ContentAndMediaBlock rData={... rData} />
 
             </React.Fragment>
 

@@ -7,6 +7,7 @@ import { Page as PageType, Media } from '../../../pl-types';
 import './page.scss';
 
 import RichText from '@/app/_components/RichText';
+import ContentAndMediaBlock from '../../_blocks/ContentAndMediaBlock';
 
 export const dynamic = 'force-dynamic';
 
@@ -70,7 +71,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
                     <div className='ab2'><h2>main content richText</h2></div>
 
-                    {page?.layout?.map((layout: Extract<PageType['layout'][number], { blockType: 'content' | 'mediaBlock' }>, layoutIndex: number) => {
+                    {/* {page?.layout?.map((layout: Extract<PageType['layout'][number], { blockType: 'content' | 'mediaBlock' }>, layoutIndex: number) => {
                         if (layout.blockType === 'content') {
                             return layout.columns?.map((column, columnIndex) => (
                                 column.richText && (
@@ -91,7 +92,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
                         }
                         return null;
-                    })}
+                    })} */}
+
+
+                    <ContentAndMediaBlock rData={dataType.Pages.docs[0]} />
+
 
                 </main>
             </div>
