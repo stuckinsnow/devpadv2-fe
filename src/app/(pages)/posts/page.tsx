@@ -1,3 +1,5 @@
+import React from 'react';
+import HeroBar from '@/app/_components/HeroBar';
 import { getDocs } from '../../_api/getDocs'
 import PostBlock from '../../_blocks/PostBlock';
 import '../../_css/globals.scss';
@@ -18,12 +20,15 @@ export default async function PostsPage() {
         }
 
         return (
-            <div className='content'>
-                <h1>Posts example</h1>
+            <React.Fragment>
+                <HeroBar />
+                <div className='content'>
+                    <h1>Posts example</h1>
 
-                <PostBlock posts={posts.Posts.docs} />
+                    <PostBlock posts={posts.Posts.docs} />
 
-            </div>
+                </div>
+            </React.Fragment>
         );
 
     } catch (error) {

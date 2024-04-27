@@ -5,11 +5,10 @@ import { getDoc } from '../../../_api/getDoc';
 import RichText from '@/app/_components/RichText';
 import { formatDateTime } from '@/app/_utilities/formatDateTime';
 import { Post } from '../../../../pl-types';
+import ContentAndMediaBlock from '../../../_blocks/ContentAndMediaBlock';
 
 // todo: add types
-// line 18
-
-import ContentAndMediaBlock from '../../../_blocks/ContentAndMediaBlock';
+// line 17
 
 export const dynamic = 'force-dynamic'
 
