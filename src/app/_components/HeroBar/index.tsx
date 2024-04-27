@@ -9,19 +9,21 @@ const HeroBar: React.FC<Props> = ({ /* Destructure your props here */ }) => {
     return (
         <div className='herobar'>
 
-            <div className="herobar__container">
-                <div className="herobar__content">
-                    <h1 className="herobar__title">Hero Bar</h1>
+            <section className="herobar__container">
+                <h1>Dummy writing</h1>
+                <article className="herobar__content">
+                    <h3 className="herobar__title">Hero Bar</h3>
                     <p className="herobar__description">This is a hero bar component</p>
-                </div>
-            </div>
+                </article>
+            </section>
 
-            <div className="herobar__container">
-                <div className="herobar__content">
-                    <h1 className="herobar__title">Hero Bar</h1>
+            <section className="herobar__container">
+                <h2>Dummy writing</h2>
+                <article className="herobar__content">
+                    <h3 className="herobar__title">Hero Bar</h3>
                     <p className="herobar__description">This is a hero bar component</p>
-                </div>
-            </div>
+                </article>
+            </section>
 
         </div>
     );

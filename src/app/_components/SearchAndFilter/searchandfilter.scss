@@ -1,0 +1,13 @@
+@use '../../_css/colours.scss' as *;
+@use '../../_css/mixins.scss' as *;
+
+.searchandfilter {
+
+    display: flex;
+    box-sizing: border-box;
+    max-width: 1280px;
+    margin: 0 auto;
+
+    color: $color-a;
+    background-color: $color-a-low-op;
+}
