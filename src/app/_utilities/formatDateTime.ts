@@ -3,6 +3,7 @@ export const formatDateTime = (timestamp: string): string => {
   let date = now
   if (timestamp) date = new Date(timestamp)
   const months = date.getMonth()
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const days = date.getDate()
   // const hours = date.getHours();
   // const minutes = date.getMinutes();
@@ -16,5 +17,5 @@ export const formatDateTime = (timestamp: string): string => {
   // const MinMin = (minutes < 10) ? `0${minutes}` : minutes;
   // const SS = (seconds < 10) ? `0${seconds}` : seconds;
 
-  return `${MM}/${DD}/${YYYY}`
+  return `${monthNames[months]} ${DD}, ${YYYY}`
 }

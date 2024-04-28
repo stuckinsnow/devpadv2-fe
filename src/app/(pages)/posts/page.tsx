@@ -1,7 +1,7 @@
 import React from 'react';
 import HeroBar from '@/app/_components/HeroBar';
 import { getDocs } from '../../_api/getDocs'
-import PostBlock from '../../_blocks/PostBlock';
+import PostCards from '../../_components/PostCards';
 import '../../_css/globals.scss';
 import SearchAndFilter from '@/app/_components/SearchAndFilter';
 
@@ -26,7 +26,7 @@ export default async function PostsPage() {
                 <SearchAndFilter />
                 <div className='content'>
 
-                    <PostBlock posts={posts.Posts.docs} />
+                    <PostCards posts={posts.Posts.docs} />
 
                 </div>
             </React.Fragment>

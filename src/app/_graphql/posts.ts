@@ -19,7 +19,7 @@ query Posts {
             }
 
             hero {
-              richText
+              excerpt
               media {
                 url
               }

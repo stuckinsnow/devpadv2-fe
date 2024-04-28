@@ -36,6 +36,7 @@ export interface Post {
   | null;
   hero: {
     type: 'highImpact' | 'lowImpact';
+    excerpt: string;
     richText: {
       root: {
         children: {
