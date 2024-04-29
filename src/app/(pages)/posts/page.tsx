@@ -14,7 +14,9 @@ export default async function PostsPage() {
 
     try {
 
-        const posts: any = await getDocs("posts");
+        const posts: any = await getDocs("posts", 1);
+
+        console.log(posts);
 
         if (!posts || posts.length === 0) {
             return <div>No posts available</div>;

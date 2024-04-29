@@ -1,8 +1,8 @@
 import { CONTENT, MEDIA_BLOCK } from './blocks'
 
 export const POSTS = `
-query Posts {
-  Posts(limit: 2) {
+query Posts($page: Int!) {
+  Posts(page: $page, limit: 4) {
     totalDocs
     page
     totalPages
