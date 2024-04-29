@@ -30,6 +30,7 @@ export async function getDocs(collection: keyof typeof queryMap): Promise<Config
         }
 
         if (res.ok && data) {
+            console.log(data);
             return data;
         }
 

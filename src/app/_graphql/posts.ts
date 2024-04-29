@@ -2,7 +2,14 @@ import { CONTENT, MEDIA_BLOCK } from './blocks'
 
 export const POSTS = `
 query Posts {
-  Posts(limit: 20) {
+  Posts(limit: 2) {
+    totalDocs
+    page
+    totalPages
+    hasPrevPage
+    hasNextPage
+    prevPage
+    nextPage
       docs {
           title
           id
