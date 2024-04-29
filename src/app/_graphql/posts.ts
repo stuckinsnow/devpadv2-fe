@@ -2,7 +2,7 @@ import { CONTENT, MEDIA_BLOCK } from './blocks'
 
 export const POSTS = `
 query Posts($page: Int!) {
-  Posts(page: $page, limit: 4) {
+  Posts(page: $page, limit: 8) {
     totalDocs
     page
     totalPages
@@ -36,7 +36,6 @@ query Posts($page: Int!) {
               ${CONTENT} 
               ${MEDIA_BLOCK}
             }
-
       }
   }
 }

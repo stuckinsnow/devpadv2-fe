@@ -35,7 +35,6 @@ export async function getDocs(
         }
 
         if (res.ok && data) {
-            console.log(data);
             return data;
         }
 
