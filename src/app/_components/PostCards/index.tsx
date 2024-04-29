@@ -16,7 +16,8 @@ interface MediaExtended extends Media {
 
 
 const PostCards: React.FC<{ posts: Post[] }> = ({ posts }) => {
-    console.log(posts[2]?.hero.richText + posts[2]?.title);
+
+    // console.log(posts[2]?.hero.richText + posts[2]?.title);
 
     return (
         <div className='postcards'>
