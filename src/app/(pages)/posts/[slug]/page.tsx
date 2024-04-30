@@ -34,7 +34,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
                 <li>Name: {rData.populatedAuthors && rData.populatedAuthors.length > 0 ? rData.populatedAuthors[0].name : null}</li>
                 <RichText content={rData.hero.richText} />
 
-                <Link href={process.env.NEXT_PUBLIC_SERVER_URL + '/posts/page/1'}><h3>Show all posts</h3></Link>
+                <Link href={process.env.NEXT_PUBLIC_SERVER_URL + '/posts'}><h3>Show all posts</h3></Link>
 
                 <ContentAndMediaBlock rData={data.Posts.docs[0]} />
 

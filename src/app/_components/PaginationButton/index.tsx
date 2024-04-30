@@ -16,7 +16,7 @@ const PaginationButton: React.FC<{ posts: any }> = ({ posts }) => {
     if (nPage !== null) {
         nValue = (
             <React.Fragment>
-                <a href={process.env.NEXT_PUBLIC_SERVER_URL + '/posts/page/' + posts?.Posts.nextPage}>Next</a>
+                <a href={process.env.NEXT_PUBLIC_SERVER_URL + '/posts/?page=' + posts?.Posts.nextPage}>Next</a>
             </React.Fragment>
         );
     }
@@ -24,7 +24,7 @@ const PaginationButton: React.FC<{ posts: any }> = ({ posts }) => {
     if (pPage !== null) {
         pValue = (
             <React.Fragment>
-                <a href={process.env.NEXT_PUBLIC_SERVER_URL + '/posts/page/' + posts?.Posts.prevPage}>Previous</a>
+                <a href={process.env.NEXT_PUBLIC_SERVER_URL + '/posts/?page=' + posts?.Posts.prevPage}>Previous</a>
             </React.Fragment>
         );
     }

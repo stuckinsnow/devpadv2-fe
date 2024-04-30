@@ -9,7 +9,9 @@ const queryMap = {
 
 export async function getDocs(
     collection: keyof typeof queryMap,
-    page: number)
+    page: number,
+    categoryId: number,
+)
     : Promise<Config | undefined> {
     try {
 
@@ -22,7 +24,7 @@ export async function getDocs(
             },
             body: JSON.stringify({
                 query: queryMap[collection],
-                variables: { page },
+                variables: { page, categoryId: [categoryId] },
             }),
         });
 
