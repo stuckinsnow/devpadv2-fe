@@ -18,7 +18,7 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
     try {
 
         const page = parseInt(searchParams.page) || 1;
-        const categoryId = parseInt(searchParams.category) || 1;
+        const categoryId = parseInt(searchParams.category) || undefined;
         const posts: any = await getDocs("posts", page, categoryId);
 
         const cats: any = await getDocs("cats", undefined, undefined);
@@ -36,14 +36,12 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
                 <SearchAndFilter />
                 <div className='content'>
 
-
                     <div>
                         {newCats.map((cat: any) => {
                             const theLink = <Link key={cat.id} href={process.env.NEXT_PUBLIC_SERVER_URL + '/posts/' + '?page=1' + '&category=' + cat.id}><div key={cat.id}>{cat.title}</div></Link>
                             return theLink;
                         })}
                     </div>
-                    bebop
 
                     <PostCards posts={posts.Posts.docs} />
 

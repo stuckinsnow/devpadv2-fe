@@ -26,7 +26,7 @@ export async function getDocs(
             },
             body: JSON.stringify({
                 query: queryMap[collection],
-                variables: { page, categoryId: [categoryId] },
+                variables: { page, categoryId: categoryId ? [categoryId] : [] },
             }),
         });
 
