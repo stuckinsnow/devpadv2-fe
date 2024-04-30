@@ -10,7 +10,7 @@ const PaginationButton: React.FC<{ posts: any, paramCat: string }> = ({ posts, p
     const nPage: number = posts?.Posts.nextPage;
     const pPage: number = posts?.Posts.prevPage;
 
-    console.log(posts);
+    // console.log(posts);
 
     switch (true) {
         case nPage === null:

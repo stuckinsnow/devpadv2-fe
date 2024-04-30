@@ -1,20 +1,14 @@
 import React from 'react';
+import Categories from './Categories';
+
 import './searchandfilter.scss';
 
-interface Props {
-    // Define your component's props here
-}
-
-const SearchAndFilter: React.FC<Props> = () => {
-    // Implement your component logic here
+const SearchAndFilter: React.FC<{ newCats: string[] }> = ({ newCats }) => {
 
     return (
         <React.Fragment>
             <div className="searchandfilter">
-                <div className="">
-                    <h2 className="">Search and Filter</h2>
-                    <p className="">This is a search and filter component</p>
-                </div>
+                <Categories newCats={newCats} />
             </div>
         </React.Fragment>
     );

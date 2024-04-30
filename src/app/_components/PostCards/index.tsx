@@ -19,15 +19,20 @@ const PostCards: React.FC<{ posts: Post[] }> = ({ posts }) => {
 
     // console.log(posts[2]?.hero.richText + posts[2]?.title);
 
+
     return (
         <div className='postcards'>
 
             {posts.map((post: Post) => (
 
                 <div key={post.id} className={post.categories?.map((category: any) => category.title).join(' ') + ' card'}>
+
+
+
                     <div className='card__date'><span>{formatDateTime(post.publishedAt ?? '')}</span></div>
                     {post.hero.media && (
-                        <img className='card__photo' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (post.hero.media as MediaExtended)?.url}`} alt={post.title + 'card__hero-photo'} />
+                        <img className='card__photo' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (
+                            post.hero.media as MediaExtended)?.url.replace(/\.jpg/g, '-400x300.jpg')}`} alt={post.title + 'card__hero-photo'} />
                     )}
 
                     <ul>

@@ -4,8 +4,7 @@ import { getDocs } from '../../_api/getDocs'
 import PostCards from '../../_components/PostCards';
 import '../../_css/globals.scss';
 import SearchAndFilter from '../../_components/SearchAndFilter';
-import PaginationButton from '@/app/_components/PaginationButton';
-import Link from 'next/link';
+import PaginationButton from '../../_components/PaginationButton';
 
 export const dynamic = 'force-dynamic'
 
@@ -32,15 +31,8 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
         return (
             <React.Fragment>
                 <HeroBar />
-                <SearchAndFilter />
+                <SearchAndFilter newCats={newCats} />
                 <div className='content'>
-
-                    <div>
-                        {newCats.map((cat: any) => {
-                            const theLink = <Link key={cat.id} href={process.env.NEXT_PUBLIC_SERVER_URL + '/posts/' + '?page=1' + '&category=' + cat.id}><div key={cat.id}>{cat.title}</div></Link>
-                            return theLink;
-                        })}
-                    </div>
 
                     <PostCards posts={posts.Posts.docs} />
 
