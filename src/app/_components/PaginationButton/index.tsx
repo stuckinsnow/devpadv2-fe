@@ -10,6 +10,8 @@ const PaginationButton: React.FC<{ posts: any, paramCat: string }> = ({ posts, p
     const nPage: number = posts?.Posts.nextPage;
     const pPage: number = posts?.Posts.prevPage;
 
+    console.log(posts);
+
     if (nPage === null) {
         nValue = 'no more posts available';
     }
@@ -22,17 +24,19 @@ const PaginationButton: React.FC<{ posts: any, paramCat: string }> = ({ posts, p
         );
     }
 
-    if (pPage !== null) {
+    if (posts?.Posts.page > 1) {
         pValue = (
             <React.Fragment>
-                <a href={process.env.NEXT_PUBLIC_SERVER_URL + '/posts/?page=' + posts?.Posts.prevPage + '&category=' + paramCat}>Previous</a>
+                <a href={process.env.NEXT_PUBLIC_SERVER_URL + '/posts/?page=' + (posts?.Posts.page - 1) + '&category=' + paramCat}>Previous</a>
             </React.Fragment>
         );
     }
 
-    if (pPage === null) {
+    if (pPage === null && posts?.Posts.page === 1) {
         pValue = 'no previous posts available';
     }
+
+
 
     const finalButton = <>{pValue}{nValue}</>;
 

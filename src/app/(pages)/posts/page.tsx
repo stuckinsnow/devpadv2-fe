@@ -10,8 +10,7 @@ import Link from 'next/link';
 export const dynamic = 'force-dynamic'
 
 // todo: add types
-// line 20
-
+// line 21, 23, 39
 
 export default async function PostsPage({ searchParams }: { searchParams: { page: string, category: string } }) {
 
