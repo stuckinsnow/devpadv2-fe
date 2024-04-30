@@ -33,7 +33,7 @@ query Posts($page: Int!, $categoryId: [JSON]!) {
             }  
 
             layout {
-              ${CONTENT} 
+             
               ${MEDIA_BLOCK}
             }
       }
@@ -41,6 +41,7 @@ query Posts($page: Int!, $categoryId: [JSON]!) {
 }
 `
 
+//  ${CONTENT} 
 
 export const POST = `
 query Posts($slug: String!) {

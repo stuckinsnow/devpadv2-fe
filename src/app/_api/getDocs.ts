@@ -1,16 +1,18 @@
 import { PAGES } from '../_graphql/pages';
 import { POSTS } from '../_graphql/posts';
+import { CATEGORIES } from '../_graphql/categories';
 import { Config } from '../../pl-types';
 
 const queryMap = {
     pages: PAGES,
     posts: POSTS,
+    cats: CATEGORIES,
 };
 
 export async function getDocs(
     collection: keyof typeof queryMap,
-    page: number,
-    categoryId: number,
+    page: number | undefined,
+    categoryId: number | undefined,
 )
     : Promise<Config | undefined> {
     try {

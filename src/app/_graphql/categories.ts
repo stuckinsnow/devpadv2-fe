@@ -1,8 +1,8 @@
-export const CATEGORIES = `categories {
-  title
-  id
-  breadcrumbs {
-    id
-    label
-  }
-}`
+export const CATEGORIES = `
+query categories {
+  Categories {
+    docs {
+      id
+      title
+    }
+} } `
