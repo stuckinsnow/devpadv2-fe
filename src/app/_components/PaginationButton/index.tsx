@@ -4,6 +4,7 @@ import React from 'react';
 // line 6
 
 const PaginationButton: React.FC<{ posts: any }> = ({ posts }) => {
+
     let nValue: React.ReactNode = null;
     let pValue: React.ReactNode = null;
     const nPage: number = posts?.Posts.nextPage;
