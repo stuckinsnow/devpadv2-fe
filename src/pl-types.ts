@@ -34,9 +34,9 @@ export interface Post {
     name?: string | null;
   }[]
   | null;
+  postFeature: string;
   hero: {
     type: 'highImpact' | 'lowImpact';
-    excerpt: string;
     richText: {
       root: {
         children: {
@@ -52,6 +52,8 @@ export interface Post {
       };
       [k: string]: unknown;
     };
+    excerpt?: string | null;
+    ManualExcerpt?: boolean | null;
     media?: number | Media | null;
   };
   layout: (
@@ -89,6 +91,13 @@ export interface Post {
       id?: string | null;
       blockName?: string | null;
       blockType: 'mediaBlock';
+    }
+    | {
+      code?: string | null;
+      position?: ('default' | 'fullscreen') | null;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'Code';
     }
   )[];
   relatedPosts?: (number | Post)[] | null;
@@ -196,6 +205,8 @@ export interface Page {
       };
       [k: string]: unknown;
     };
+    excerpt?: string | null;
+    ManualExcerpt?: boolean | null;
     media?: number | Media | null;
   };
   layout: (

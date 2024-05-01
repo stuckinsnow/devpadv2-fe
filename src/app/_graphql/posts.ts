@@ -68,6 +68,12 @@ query Posts($slug: String!) {
           }
 
           layout {
+            ...on Code {
+              id 
+              code  
+              blockName 
+              blockType 
+            }
             ${CONTENT} 
             ${MEDIA_BLOCK}
           }

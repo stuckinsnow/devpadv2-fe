@@ -66,7 +66,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                         { format: IS_ITALIC, component: <em /> },
                         { format: IS_STRIKETHROUGH, component: <span style={{ textDecoration: 'line-through' }} /> },
                         { format: IS_UNDERLINE, component: <span style={{ textDecoration: 'underline' }} /> },
-                        { format: IS_CODE, component: <code /> },
+                        { format: IS_CODE, component: <code className="text-sm sm:text-base inline-flex text-left items-center space-x-4 bg-gray-800 text-white rounded-lg p-4 pl-6" /> },
                         { format: IS_SUBSCRIPT, component: <sub /> },
                         { format: IS_SUPERSCRIPT, component: <sup /> },
                     ];
@@ -130,15 +130,38 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                         return <br key={index} />
                     }
                     case 'paragraph': {
-                        return <p className={`${alignElementNode(_node as SerializedElementNode)}`} key={index}>{serializedChildren}</p>;
+                        return <p className={`serialized-p ${alignElementNode(_node as SerializedElementNode)} leading-7 [&:not(:first-child)]:mt-6`} key={index}>{serializedChildren}</p>;
                     }
 
                     case 'heading': {
                         const node = _node as SerializedHeadingNode
 
-                        type Heading = Extract<keyof JSX.IntrinsicElements, 'h1' | 'h2' | 'h3' | 'h4' | 'h5'>
+                        type Heading = Extract<keyof JSX.IntrinsicElements, 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'>
+                        let className = '';
+                        switch (node?.tag) {
+                            case 'h1':
+                                className = 'serialized-h1 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl';
+                                break;
+                            case 'h2':
+                                className = 'serialized-h2 mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0';
+                                break;
+                            case 'h3':
+                                className = 'serialized-h3 mt-8 scroll-m-20 text-2xl font-semibold tracking-tight';
+                                break;
+                            case 'h4':
+                                className = 'serialized-h4 scroll-m-20 text-xl font-semibold tracking-tight';
+                                break;
+                            case 'h5':
+                                className = 'serialized-h5 scroll-m-20 text-lg font-semibold tracking-tight';
+                                break;
+                            case 'h6':
+                                className = 'serialized-h6 scroll-m-20 text-base font-semibold tracking-tight';
+                                break;
+                            default:
+                                break;
+                        }
                         const Tag = node?.tag as Heading
-                        return <Tag key={index}>{serializedChildren}</Tag>
+                        return <Tag key={index} className={className}>{serializedChildren}</Tag>;
                     }
                     case 'label':
                         return <Label key={index}>{serializedChildren}</Label>
@@ -151,9 +174,22 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                         const node = _node as SerializedListNode
 
                         type List = Extract<keyof JSX.IntrinsicElements, 'ol' | 'ul'>
+                        let className = ''; // Declare the className variable
+
+                        switch (node?.tag) {
+                            case 'ol': // Use 'ordered' instead of 'ol'
+                                className = 'my-6 ml-6 list-decimal [&>li]:mt-2';
+                                break;
+                            case 'ul': // Use 'unordered' instead of 'ul'
+                                className = 'my-6 ml-6 list-disc [&>li]:mt-2';
+                                break;
+                            default:
+                                break;
+                        }
+
                         const Tag = node?.tag as List
                         return (
-                            <Tag className={node?.listType} key={index}>
+                            <Tag className={node?.listType + className} key={index}>
                                 {serializedChildren}
                             </Tag>
                         )
@@ -188,7 +224,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                     case 'quote': {
                         // const node = _node as SerializedQuoteNode
 
-                        return <blockquote key={index}>{serializedChildren}</blockquote>
+                        return <blockquote key={index} className='mt-6 border-l-2 pl-6 itali'>{serializedChildren}</blockquote>
                     }
                     case 'link': {
                         const node = _node as SerializedLinkNode

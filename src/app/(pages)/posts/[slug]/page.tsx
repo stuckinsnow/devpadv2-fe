@@ -18,25 +18,28 @@ export default async function PostPage({ params }: { params: { slug: string } })
 
         const rData: Post = data?.Posts.docs[0] || null;
 
-        // console.log('bebop', data.Posts.docs[0].layout);
+        // console.log('bebop', data.Posts.docs[0].layout[1]);
 
-        // console.log(data.Posts.docs[0].layout[0]);
+        // console.log(rData.layout[0]);
 
         return (
 
             <React.Fragment>
+                <div className="max-w-screen-xl mx-auto">
 
-                <li>Title: {rData.title}</li>
-                <li>ID: {rData.id}</li>
-                <li>Slug: {rData.slug}</li>
-                <li>Update Date: {formatDateTime(rData.updatedAt)}</li>
-                <li>Publish Date: {formatDateTime(rData.publishedAt ?? ' ')}</li>
-                <li>Name: {rData.populatedAuthors && rData.populatedAuthors.length > 0 ? rData.populatedAuthors[0].name : null}</li>
-                <RichText content={rData.hero.richText} />
 
-                <Link href={process.env.NEXT_PUBLIC_SERVER_URL + '/posts'}><h3>Show all posts</h3></Link>
+                    <li>Title: {rData.title}</li>
+                    <li>ID: {rData.id}</li>
+                    <li>Slug: {rData.slug}</li>
+                    <li>Update Date: {formatDateTime(rData.updatedAt)}</li>
+                    <li>Publish Date: {formatDateTime(rData.publishedAt ?? ' ')}</li>
+                    <li>Name: {rData.populatedAuthors && rData.populatedAuthors.length > 0 ? rData.populatedAuthors[0].name : null}</li>
+                    <RichText content={rData.hero.richText} />
 
-                <ContentAndMediaBlock rData={data.Posts.docs[0]} />
+                    <Link href={process.env.NEXT_PUBLIC_SERVER_URL + '/posts'}><h3>Show all posts</h3></Link>
+
+                    <ContentAndMediaBlock rData={data.Posts.docs[0]} />
+                </div>
 
             </React.Fragment>
 

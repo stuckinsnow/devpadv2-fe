@@ -42,7 +42,7 @@ const PaginationButton: React.FC<{ posts: any, paramCat: string }> = ({ posts, p
             break;
     }
 
-    const finalButton = <>{pValue}{nValue}</>;
+    const finalButton = <div className='flex h-7 items-center justify-center rounded-full px-4 text-center text-sm transition-colors hover:text-primary bg-muted font-medium text-primary'>{pValue}{nValue}</div>;
 
     return finalButton;
 }

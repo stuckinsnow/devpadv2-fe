@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Post, Media } from '../../../pl-types';
 import { formatDateTime } from '../../_utilities/formatDateTime';
 // import RichText from '../../_components/RichText';
-import './postCards.scss';
+// import './postCards.scss';
 import '../../_css/globals.scss';
 
 // todo: add types
@@ -21,11 +21,11 @@ const PostCards: React.FC<{ posts: Post[] }> = ({ posts }) => {
 
 
     return (
-        <div className='postcards'>
+        <div className='postcards items-start justify-center gap-6 rounded-lg p-8 md:grid lg:grid-cols-2 xl:grid-cols-4'>
 
             {posts.map((post: Post) => (
 
-                <div key={post.id} className={post.categories?.map((category: any) => category.title).join(' ') + ' card'}>
+                <div key={post.id} className={post.categories?.map((category: any) => category.title).join(' ') + ' card rounded-lg border-2 border-slate-500 outline-offset-2 outline-blue-500 hover:shadow-md '}>
 
 
 
