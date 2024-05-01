@@ -22,6 +22,14 @@ export const MEDIA_BLOCK = `
 }
 `
 
+export const CODE = `
+...on Code {
+  id 
+  code  
+  blockName 
+  blockType 
+}`
+
 export const ARCHIVE_BLOCK = `
 ...on Archive {
   blockType

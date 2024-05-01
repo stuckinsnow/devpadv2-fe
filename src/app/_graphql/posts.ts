@@ -1,4 +1,4 @@
-import { CONTENT, MEDIA_BLOCK } from './blocks'
+import { CONTENT, MEDIA_BLOCK, CODE } from './blocks'
 
 export const POSTS = `
 query Posts($page: Int!, $categoryId: [JSON]!) {
@@ -68,14 +68,9 @@ query Posts($slug: String!) {
           }
 
           layout {
-            ...on Code {
-              id 
-              code  
-              blockName 
-              blockType 
-            }
             ${CONTENT} 
             ${MEDIA_BLOCK}
+            ${CODE}
           }
       }
   }
