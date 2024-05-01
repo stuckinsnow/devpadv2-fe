@@ -1,7 +1,20 @@
 import React from 'react';
 import RichText from '../../_components/RichText';
 import { Post, Media } from '../../../pl-types';
+import { codeToHtml } from "shiki";
 
+interface CodeHappyProps {
+    code: any;
+}
+
+async function CodeHappy({ code }: CodeHappyProps): Promise<JSX.Element> {
+    const html = await codeToHtml(code, {
+        lang: "javascript",
+        theme: "github-dark",
+    });
+
+    return <div className="" dangerouslySetInnerHTML={{ __html: html }}></div>;
+}
 // todo: add types
 // line 10
 
@@ -12,6 +25,8 @@ const ContentAndMediaBlock: React.FC<any> = (rData) => {
     return (
 
         <div>
+
+
             {rData.rData.layout?.map((layout: ContentOrMediaBlockLayout, layoutIndex: number) => {
 
                 // console.log(layout);
@@ -35,9 +50,10 @@ const ContentAndMediaBlock: React.FC<any> = (rData) => {
                         <div className='ab2' key={layoutIndex}>
                             <h3>content code</h3>
                             <pre>
-                                <code className='text-sm sm:text-base inline-flex text-left items-center space-x-4 bg-gray-800 text-white rounded-lg p-4 pl-6'>
+                                <CodeHappy code={layout.code} />
+                                {/* <code className='text-sm sm:text-base inline-flex text-left items-center space-x-4 bg-gray-800 text-white rounded-lg p-4 pl-6'>
                                     {layout.code}
-                                </code>
+                                </code> */}
                             </pre>
                         </div>
                     );
