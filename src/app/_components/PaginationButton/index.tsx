@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-const PaginationButton: React.FC<{ searchParams: string, posts: any, truePosts: any, paramCat: string }> = ({ searchParams, posts, truePosts, paramCat }) => {
+const PaginationButton: React.FC<{ searchParams: string, truePosts: any, paramCat: string }> = ({ searchParams, truePosts, paramCat }) => {
 
     const truePage = parseInt(searchParams) || 1;
     const nextPage = truePage + 1;
@@ -16,10 +16,6 @@ const PaginationButton: React.FC<{ searchParams: string, posts: any, truePosts: 
     let lastPageButton = null;
     let dotsBefore = null;
     let dotsAfter = null;
-
-    // console.log('truePage', truePage);
-    // console.log('previousPage', previousPage);
-    // console.log('nextPage', nextPage);
 
     if (truePage > 1 && previousPage !== null) {
         previousPageButtonArrow = (
