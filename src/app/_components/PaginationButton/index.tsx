@@ -1,12 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
 
-const PaginationButton: React.FC<{ searchParams: string, truePosts: any, paramCat: string }> = ({ searchParams, truePosts, paramCat }) => {
+const PaginationButton: React.FC<{ searchParams: string, posts: any, paramCat: string }> = ({ searchParams, posts, paramCat }) => {
 
     const truePage = parseInt(searchParams) || 1;
     const nextPage = truePage + 1;
-    const previousPage = truePage - 1;
-    const totalPages = truePosts?.Posts.totalPages;
+
+    const totalPages = posts.Posts.totalPages <= posts.Posts.page ? posts.Posts.page : posts.Posts.totalPages;
+
 
     let previousPageButtonArrow = null;
     let firstPageButton = null;
@@ -17,7 +18,13 @@ const PaginationButton: React.FC<{ searchParams: string, truePosts: any, paramCa
     let dotsBefore = null;
     let dotsAfter = null;
 
-    if (truePage > 1 && previousPage !== null) {
+    const hasNextPage = posts.Posts.hasNextPage;
+    const hasPrevPage = posts.Posts.hasPrevPage;
+
+    // console.log(posts);
+    // console.log(posts.Posts.hasPrevPage);
+
+    if (posts.Posts.hasPrevPage || truePage > 1) {
         previousPageButtonArrow = (
             <Link href={`/posts/?page=${truePage - 1}&category=${paramCat}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
@@ -27,11 +34,11 @@ const PaginationButton: React.FC<{ searchParams: string, truePosts: any, paramCa
         );
     }
 
-    if (truePage > 1 && previousPage !== null) {
+    if (hasPrevPage === true && truePage > 1 || hasPrevPage === false && truePage > 1) {
         previousPageButton = <Link href={`/posts/?page=${truePage - 1}&category=${paramCat}`}>{truePage - 1}</Link>;
     }
 
-    if (nextPage !== null && truePage < totalPages) {
+    if (hasNextPage === true) {
         nextPageButtonArrow = (
             <Link href={`/posts/?page=${nextPage}&category=${paramCat}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16">
@@ -53,7 +60,7 @@ const PaginationButton: React.FC<{ searchParams: string, truePosts: any, paramCa
         lastPageButton = <Link href={`/posts/?page=${totalPages}&category=${paramCat}`}>{totalPages}</Link>;
     }
 
-    if (truePage > 3) {
+    if (truePage > 3 && hasPrevPage === true) {
         dotsBefore = <span>...</span>;
     }
 
@@ -67,7 +74,9 @@ const PaginationButton: React.FC<{ searchParams: string, truePosts: any, paramCa
             {firstPageButton}
             {dotsBefore}
             {previousPageButton}
-            {truePage}
+            <span className='bg-red-200 p-2'>
+                {truePage}
+            </span>
             {nextPageButton}
             {dotsAfter}
             {lastPageButton}

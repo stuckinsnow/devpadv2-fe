@@ -9,7 +9,7 @@ import PaginationButton from '../../_components/PaginationButton';
 export const dynamic = 'force-dynamic'
 
 // todo: add types
-// line 21, 23, 39
+// line 20, 22
 
 export default async function PostsPage({ searchParams }: { searchParams: { page: string, category: string } }) {
 
@@ -18,7 +18,6 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
         const page = parseInt(searchParams.page) || 1;
         const categoryId = parseInt(searchParams.category) || undefined;
         const posts: any = await getDocs("posts", page, categoryId);
-        const truePosts: any = await getDocs("posts", 1, categoryId);
 
         const cats: any = await getDocs("cats", undefined, undefined);
         const newCats = cats.Categories.docs;
@@ -36,7 +35,7 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
 
                     <PostCards posts={posts.Posts.docs} />
 
-                    <PaginationButton searchParams={searchParams.page} paramCat={paramCat} truePosts={truePosts} />
+                    <PaginationButton searchParams={searchParams.page} posts={posts} paramCat={paramCat} />
 
                 </div>
             </React.Fragment>
