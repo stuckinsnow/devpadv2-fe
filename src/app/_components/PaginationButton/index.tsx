@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-const PaginationButton: React.FC<{ searchParams: string, posts: any, paramCat: string }> = ({ searchParams, posts, paramCat }) => {
+const PaginationButton: React.FC<{ searchParams: string, posts: any, paramCat: number }> = ({ searchParams, posts, paramCat }) => {
 
     const truePage = parseInt(searchParams) || 1;
     const nextPage = truePage + 1;

@@ -2,7 +2,7 @@ import { CONTENT, MEDIA_BLOCK, CODE } from './blocks'
 
 export const POSTS = `
 query Posts($page: Int!, $categoryId: [JSON]!) {
-  Posts(page: $page, limit: 3, where: { categories: { in: $categoryId  } }) {
+  Posts(page: $page, limit: 8, where: { categories: { in: $categoryId  } }) {
     totalDocs
     page
     totalPages

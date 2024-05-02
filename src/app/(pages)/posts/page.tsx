@@ -16,12 +16,12 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
     try {
 
         const page = parseInt(searchParams.page) || 1;
-        const categoryId = parseInt(searchParams.category) || undefined;
+        const categoryId = parseInt(searchParams.category) || 0;
         const posts: any = await getDocs("posts", page, categoryId);
 
         const cats: any = await getDocs("cats", undefined, undefined);
         const newCats = cats.Categories.docs;
-        const paramCat: string = searchParams.category;
+        const paramCat: number = categoryId;
 
         if (!posts || posts.length === 0) {
             return <div>No posts available</div>;
