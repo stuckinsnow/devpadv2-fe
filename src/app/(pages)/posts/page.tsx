@@ -20,6 +20,8 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
         const posts: any = await getDocs("posts", page, categoryId);
 
         const cats: any = await getDocs("cats", undefined, undefined);
+        const postsWithMedia: any = await getDocs("postswithmedia", undefined, undefined);
+
         const newCats = cats.Categories.docs;
         const paramCat: number = categoryId;
 
@@ -29,7 +31,7 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
 
         return (
             <React.Fragment>
-                <HeroBar />
+                <HeroBar posts={posts.Posts.docs} postsWithMedia={postsWithMedia} />
                 <SearchAndFilter newCats={newCats} />
                 <div className='content'>
 

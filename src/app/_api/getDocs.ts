@@ -1,5 +1,5 @@
 import { PAGES } from '../_graphql/pages';
-import { POSTS } from '../_graphql/posts';
+import { POSTS, POSTSWITHMEDIA } from '../_graphql/posts';
 import { CATEGORIES } from '../_graphql/categories';
 import { Config } from '../../pl-types';
 
@@ -7,6 +7,7 @@ const queryMap = {
     pages: PAGES,
     posts: POSTS,
     cats: CATEGORIES,
+    postswithmedia: POSTSWITHMEDIA,
 };
 
 export async function getDocs(
@@ -26,7 +27,8 @@ export async function getDocs(
             },
             body: JSON.stringify({
                 query: queryMap[collection],
-                variables: { page, categoryId: categoryId ? [categoryId] : [] },
+                // variables: { page, categoryId: categoryId ? [categoryId] : [] },
+                variables: collection === 'postswithmedia' ? {} : { page, categoryId: categoryId ? [categoryId] : [] },
             }),
         });
 
