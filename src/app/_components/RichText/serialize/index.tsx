@@ -66,7 +66,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                         { format: IS_ITALIC, component: <em /> },
                         { format: IS_STRIKETHROUGH, component: <span style={{ textDecoration: 'line-through' }} /> },
                         { format: IS_UNDERLINE, component: <span style={{ textDecoration: 'underline' }} /> },
-                        { format: IS_CODE, component: <code className="text-sm sm:text-base inline-flex text-left items-center space-x-4 bg-gray-800 text-white rounded-lg p-4 pl-6" /> },
+                        { format: IS_CODE, component: <code className="relative rounded border px-[0.3rem] py-[0.2rem] font-mono text-sm" /> },
                         { format: IS_SUBSCRIPT, component: <sub /> },
                         { format: IS_SUPERSCRIPT, component: <sup /> },
                     ];

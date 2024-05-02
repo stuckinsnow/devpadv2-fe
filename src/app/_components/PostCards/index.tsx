@@ -21,36 +21,34 @@ const PostCards: React.FC<{ posts: Post[] }> = ({ posts }) => {
 
 
     return (
-        <div className='postcards items-start justify-center gap-6 rounded-lg p-8 md:grid lg:grid-cols-2 xl:grid-cols-4'>
+        // <div className='postcards items-start justify-center gap-6 rounded-lg p-8 md:grid lg:grid-cols-2 xl:grid-cols-4'>
+        <div className='postcards items-start justify-center gap-6 rounded-lg'>
 
             {posts.map((post: Post) => (
 
-                <div key={post.id} className={post.categories?.map((category: any) => category.title).join(' ') + ' card rounded-lg border-2 border-slate-500 outline-offset-2 outline-blue-500 hover:shadow-md '}>
+                <article key={post.id} className={post.categories?.map((category: any) => category.title).join(' ') + ' card relative overflow-hidden rounded-lg border bg-background p-2 m-4'}>
+                    <Link className="flex flex-row" href={`${process.env.NEXT_PUBLIC_SERVER_URL}/posts/${post.slug}`}>
 
+                        <figure className='max-h-24'>
+                            {post.hero.media && (
+                                <img className='card__photo' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (
+                                    post.hero.media as MediaExtended)?.url.replace(/\.jpg/g, '-400x300.jpg')}`} alt={post.title + 'card__hero-photo'} />
+                            )}
+                        </figure>
+                        <div>
 
-
-                    <div className='card__date'><span>{formatDateTime(post.publishedAt ?? '')}</span></div>
-                    {post.hero.media && (
-                        <img className='card__photo' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (
-                            post.hero.media as MediaExtended)?.url.replace(/\.jpg/g, '-400x300.jpg')}`} alt={post.title + 'card__hero-photo'} />
-                    )}
-
-                    <ul>
-                        <div className='card__title'><Link href={`${process.env.NEXT_PUBLIC_SERVER_URL}/posts/${post.slug}`}>
-                            <h3>{post.title}</h3>
-                        </Link></div>
-
-                        {/* <li className='card__author'>Name: {post.populatedAuthors && post.populatedAuthors.length > 0 ? post.populatedAuthors[0].name : null}</li> */}
-                        <div className='card__excerpt'>{post.hero.excerpt}</div>
-
-                        <li className='card__date--update'>Updated: {formatDateTime(post.updatedAt)}</li>
-
-                        <li className='card__category'>Categories: {post?.categories?.map((category: any) => category.title).join(', ')}</li>
-
-
-                    </ul>
-                    {/* <RichText content={post.hero.richText} /> */}
-                </div>
+                            <div className='card__date'><span>{formatDateTime(post.publishedAt ?? '')}</span></div>
+                            <ul>
+                                <div className='card__title '>
+                                    <h3 className='font-bold'>{post.title}</h3>
+                                </div>
+                                <li className='card__author'>Name: {post.populatedAuthors && post.populatedAuthors.length > 0 ? post.populatedAuthors[0].name : null}</li>
+                                <div className='card__excerpt'>{post.hero.excerpt}</div>
+                                <li className='card__date--update'>Updated: {formatDateTime(post.updatedAt)}</li>
+                                <li className='card__category'>Categories: {post?.categories?.map((category: any) => category.title).join(', ')}</li>
+                            </ul></div>
+                        {/* <RichText content={post.hero.richText} /> */}</Link>
+                </article>
             ))}
         </div>
     );

@@ -7,7 +7,7 @@ interface Props {
 
 const HeroBar: React.FC<Props> = ({ /* Destructure your props here */ }) => {
     return (
-        <div className='herobar'>
+        <div className='herobar '>
 
             <section className="herobar__container">
                 <h1>Dummy writing</h1>

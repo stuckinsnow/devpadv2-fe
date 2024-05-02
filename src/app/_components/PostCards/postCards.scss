@@ -3,9 +3,9 @@
 
 .postcards {
     display: flex;
-    width: 100%;
+    // width: 100%;
     flex-direction: column;
-    column-gap: 1rem;
+    // column-gap: 1rem;
 
     @include tablet {
 
@@ -15,33 +15,29 @@
     }
 
     .card {
-        width: 100%;
-        height: fit-content;
-        min-width: 100%;
         padding: 0.5rem;
         border-style: solid;
         border-color: #e5e7eb;
         border-width: thin;
         border-radius: 0.5rem;
         box-shadow: .1875rem .3125rem .3125rem 0 rgba(112, 0, 255, .25);
-        height: auto;
-        column-gap: 1rem;
-        margin-top: 1rem;
+        // column-gap: 1rem;
+        // margin-top: 1rem;
 
-        @include tablet {
+        // @include tablet {
 
-            box-sizing: border-box;
-            width: calc(50% - 1rem);
-            min-width: 40%;
+        //     box-sizing: border-box;
+        //     width: calc(50% - 1rem);
+        //     min-width: 40%;
 
-        }
+        // }
 
-        @include desktop {
+        // @include desktop {
 
-            width: calc(25% - 0.75rem);
-            min-width: calc(25% - 0.75rem);
+        //     width: calc(25% - 0.75rem);
+        //     min-width: calc(25% - 0.75rem);
 
-        }
+        // }
 
         img {
             width: 100%;
