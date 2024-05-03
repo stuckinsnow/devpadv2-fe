@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Post, Media } from '../../../pl-types';
 import { formatDateTime } from '../../_utilities/formatDateTime';
 // import RichText from '../../_components/RichText';
-// import './postCards.scss';
+import './postCards.scss';
 import '../../_css/globals.scss';
 
 // todo: add types
