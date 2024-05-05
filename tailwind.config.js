@@ -5,7 +5,7 @@ module.exports = {
   // ],
   purge: {
     enabled: true,
-    content: ['./src/app/_components/RichText/**', './src/app/(pages)/posts/[slug]/page.tsx'], // Path to your HTML file
+    content: ['./src/app/_components/RichText/**', './src/app/(pages)/posts/[slug]/page.tsx', './src/app/**/*'], // Path to your HTML file
   },
   theme: {
     extend: {},
