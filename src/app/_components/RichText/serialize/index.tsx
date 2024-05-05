@@ -104,16 +104,6 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                     }
                 }
 
-
-
-
-                // console.log('iamanidiot', _node);
-
-                // if (_node.type === 'upload') {
-                //     console.log(_node.type);
-
-                // }
-
                 const serializedChildren =
                     'children' in _node ? serializedChildrenFn(_node as SerializedElementNode) : ''
 
