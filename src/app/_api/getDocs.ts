@@ -28,12 +28,9 @@ export async function getDocs(
             },
             body: JSON.stringify({
                 query: queryMap[collection],
-                // variables: { page, categoryId: categoryId ? [categoryId] : [] },
                 variables: collection === 'postswithmedia' ? {} : { page, categoryId: categoryId ? [categoryId] : [] },
             }),
         });
-
-        // console.log('slug', slug);
 
         const { data, errors } = await res.json();
 
@@ -42,8 +39,6 @@ export async function getDocs(
         }
 
         if (res.ok && data) {
-            const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            console.log(currentTime);
             return data;
         }
 
