@@ -2,7 +2,6 @@ import { PAGES } from '../_graphql/pages';
 import { POSTS, POSTSWITHMEDIA } from '../_graphql/posts';
 import { CATEGORIES } from '../_graphql/categories';
 import { Config } from '../../pl-types';
-import { PostsWithDocs } from '../../more-types';
 
 const queryMap = {
     pages: PAGES,
@@ -11,12 +10,12 @@ const queryMap = {
     postswithmedia: POSTSWITHMEDIA,
 };
 
-export async function getDocs(
+export async function getDocsCopy(
     collection: keyof typeof queryMap,
     page: number | undefined,
     categoryId: number | undefined,
 )
-    : Promise<PostsWithDocs> {
+    : Promise<Config | undefined> {
     try {
 
         const res = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/graphql`, {

@@ -8,8 +8,6 @@ import PaginationButton from '../../_components/PaginationButton';
 
 export const dynamic = 'force-dynamic'
 
-// todo: add types
-// line 20, 22
 
 export default async function PostsPage({ searchParams }: { searchParams: { page: string, category: string } }) {
 
@@ -17,25 +15,26 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
 
         const page = parseInt(searchParams.page) || 1;
         const categoryId = parseInt(searchParams.category) || 0;
-        const posts: any = await getDocs("posts", page, categoryId);
 
-        const cats: any = await getDocs("cats", undefined, undefined);
-        const postsWithMedia: any = await getDocs("postswithmedia", undefined, undefined);
+        const posts = await getDocs("posts", page, categoryId);
+        const cats = await getDocs("cats", undefined, undefined);
+        const postsWithMedia = await getDocs("postswithmedia", undefined, undefined);
 
-        const newCats = cats.Categories.docs;
+        // console.log(posts);
+        // console.log(posts?.Posts.docs);
+
+        // console.log('bebopp', cats.Categories.docs[0].id);
+
         const paramCat: number = categoryId;
-
-        if (!posts || posts.length === 0) {
-            return <div>No posts available</div>;
-        }
 
         return (
             <React.Fragment>
-                <HeroBar posts={posts.Posts.docs} postsWithMedia={postsWithMedia} />
-                <SearchAndFilter newCats={newCats} />
+                <HeroBar postsWithMedia={postsWithMedia} />
+
+                <SearchAndFilter cats={cats} />
                 <div className='content'>
 
-                    <PostCards posts={posts.Posts.docs} />
+                    <PostCards posts={posts} />
 
                     <PaginationButton searchParams={searchParams.page} posts={posts} paramCat={paramCat} />
 

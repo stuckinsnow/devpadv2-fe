@@ -91,7 +91,7 @@ query Posts($page: Int!, $categoryId: [JSON]!) {
 `
 
 export const POSTSWITHMEDIA = `
-query {
+query Posts{
   Posts(limit: 1, where: { hero__media: { not_equals: null } }) {
     docs {
       id
