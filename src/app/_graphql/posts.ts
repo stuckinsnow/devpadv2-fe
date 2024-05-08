@@ -47,10 +47,10 @@ import { CONTENT, MEDIA_BLOCK, CODE } from './blocks'
 
 
 export const POSTS = `
-query Posts($page: Int!, $categoryId: [JSON]!) {
+query Posts($page: Int!, $categoryId: [JSON]!, $type: Post_hero__type_Input!){
   Posts(page: $page, limit: 3, where: { 
     categories: { in: $categoryId },
-    hero__media: { equals: null }
+    hero__type: { equals: $type }
   }) {
     totalDocs
     page
@@ -90,9 +90,9 @@ query Posts($page: Int!, $categoryId: [JSON]!) {
 }
 `
 
-export const POSTSWITHMEDIA = `
+export const POSTSHIGHIMPACT = `
 query Posts{
-  Posts(limit: 1, where: { hero__media: { not_equals: null } }) {
+  Posts(limit: 1, where: { hero__type: { equals: highImpact } }) {
     docs {
       id
       title

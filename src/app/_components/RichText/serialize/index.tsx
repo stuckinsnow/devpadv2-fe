@@ -164,13 +164,13 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                         const node = _node as SerializedListNode
 
                         type List = Extract<keyof JSX.IntrinsicElements, 'ol' | 'ul'>
-                        let className = ''; // Declare the className variable
+                        let className = '';
 
                         switch (node?.tag) {
-                            case 'ol': // Use 'ordered' instead of 'ol'
+                            case 'ol':
                                 className = 'my-6 ml-6 list-decimal [&>li]:mt-2';
                                 break;
-                            case 'ul': // Use 'unordered' instead of 'ul'
+                            case 'ul':
                                 className = 'my-6 ml-6 list-disc [&>li]:mt-2';
                                 break;
                             default:

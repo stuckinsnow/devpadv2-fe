@@ -3,9 +3,9 @@ import { PostsWithDocs, MediaExtended } from '../../../more-types';
 
 import './herobar.scss';
 
-const HeroBar: React.FC<{ postsWithMedia: PostsWithDocs }> = ({ postsWithMedia }) => {
+const HeroBar: React.FC<{ postsHighImpact: PostsWithDocs }> = ({ postsHighImpact }) => {
 
-    const postsData = postsWithMedia.Posts.docs;
+    const postsData = postsHighImpact.Posts.docs;
 
     return (
         <div className='herobar '>
@@ -13,15 +13,15 @@ const HeroBar: React.FC<{ postsWithMedia: PostsWithDocs }> = ({ postsWithMedia }
                 <h1>Dummy writing</h1>
                 <article className="herobar__content">
 
-                    {Array.isArray(postsData) && postsData.map((postsWithMedia, index) => (
+                    {Array.isArray(postsData) && postsData.map((postsHighImpact, index) => (
 
                         <div key={index}>
                             <div>happy</div>
                             <img className='card__photo' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (
-                                postsWithMedia.hero.media as MediaExtended)?.url.replace(/\.jpg/g, '-400x300.jpg')}`} alt={postsWithMedia.title + 'card__hero-photo'} />
+                                postsHighImpact.hero.media as MediaExtended)?.url.replace(/\.jpg/g, '-400x300.jpg')}`} alt={postsHighImpact.title + 'card__hero-photo'} />
 
-                            <h2>{postsWithMedia.title}</h2>
-                            <p>{postsWithMedia.hero.excerpt}</p>
+                            <h2>{postsHighImpact.title}</h2>
+                            <p>{postsHighImpact.hero.excerpt}</p>
 
                         </div>
 

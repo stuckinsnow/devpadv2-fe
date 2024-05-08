@@ -1,5 +1,5 @@
 import { PAGES } from '../_graphql/pages';
-import { POSTS, POSTSWITHMEDIA } from '../_graphql/posts';
+import { POSTS, POSTSHIGHIMPACT } from '../_graphql/posts';
 import { CATEGORIES } from '../_graphql/categories';
 import { Config } from '../../pl-types';
 
@@ -7,7 +7,7 @@ const queryMap = {
     pages: PAGES,
     posts: POSTS,
     cats: CATEGORIES,
-    postswithmedia: POSTSWITHMEDIA,
+    postswithmedia: POSTSHIGHIMPACT,
 };
 
 export async function getDocsCopy(

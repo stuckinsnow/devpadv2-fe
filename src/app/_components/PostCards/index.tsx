@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { PostsWithDocs, MediaExtended } from '../../../more-types';
-import { Config, Post, Media, Category } from '../../../pl-types';
+import { Category } from '../../../pl-types';
 import { formatDateTime } from '../../_utilities/formatDateTime';
 // import RichText from '../../_components/RichText';
 import './postCards.scss';

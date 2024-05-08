@@ -1,20 +1,20 @@
 import { PAGES } from '../_graphql/pages';
-import { POSTS, POSTSWITHMEDIA } from '../_graphql/posts';
+import { POSTS, POSTSHIGHIMPACT } from '../_graphql/posts';
 import { CATEGORIES } from '../_graphql/categories';
-import { Config } from '../../pl-types';
 import { PostsWithDocs } from '../../more-types';
 
 const queryMap = {
     pages: PAGES,
     posts: POSTS,
     cats: CATEGORIES,
-    postswithmedia: POSTSWITHMEDIA,
+    postshighimpact: POSTSHIGHIMPACT,
 };
 
 export async function getDocs(
     collection: keyof typeof queryMap,
     page: number | undefined,
     categoryId: number | undefined,
+    type: string | undefined,
 )
     : Promise<PostsWithDocs> {
     try {
@@ -28,7 +28,7 @@ export async function getDocs(
             },
             body: JSON.stringify({
                 query: queryMap[collection],
-                variables: collection === 'postswithmedia' ? {} : { page, categoryId: categoryId ? [categoryId] : [] },
+                variables: collection === 'postshighimpact' ? {} : { page, categoryId: categoryId ? [categoryId] : [], type },
             }),
         });
 
