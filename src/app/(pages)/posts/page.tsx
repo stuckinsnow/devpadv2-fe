@@ -27,8 +27,6 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
 
         // console.log('bebopp', cats.Categories.docs[0].id);
 
-        console.log('bebopp', postsFeatured);
-
         const paramCat: number = categoryId;
 
         return (

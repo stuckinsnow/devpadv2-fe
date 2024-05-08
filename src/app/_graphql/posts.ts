@@ -96,6 +96,7 @@ query Posts{
     docs {
       id
       title
+      slug
 
       hero {
         excerpt

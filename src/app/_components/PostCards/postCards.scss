@@ -15,30 +15,16 @@
     }
 
     .card {
-        font-family: 'Barlow', sans-serif;
+        // font-family: 'Barlow', sans-serif;
+
         padding: 0.5rem;
+        text-align: left;
         border-style: solid;
         border-color: #e5e7eb;
         border-width: thin;
         border-radius: 0.5rem;
-        box-shadow: .1875rem .3125rem .3125rem 0 rgba(112, 0, 255, .25);
-        // column-gap: 1rem;
-        // margin-top: 1rem;
-
-        // @include tablet {
-
-        //     box-sizing: border-box;
-        //     width: calc(50% - 1rem);
-        //     min-width: 40%;
-
-        // }
-
-        // @include desktop {
-
-        //     width: calc(25% - 0.75rem);
-        //     min-width: calc(25% - 0.75rem);
-
-        // }
+        // margin: 1rem 0;
+        width: 100%;
 
         img {
             width: 100%;
@@ -60,8 +46,15 @@
             padding: 0 0.5rem;
         }
 
+        &__excerpt {
+            width: 100%;
+            min-width: 100%;
+        }
+
         &__title {
             margin-top: 0;
+            font-weight: bold;
+            font-size: 1.25rem;
         }
 
         &__title a,
@@ -73,18 +66,15 @@
         }
 
         &__date {
-            // background-color: $color-f;
-            color: rgb(255, 255, 255);
-            position: relative;
-            height: 1rem;
-            padding: 0.75rem;
-            left: 1rem;
+            color: $color-d;
+            font-size: 0.8rem;
+            font-weight: bold;
+            // left: 1rem;
+            padding: 0 0.5rem;
             width: fit-content;
-            margin-top: -1rem;
-            margin-bottom: -1.75rem;
+            // margin-top: -1rem;
 
-            border: 2px solid $color-a;
-            background-color: rgb(0, 0, 0);
+            // background-color: rgb(0, 0, 0);
         }
 
         &__date--update {

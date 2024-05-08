@@ -1,5 +1,6 @@
 import React from 'react';
 import { PostsWithDocs, MediaExtended } from '../../../more-types';
+import Link from 'next/link';
 
 import './herobar.scss';
 
@@ -8,30 +9,27 @@ const HeroBar: React.FC<{ postsHighImpact: PostsWithDocs }> = ({ postsHighImpact
     const postsData = postsHighImpact.Posts.docs;
 
     return (
-        <div className='herobar '>
-            <section className="herobar__container">
-                <h1>Dummy writing</h1>
-                <article className="herobar__content">
+        <div className='herobar flex max-w-screen-xl mx-auto'>
+            <article className="herobar__content w-8/12 flex">
 
-                    {Array.isArray(postsData) && postsData.map((postsHighImpact, index) => (
+                {Array.isArray(postsData) && postsData.map((post, index) => (
+                    <Link key={index} className=' flex ' href={`/posts/${post.slug}`}>
 
-                        <div key={index}>
-                            <div>happy</div>
-                            <img className='card__photo' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (
-                                postsHighImpact.hero.media as MediaExtended)?.url.replace(/\.jpg/g, '-400x300.jpg')}`} alt={postsHighImpact.title + 'card__hero-photo'} />
-
-                            <h2>{postsHighImpact.title}</h2>
-                            <p>{postsHighImpact.hero.excerpt}</p>
-
+                        <div className='flex order-2 flex-col'>
+                            <h2>{post.title}</h2>
+                            <p>{post.hero.excerpt}</p>
                         </div>
 
-                    ))}
+                        <img key={index} className='card__photo' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (
+                            post.hero.media as MediaExtended)?.url.replace(/\.jpg/g, '-400x300.jpg')}`} alt={post.title + 'card__hero-photo'} />
 
-                </article>
-            </section>
+                    </Link>
+                ))}
 
-            <section className="herobar__container">
-                <h2>Dummy writing</h2>
+            </article>
+
+            <section className="herobar__container w-4/12">
+                <h2 className=''>Dummy writing</h2>
                 <article className="herobar__content">
                     <h3 className="herobar__title">Hero Bar</h3>
                     <p className="herobar__description">This is a hero bar component</p>

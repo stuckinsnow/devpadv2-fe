@@ -9,12 +9,6 @@ const Header: React.FC = () => {
 
             <div className="header">
 
-                <div className="inner-header flex">
-
-
-                    <h1>Header</h1>
-                </div>
-
                 <div>
                     <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
                         viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
@@ -35,14 +29,14 @@ const Header: React.FC = () => {
 
 
 
-            <nav className='zubby'>These are pages
+            <nav className=''>
 
-                <ul>
-                    <li>
+                <ul className='flex flex-nowrap '>
+                    <li className='px-2'>
                         <Link href="/">Home</Link>
                     </li>
-                    <li>
-                        <Link href="/posts">Home Home</Link>
+                    <li className='px-2'>
+                        <Link href="/posts">Posts</Link>
                     </li>
                 </ul>
             </nav>
