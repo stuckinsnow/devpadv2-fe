@@ -10,29 +10,29 @@ const HeroBar: React.FC<{ postsHighImpact: PostsWithDocs }> = ({ postsHighImpact
 
     return (
         <div className='herobar flex max-w-screen-xl mx-auto'>
-            <article className="herobar__content w-8/12 flex">
+            <article className="herobar__content w-8/12 flex p-2 text-left border border-gray-300 rounded mb-4 h-80">
 
                 {Array.isArray(postsData) && postsData.map((post, index) => (
-                    <Link key={index} className=' flex ' href={`/posts/${post.slug}`}>
 
-                        <div className='flex order-2 flex-col'>
-                            <h2>{post.title}</h2>
+
+                    <div key={index} className='flex flex-row items-start'>
+                        <div className='flex flex-col order-2 h-full min-h-full'>
+                            <Link href={`/posts/${post.slug}`}><h2 className='font-bold'>{post.title}</h2></Link>
                             <p>{post.hero.excerpt}</p>
                         </div>
 
-                        <img key={index} className='card__photo' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (
+                        <img className='card__photo' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (
                             post.hero.media as MediaExtended)?.url.replace(/\.jpg/g, '-400x300.jpg')}`} alt={post.title + 'card__hero-photo'} />
+                    </div>
 
-                    </Link>
                 ))}
 
             </article>
 
-            <section className="herobar__container w-4/12">
-                <h2 className=''>Dummy writing</h2>
-                <article className="herobar__content">
-                    <h3 className="herobar__title">Hero Bar</h3>
-                    <p className="herobar__description">This is a hero bar component</p>
+            <section className="herobar__container w-4/12 p-2 ml-4 border border-gray-300 rounded mb-4 h-80 ">
+                <article className="">
+                    <h2 className="font-bold">Hero Bar</h2>
+                    <p className="">Welcome to my blog. I should probably write something coherent here.</p>
                 </article>
             </section>
 

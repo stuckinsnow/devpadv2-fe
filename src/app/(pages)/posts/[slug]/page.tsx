@@ -2,8 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import '../../../_css/globals.scss';
 import { getDoc } from '../../../_api/getDoc';
-import RichText from '@/app/_components/RichText';
-import { formatDateTime } from '@/app/_utilities/formatDateTime';
+import RichText from '../../../_components/RichText';
+import { formatDateTime } from '../../../_utilities/formatDateTime';
 import { Post } from '../../../../pl-types';
 import ContentAndMediaBlock from '../../../_blocks/ContentAndMediaBlock';
 
