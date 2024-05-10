@@ -48,7 +48,7 @@ import { CONTENT, MEDIA_BLOCK, CODE } from './blocks'
 
 export const POSTS = `
 query Posts($page: Int!, $categoryId: [JSON]!, $type: Post_hero__type_Input!){
-  Posts(page: $page, limit: 3, where: { 
+  Posts(page: $page, limit: 6, sort: "-publishedAt",  where: { 
     categories: { in: $categoryId },
     hero__type: { equals: $type }
   }) {
@@ -92,11 +92,16 @@ query Posts($page: Int!, $categoryId: [JSON]!, $type: Post_hero__type_Input!){
 
 export const POSTSHIGHIMPACT = `
 query Posts{
-  Posts(limit: 1, where: { hero__type: { equals: highImpact } }) {
+  Posts(limit: 1, sort: "publishedAt", where: { hero__type: { equals: highImpact } }) {
     docs {
       id
       title
       slug
+      authors {
+        id
+        name
+      }
+      publishedAt
 
       hero {
         excerpt

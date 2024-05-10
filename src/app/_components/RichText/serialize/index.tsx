@@ -214,7 +214,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                     case 'quote': {
                         // const node = _node as SerializedQuoteNode
 
-                        return <blockquote key={index} className='mt-6 border-l-2 pl-6 itali'>{serializedChildren}</blockquote>
+                        return <blockquote key={index} className='mt-6 bg-teal-100 border-l-2 pl-6 itali'>{serializedChildren}</blockquote>
                     }
                     case 'link': {
                         const node = _node as SerializedLinkNode

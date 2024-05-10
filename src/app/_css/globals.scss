@@ -11,15 +11,14 @@ html {
     // font-family: 'Geist UFL';
 }
 
-code {
-    font-family: 'GeistMono', monospace;
+main {
+    width: 1280px;
+    min-height: 100vh;
+    margin: 0 auto;
 }
 
-.content {
-    // background-color: #f9f9f9;
-    min-height: 100vh;
-    max-width: 1280px;
-    margin: 0 auto;
+code {
+    font-family: 'GeistMono', monospace;
 }
 
 .align-lft {
