@@ -120,7 +120,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                         return <br key={index} />
                     }
                     case 'paragraph': {
-                        return <p className={`serialized-p ${alignElementNode(_node as SerializedElementNode)} leading-7 [&:not(:first-child)]:mt-6`} key={index}>{serializedChildren}</p>;
+                        return <p className={`serialized-p ${alignElementNode(_node as SerializedElementNode)} leading-7 [&:not(:first-child)]:my-2`} key={index}>{serializedChildren}</p>;
                     }
 
                     case 'heading': {
@@ -130,22 +130,22 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                         let className = '';
                         switch (node?.tag) {
                             case 'h1':
-                                className = 'serialized-h1 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl';
+                                className = 'serialized-h1 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mt-4';
                                 break;
                             case 'h2':
-                                className = 'serialized-h2 mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0';
+                                className = 'serialized-h2 mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 ';
                                 break;
                             case 'h3':
                                 className = 'serialized-h3 mt-8 scroll-m-20 text-2xl font-semibold tracking-tight';
                                 break;
                             case 'h4':
-                                className = 'serialized-h4 scroll-m-20 text-xl font-semibold tracking-tight';
+                                className = 'serialized-h4 mt-4scroll-m-20 text-xl font-semibold tracking-tight';
                                 break;
                             case 'h5':
-                                className = 'serialized-h5 scroll-m-20 text-lg font-semibold tracking-tight';
+                                className = 'serialized-h5 mt-4 scroll-m-20 text-lg font-semibold tracking-tight';
                                 break;
                             case 'h6':
-                                className = 'serialized-h6 scroll-m-20 text-base font-semibold tracking-tight';
+                                className = 'serialized-h6 mt-4 scroll-m-20 text-base font-semibold tracking-tight';
                                 break;
                             default:
                                 break;

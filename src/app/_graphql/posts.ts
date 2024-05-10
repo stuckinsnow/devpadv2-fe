@@ -76,6 +76,9 @@ query Posts($page: Int!, $categoryId: [JSON]!, $type: Post_hero__type_Input!){
 
             hero {
               excerpt
+              lowImpactMedia {
+                url
+              }
               media {
                 url
               }
