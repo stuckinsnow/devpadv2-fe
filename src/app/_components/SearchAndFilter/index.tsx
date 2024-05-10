@@ -12,7 +12,7 @@ const SearchAndFilter: React.FC<{ cats: PostsWithDocs }> = ({ cats }) => {
 
     return (
         <React.Fragment>
-            <div className="flex searchandfilter font-bold px-1 p-2 my-4 bg-light-dark border-top border-bottom bg-slate-100">
+            <div className="flex searchandfilter font-bold px-1 p-2 my-2 bg-light-dark border-top border-bottom bg-slate-100">
                 <Categories newCats={catsData} />
             </div>
         </React.Fragment>

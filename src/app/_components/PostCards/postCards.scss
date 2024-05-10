@@ -1,6 +1,10 @@
 @use '../../_css/mixins.scss' as *;
 @use '../../_css/colours.scss' as *;
 
+.postcards {
+    font-family: Barlow;
+}
+
 // .postcards {
 //     display: flex;
 //     // width: 100%;
