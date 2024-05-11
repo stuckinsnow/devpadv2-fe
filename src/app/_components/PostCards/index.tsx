@@ -36,13 +36,13 @@ const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
 
                     <div className='w-full h-36 box-border flex flex-col justify-around items-start text-left ml-4'>
 
-                        <h3 className=''><Link className="text-gray-900 text-xl hover:text-amber-800 transition-all duration-75 font-bold" href={`${process.env.NEXT_PUBLIC_SERVER_URL}/posts/${post.slug}`}>
+                        <h3 className=''><Link className="text-gray-700 text-xl hover:text-amber-800 transition-all duration-75 font-bold" href={`${process.env.NEXT_PUBLIC_SERVER_URL}/posts/${post.slug}`}>
                             {post.title}</Link></h3>
 
                         <div className='card__excerpt mt-4 text-gray-500 grow'>{post.hero.excerpt}</div>
 
                         <div className='flex flex-row justify-between w-full text-gray-900 '>
-                            <span className='card__date'>{formatDateTime(post.publishedAt)}
+                            <span className='card__date text-sm p-1 rounded-md bg-slate-50'>{formatDateTime(post.publishedAt)}
                                 {/* <span className='card__date--update'>Updated: {formatDateTime(post.updatedAt)}</span> */} — {post.populatedAuthors && post.populatedAuthors.length > 0 ? post.populatedAuthors[0].name : 'admin'}
                             </span>
 
@@ -50,14 +50,14 @@ const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
 
                                 {Array.isArray(post.categories) && post.categories.length > 0 ? (
                                     post.categories.map((category: Category) => (
-                                        <span key={category.id} className='card__category text-slate-300'>
-                                            <Link href={`${process.env.NEXT_PUBLIC_SERVER_URL}/posts/?page=1&category=${category.id}`} className='ml-4'>
-                                                {category.title}
-                                            </Link>
-                                        </span>
+
+                                        <Link key={category.id} href={`${process.env.NEXT_PUBLIC_SERVER_URL}/posts/?page=1&category=${category.id}`} className='card__category text-sm p-1 ml-2 rounded-md hover:text-orange-700  bg-slate-50'>
+                                            {category.title}
+                                        </Link>
+
                                     ))
                                 ) : (
-                                    <span className='card__category text-slate-300'>No Category</span>
+                                    <span className='card__category text-sm text-slate-300'>No Category</span>
                                 )}
 
                             </div>
