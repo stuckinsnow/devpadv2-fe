@@ -33,8 +33,8 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
             <React.Fragment>
                 <HeroBar postsHighImpact={postsHighImpact} />
 
-                <SearchAndFilter cats={cats} />
                 <div className='content'>
+                    <SearchAndFilter cats={cats} />
 
                     <PostCards posts={postsLowImpact} />
 
