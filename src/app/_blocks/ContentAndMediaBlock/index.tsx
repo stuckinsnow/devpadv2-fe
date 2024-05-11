@@ -57,7 +57,7 @@ const ContentAndMediaBlock: React.FC<any> = (rData) => {
         // const renderCode = async (code: string, lang = "javascript", theme = "vitesse-dark") => {
 
         const html = await codeToHtml(code, { lang, theme });
-        return <div className="rendercode" dangerouslySetInnerHTML={{ __html: html }} />;
+        return <div className="rendercode max-w-screen-lg my-2 m-auto" dangerouslySetInnerHTML={{ __html: html }} />;
     };
 
     return (
@@ -67,8 +67,7 @@ const ContentAndMediaBlock: React.FC<any> = (rData) => {
                     case 'content':
                         return layout.columns?.map((column, columnIndex) => (
                             column.richText && (
-                                <div className='ab3' key={`${layoutIndex}-${columnIndex}`}>
-                                    <h3>content richText</h3>
+                                <div className='richText max-w-screen-lg m-auto' key={`${layoutIndex}-${columnIndex}`}>
                                     <RichText key={`${layoutIndex}-${columnIndex}`} content={column.richText} />
                                 </div>
                             )
@@ -78,8 +77,7 @@ const ContentAndMediaBlock: React.FC<any> = (rData) => {
                     case 'mediaBlock':
                         const layoutMedia = layout.media as Media;
                         return (
-                            <div className='ab4' key={layoutIndex}>
-                                <h3>content mediaBlock</h3>
+                            <div className='layoutMedia max-w-screen-lg m-auto my-4' key={layoutIndex}>
                                 <img className="mediablock-image" src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL}${layoutMedia.url}`} />
                             </div>
                         );

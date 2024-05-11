@@ -23,9 +23,9 @@ const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
 
             {Array.isArray(postsData) && postsData.map((post) => (
 
-                <article key={post.id} className={post.categories?.map((category: Category) => category.title).join(' ') + ' card flex flex-row box-content w-11/12 transition-all duration-75 '}>
+                <article key={post.id} className={post.categories?.map((category: Category) => category.title).join(' ') + ' card flex flex-row w-full p-2 mt-4 box-content rounded-md transition-all duration-75 nice-shadow'}>
 
-                    <figure className='flex flex-col'>
+                    <figure className='flex flex-col '>
 
                         {post.hero.lowImpactMedia && (
                             <img className='card__photo rounded-md max-h-44 ' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (
@@ -34,7 +34,7 @@ const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
 
                     </figure>
 
-                    <div className='w-full h-44 py-4 box-border flex flex-col justify-around items-start text-left ml-4'>
+                    <div className='w-full h-36 box-border flex flex-col justify-around items-start text-left ml-4'>
 
                         <h3 className=''><Link className="text-gray-900 text-xl hover:text-amber-800 transition-all duration-75 font-bold" href={`${process.env.NEXT_PUBLIC_SERVER_URL}/posts/${post.slug}`}>
                             {post.title}</Link></h3>

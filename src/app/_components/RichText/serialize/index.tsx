@@ -111,7 +111,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                 switch (_node.type) {
 
                     case 'upload': {
-                        return <img key={index} src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL}${(_node as SerializedUploadNode).value.url}`} />
+                        return <img key={index} className='my-4' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL}${(_node as SerializedUploadNode).value.url}`} />
 
                     }
 
@@ -120,7 +120,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                         return <br key={index} />
                     }
                     case 'paragraph': {
-                        return <p className={`serialized-p ${alignElementNode(_node as SerializedElementNode)} leading-7 [&:not(:first-child)]:my-2`} key={index}>{serializedChildren}</p>;
+                        return <p className={`serialized-p max-w-screen-lg m-auto ${alignElementNode(_node as SerializedElementNode)} leading-7 [&:not(:first-child)]:my-4`} key={index}>{serializedChildren}</p>;
                     }
 
                     case 'heading': {
@@ -133,10 +133,10 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                                 className = 'serialized-h1 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mt-4';
                                 break;
                             case 'h2':
-                                className = 'serialized-h2 mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 ';
+                                className = 'serialized-h2 mt-8 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 ';
                                 break;
                             case 'h3':
-                                className = 'serialized-h3 mt-8 scroll-m-20 text-2xl font-semibold tracking-tight';
+                                className = 'serialized-h3 mt-6 scroll-m-20 text-2xl font-semibold tracking-tight';
                                 break;
                             case 'h4':
                                 className = 'serialized-h4 mt-4scroll-m-20 text-xl font-semibold tracking-tight';
@@ -151,7 +151,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                                 break;
                         }
                         const Tag = node?.tag as Heading
-                        return <Tag key={index} className={className}>{serializedChildren}</Tag>;
+                        return <Tag key={index} className={className + ' max-w-screen-lg m-auto'}>{serializedChildren}</Tag>;
                     }
                     case 'label':
                         return <Label key={index}>{serializedChildren}</Label>
@@ -168,10 +168,10 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 
                         switch (node?.tag) {
                             case 'ol':
-                                className = 'my-6 ml-6 list-decimal [&>li]:mt-2';
+                                className = 'my-6 max-w-screen-lg pl-4 m-auto list-decimal [&>li]:mt-2';
                                 break;
                             case 'ul':
-                                className = 'my-6 ml-6 list-disc [&>li]:mt-2';
+                                className = 'my-6 max-w-screen-lg pl-8 m-auto list-disc [&>li]:mt-2';
                                 break;
                             default:
                                 break;
@@ -214,7 +214,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                     case 'quote': {
                         // const node = _node as SerializedQuoteNode
 
-                        return <blockquote key={index} className='mt-6 bg-teal-100 border-l-2 pl-6 itali'>{serializedChildren}</blockquote>
+                        return <blockquote key={index} className='mt-6 max-w-screen-lg m-auto bg-teal-100 border-l-2 pl-6 itali'>{serializedChildren}</blockquote>
                     }
                     case 'link': {
                         const node = _node as SerializedLinkNode

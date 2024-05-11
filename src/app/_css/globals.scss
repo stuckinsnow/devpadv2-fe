@@ -9,6 +9,7 @@
 html {
     font-family: 'GeistUFL', sans-serif;
     // font-family: 'Geist UFL';
+    background-color: #faf9fb;
 }
 
 main {
@@ -20,6 +21,25 @@ main {
 code {
     font-family: 'GeistMono', monospace;
 }
+
+.nice-shadow {
+    box-shadow: 0 15px 15px -15px rgba(15, 14, 21, 0.1);
+    background-color: #ffffff;
+}
+
+// .nice-inner-shadow {
+//     box-shadow: inset 0px 0px 14px 2px rgb(199 199 199 / 28%);
+//     padding: 1rem;
+//     border-radius: 0.5rem;
+//     transition: all 0.3s ease;
+
+//     &:hover {
+//         box-shadow: none;
+//         scale: 1.0125;
+//     }
+
+// }
+
 
 .align-lft {
     text-align: left;
@@ -43,4 +63,9 @@ code {
 
 .align-end {
     text-align: end;
+}
+
+.shiki {
+    overflow: auto;
+    scrollbar-color: red;
 }

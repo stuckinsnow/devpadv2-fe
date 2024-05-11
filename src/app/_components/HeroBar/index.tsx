@@ -10,7 +10,7 @@ const HeroBar: React.FC<{ postsHighImpact: PostsWithDocs }> = ({ postsHighImpact
     const postsData = postsHighImpact.Posts.docs;
 
     return (
-        <div className=" herobar ">
+        <div className=" herobar nice-shadow">
 
             {Array.isArray(postsData) && postsData.map((post, index) => (
 

@@ -20,7 +20,6 @@ export default async function PostPage({ params }: { params: { slug: string } })
 
         // console.log('bebop', data.Posts.docs[0].layout[1]);
 
-        // console.log(rData.layout[0]);
 
         return (
 
@@ -28,19 +27,25 @@ export default async function PostPage({ params }: { params: { slug: string } })
                 <div className="max-w-screen-xl mx-auto">
 
 
-                    <li>Title: {rData.title}</li>
-                    <li>ID: {rData.id}</li>
-                    <li>Slug: {rData.slug}</li>
-                    <li>Update Date: {formatDateTime(rData.updatedAt)}</li>
-                    <li>Publish Date: {formatDateTime(rData.publishedAt ?? ' ')}</li>
-                    <li>Name: {rData.populatedAuthors && rData.populatedAuthors.length > 0 ? rData.populatedAuthors[0].name : null}</li>
+                    <div className='m-auto max-w-screen-lg my-8 flex flex-col items-start'>
+
+                        <div className='w-fit p-2 px-4 text-sm bg-slate-700 text-white'>
+                            {rData.categories && rData.categories.length > 0 ? rData.categories.map((cat: any) => <span key={cat.id}>{cat.title}</span>) : 'No category'}
+                        </div>
+
+                        <h1 className='text-center text-slate-800 scroll-m-20 text-4xl font-medium tracking-tight lg:text-5xl mt-2 capitalize'>{rData.title}</h1>
+
+                        <div className='mt-4 text-slate-700'>{formatDateTime(rData.publishedAt ?? ' ')} by {rData.populatedAuthors && rData.populatedAuthors.length > 0 ? rData.populatedAuthors[0].name : 'Admin'}</div>
+
+                    </div>
+
                     <RichText content={rData.hero.richText} />
 
-                    <Link href={process.env.NEXT_PUBLIC_SERVER_URL + '/posts'}><h3>Show all posts</h3></Link>
-
                     <ContentAndMediaBlock rData={data.Posts.docs[0]} />
-                </div>
 
+                </div>
+                {/* <Link href={process.env.NEXT_PUBLIC_SERVER_URL + '/posts'}><h3>Show all posts</h3></Link>
+                <div>Updated: {formatDateTime(rData.updatedAt)}</div> */}
             </React.Fragment>
 
         );

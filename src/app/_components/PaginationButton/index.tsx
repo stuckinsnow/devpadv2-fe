@@ -18,10 +18,10 @@ const PaginationButton: React.FC<{ searchParams: string, posts: PostsWithDocs, p
 
     return (
 
-        <div className={`wrapper ${truePage === totalPages ? 'pr-16' : ''} ${!shouldShowPrevPage ? 'pl-20' : ''}`}>
+        <div className={`wrapper mt-2 flex align-middle ${truePage === totalPages ? 'pr-16' : ''} ${!shouldShowPrevPage ? 'pl-20' : ''}`}>
 
 
-            <div className={`flex h-7 gap-4 items-center justify-center rounded-full px-4 text-center text-sm transition-colors hover:text-primary bg-muted font-medium text-primary ${truePage === 1 ? 'mx-28' : 'mx-48'}`}>
+            <div className={`flex h-7 gap-4 w-fit m-auto p-4  items-center justify-center rounded-full px-4 text-center text-sm transition-colors hover:text-primary bg-muted font-medium text-primary bg-white ${truePage === 1 ? 'mx-28' : 'mx-48'}`}>
 
                 {shouldShowPrevPage && (
                     <>
@@ -36,7 +36,7 @@ const PaginationButton: React.FC<{ searchParams: string, posts: PostsWithDocs, p
                     </>
                 )}
 
-                <span className='bg-red-200 p-2'>
+                <span className='font-bold p-2'>
                     {truePage}
                 </span>
 
