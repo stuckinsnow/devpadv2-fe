@@ -4,8 +4,11 @@ import { PostsWithDocs, MediaExtended } from '../../../more-types';
 import { Category } from '../../../pl-types';
 import { formatDateTime, formatDateTimePosts } from '../../_utilities/formatDateTime';
 // import RichText from '../../_components/RichText';
+import CategoryIcons from '../CategoryIcons';
+
 import './postCards.scss';
 import '../../_css/globals.scss';
+
 
 
 const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
@@ -28,13 +31,16 @@ const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
                     <figure className='flex flex-col '>
 
                         {post.hero.lowImpactMedia && (
-                            <img className='card__photo rounded-md max-h-44 ' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (
+                            <img className='card__photo rounded-md max-h-48 ' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (
                                 post.hero.lowImpactMedia as MediaExtended)?.url.replace(/\.jpg/g, '-400x300.jpg')}`} alt={post.title + 'card__hero-photo'} />
                         )}
 
                     </figure>
 
-                    <div className='w-full h-36 box-border flex flex-col justify-around items-start text-left ml-4'>
+                    <div className='w-full h-40 box-border flex flex-col justify-around items-start text-left ml-4'>
+
+                        <CategoryIcons post={post} />
+
 
                         <h3 className=''><Link className="text-gray-700 text-xl hover:text-amber-800 transition-all duration-75 font-bold" href={`${process.env.NEXT_PUBLIC_SERVER_URL}/posts/${post.slug}`}>
                             {post.title}</Link></h3>
@@ -51,13 +57,13 @@ const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
                                 {Array.isArray(post.categories) && post.categories.length > 0 ? (
                                     post.categories.map((category: Category) => (
 
-                                        <Link key={category.id} href={`${process.env.NEXT_PUBLIC_SERVER_URL}/posts/?page=1&category=${category.id}`} className='card__category text-sm p-1 ml-2 rounded-md hover:text-orange-700  bg-slate-50'>
+                                        <Link key={category.id} href={`${process.env.NEXT_PUBLIC_SERVER_URL}/posts/?page=1&category=${category.id}`} className='card__category text-sm p-1 ml-2 rounded-md hover:text-orange-700 bg-slate-50 capitalize '>
                                             {category.title}
                                         </Link>
 
                                     ))
                                 ) : (
-                                    <span className='card__category text-sm text-slate-300'>No Category</span>
+                                    <span className='card__category text-sm text-slate-300 capitalize'>No Category</span>
                                 )}
 
                             </div>
