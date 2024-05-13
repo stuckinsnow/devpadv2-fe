@@ -10,25 +10,34 @@ const HeroBar: React.FC<{ postsHighImpact: PostsWithDocs }> = ({ postsHighImpact
     const postsData = postsHighImpact.Posts.docs;
 
     return (
-        <div className=" herobar nice-shadow">
 
-            {Array.isArray(postsData) && postsData.map((post, index) => (
+        <div className='flex flex-row'>
 
-                < div key={index} className=' flex' >
-                    <div className='flex flex-col order-2 p-12 '>
-                        <h1 className='font-bold text-3xl  '><Link href={`/posts/${post.slug}`}>{post.title}</Link></h1>
-                        <p>by {post.authors[0].name} — {formatDateTime(post.publishedAt)}</p>
-                        <p>{post.hero.excerpt}</p>
+            <div className=" herobar nice-shadow w-4/6 rounded-md">
+
+                {Array.isArray(postsData) && postsData.map((post, index) => (
+
+                    <div key={index} className='flex items-start '>
+                        <div className='flex flex-col order-2 p-4 w-3/6 items-start '>
+                            <h1 className='font-bold text-3xl'><Link href={`/posts/${post.slug}`}>{post.title}</Link></h1>
+                            <p className='text-start' >by {post.authors[0].name} — {formatDateTime(post.publishedAt)}</p>
+                            <p className='text-start '>{post.hero.excerpt}</p>
+                        </div>
+
+                        <img className='card__photo w-3/6 order-1 max-w-3/6 max-h-80 rounded-2xl p-2 ' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (
+                            post.hero.media as MediaExtended)?.url.replace(/\.jpg/g, '-768x1024.jpg')}`} alt={post.title + 'card__hero-photo'} />
+
+                        {/* <div className="w-2/6 order-3 p-16 ">This will one day spark joy but today isn't that day obviously</div> */}
                     </div>
 
-                    <img className='card__photo w-3/6 max-w-3/6 max-h-96' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (
-                        post.hero.media as MediaExtended)?.url.replace(/\.jpg/g, '-768x1024.jpg')}`} alt={post.title + 'card__hero-photo'} />
-                </div>
+                ))
+                }
 
-            ))
-            }
+            </div >
 
-        </div >
+            <div className='w-2/6 h-80 ml-4 nice-shadow rounded-md p-4'>bebopp</div>
+
+        </div>
 
     );
 };
