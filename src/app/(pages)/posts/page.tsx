@@ -2,9 +2,11 @@ import React from 'react';
 import HeroBar from '../../_components/HeroBar';
 import { getDocs } from '../../_api/getDocs'
 import PostCards from '../../_components/PostCards';
-import '../../_css/globals.scss';
 import SearchAndFilter from '../../_components/SearchAndFilter';
 import PaginationButton from '../../_components/PaginationButton';
+import About from '../../_components/About';
+
+import '../../_css/globals.scss';
 
 export const dynamic = 'force-dynamic'
 
@@ -27,6 +29,9 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
 
         return (
             <React.Fragment>
+
+                <About />
+
                 <HeroBar postsHighImpact={postsHighImpact} />
 
                 <div className='content'>

@@ -19,7 +19,7 @@ const HeroBar: React.FC<{ postsHighImpact: PostsWithDocs }> = ({ postsHighImpact
 
                     <div key={index} className='flex items-start text-slate-800 w-full'>
                         <div className='flex flex-col order-2 p-3 w-3/6 items-start'>
-                            <h1 className='font-bold text-3xl'><Link href={`/posts/${post.slug}`}>{post.title}</Link></h1>
+                            <h2 className='font-bold text-3xl'><Link href={`/posts/${post.slug}`}>{post.title}</Link></h2>
                             <p className='text-start' >by {post.authors[0].name} — {formatDateTime(post.publishedAt)}</p>
                             <p className='text-start '>{post.hero.excerpt}</p>
                         </div>
