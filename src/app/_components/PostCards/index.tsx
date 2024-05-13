@@ -45,7 +45,7 @@ const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
 
                     </figure>
 
-                    <div className='h-40 box-border flex flex-col justify-around items-start text-left ml-3'>
+                    <div className='h-40 box-border flex flex-col justify-around items-start text-left ml-3 w-full'>
 
 
 
