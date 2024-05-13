@@ -19,14 +19,9 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
 
         const postsLowImpact = await getDocs("posts", page, categoryId, "lowImpact");
         const postsHighImpact = await getDocs("postshighimpact", undefined, undefined, undefined);
-        const postsFeatured = await getDocs("posts", 1, categoryId, "featured");
+        // const postsFeatured = await getDocs("posts", 1, categoryId, "featured");
 
         const cats = await getDocs("cats", undefined, undefined, undefined);
-
-        // console.log(posts);
-        console.log(postsLowImpact);
-
-        // console.log('bebopp', cats.Categories.docs[0].id);
 
         const paramCat: number = categoryId;
 
