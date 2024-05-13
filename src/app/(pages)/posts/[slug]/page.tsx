@@ -29,8 +29,8 @@ export default async function PostPage({ params }: { params: { slug: string } })
 
                     <div className='m-auto max-w-screen-lg my-8 flex flex-col items-start'>
 
-                        <div className='w-fit text-sm '>
-                            {rData.categories && rData.categories.length > 0 ? rData.categories.map((cat: any) => <span className='p-2 px-4 [&:not(:first-child)]:ml-2 bg-slate-700 text-white' key={cat.id}>{cat.title}</span>) : 'No category'}
+                        <div className='w-fit text-sm'>
+                            {rData.categories && rData.categories.length > 0 ? rData.categories.map((cat: any) => <span className=' [&:not(:first-child)]:ml-2 text-slate-700 capitalize' key={cat.id}>#{cat.title}</span>) : 'No category'}
                         </div>
 
                         <h1 className='text-center text-slate-800 scroll-m-20 text-4xl font-medium tracking-tight lg:text-5xl mt-2 capitalize'>{rData.title}</h1>
@@ -44,6 +44,8 @@ export default async function PostPage({ params }: { params: { slug: string } })
                     <ContentAndMediaBlock rData={data.Posts.docs[0]} />
 
                 </div>
+
+
                 {/* <Link href={process.env.NEXT_PUBLIC_SERVER_URL + '/posts'}><h3>Show all posts</h3></Link>
                 <div>Updated: {formatDateTime(rData.updatedAt)}</div> */}
             </React.Fragment>

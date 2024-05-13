@@ -11,6 +11,7 @@ export const dynamic = 'force-dynamic'
 
 export default async function PostsPage({ searchParams }: { searchParams: { page: string, category: string, type: string } }) {
 
+
     try {
 
         const page = parseInt(searchParams.page) || 1;
@@ -23,7 +24,7 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
         const cats = await getDocs("cats", undefined, undefined, undefined);
 
         // console.log(posts);
-        // console.log(posts?.Posts.docs);
+        console.log(postsLowImpact);
 
         // console.log('bebopp', cats.Categories.docs[0].id);
 

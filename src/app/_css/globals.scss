@@ -9,7 +9,7 @@
 html {
     font-family: 'GeistUFL', sans-serif;
     // font-family: 'Geist UFL';
-    background-color: #faf9fb;
+    // background-color: #faf9fb;
 }
 
 main {
@@ -23,8 +23,22 @@ code {
 }
 
 .nice-shadow {
-    box-shadow: 0 15px 15px -15px rgba(15, 14, 21, 0.1);
-    background-color: #ffffff;
+    box-shadow: 0 0.8rem 0.8rem -0.8rem rgba(15, 14, 21, 0.1);
+    // background-color: #ffffff;
+
+    /* From https://css.glass */
+    // background: rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    // box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    // backdrop-filter: blur(5px);
+    // -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 0, 0, 0.221);
+    transition: all 0.125s ease;
+
+    &:hover {
+        scale: 1.0125;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
 }
 
 // .nice-inner-shadow {

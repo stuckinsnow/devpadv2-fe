@@ -11,11 +11,9 @@ const SearchAndFilter: React.FC<{ cats: PostsWithDocs }> = ({ cats }) => {
     const catsData = cats?.Categories?.docs;
 
     return (
-        <React.Fragment>
-            <div className="searchandfilter nice-shadow px-32 py-4 mt-4 flex flex-row font-bold bg-light-dark border-top border-bottom w-full m-auto text-sm capitalize">
-                <Categories newCats={catsData} />
-            </div>
-        </React.Fragment>
+        <div className="searchandfilter px-32 mt-4 flex flex-row font-semibold bg-light-dark border-top border-bottom w-fit justify-center m-auto text-sm capitalize">
+            <Categories newCats={catsData} />
+        </div>
     );
 }
 
