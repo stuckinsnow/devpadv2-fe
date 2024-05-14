@@ -26,7 +26,7 @@ const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
 
             {Array.isArray(postsData) && postsData.map((post) => (
 
-                <article key={post.id} className={post.categories?.map((category: Category) => category.title).join(' ') + ' card w-full md:w-5/12 md:m-4 lg:w-9/12 flex flex-col lg:flex-row p-3 mt-4 rounded-md transition-all duration-75 nice-shadow box-border'}>
+                <article key={post.id} className={post.categories?.map((category: Category) => category.title).join(' ') + ' card w-full md:w-5/12 md:m-2 lg:w-9/12 flex flex-col lg:flex-row p-3 mt-4 rounded-md transition-all duration-75 nice-shadow box-border'}>
 
                     <figure className='flex flex-col '>
 
