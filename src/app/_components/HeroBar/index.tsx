@@ -17,14 +17,14 @@ const HeroBar: React.FC<{ postsHighImpact: PostsWithDocs }> = ({ postsHighImpact
 
                 {Array.isArray(postsData) && postsData.map((post, index) => (
 
-                    <div key={index} className='flex flex-row items-start text-slate-800 w-full justify-between'>
-                        <div className='flex flex-col lg:order-1 p-3 w-full md:w-3/6 items-start'>
+                    <div key={index} className='flex flex-col md:flex-row items-start text-slate-800 w-full justify-between'>
+                        <div className='flex flex-col order-1 p-3 w-full md:w-3/6 items-start'>
                             <h2 className='font-bold text-3xl'><Link href={`/posts/${post.slug}`}>{post.title}</Link></h2>
                             <p className='text-start' >by {post.authors[0].name} — {formatDateTime(post.publishedAt)}</p>
                             <p className='text-start '>{post.hero.excerpt}</p>
                         </div>
 
-                        <img className='card__photo md:flex h-40 w-60 lg:h-full lg:max-h-80 lg:w-3/6 rounded-lg' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (
+                        <img className='card__photo hidden md:flex h-40 w-60 lg:h-full lg:max-h-80 lg:w-3/6 rounded-lg' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (
                             post.hero.media as MediaExtended)?.url.replace(/\.jpg/g, '-768x1024.jpg')}`} alt={post.title + 'card__hero-photo'} />
 
                         {/* <div className="w-2/6 order-3 p-16 ">This will one day spark joy but today isn't that day obviously</div> */}
