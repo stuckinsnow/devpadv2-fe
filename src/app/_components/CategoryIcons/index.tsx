@@ -4,7 +4,7 @@ import { Post } from '../../../pl-types';
 
 const CategoryIcons: React.FC<{ post: Post }> = ({ post }) => {
     return (
-        <div className='flex gap-2'>
+        <div className='hidden md:flex gap-2'>
             {Array.isArray(post.categories) && post.categories.map((category: any, index) => (
                 <React.Fragment key={index}>
                     {category.id === 1 && ( // terminal

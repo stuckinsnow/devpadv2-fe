@@ -13,7 +13,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       <body>
         <div>
           <Header />
-          <main>{children}</main>
+          <main className="w-full lg:max-w-screen-xl m-auto p-4 md:p-0">{children}</main>
         </div>
       </body>
     </html>

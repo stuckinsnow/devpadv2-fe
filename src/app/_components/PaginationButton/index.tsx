@@ -18,7 +18,7 @@ const PaginationButton: React.FC<{ searchParams: string, posts: PostsWithDocs, p
 
     return (
 
-        <div className={`wrapper justify-center flex align-middle ${truePage === totalPages ? 'pr-16' : ''} ${!shouldShowPrevPage ? 'pl-20' : ''} mt-4`}>
+        <div className={`wrapper justify-center flex align-middle ${truePage === totalPages ? 'pr-16' : ''} ${!shouldShowPrevPage ? 'pl-20' : ''} mt-0`}>
 
 
             <div className={`flex h-7 gap-4 w-fit m-auto p-4  items-center justify-center rounded-full px-4 text-center text-sm transition-colors hover:text-primary bg-muted font-medium text-primary bg-white ${truePage === 1 ? 'mx-28' : 'mx-48'}`}>

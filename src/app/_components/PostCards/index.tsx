@@ -22,20 +22,20 @@ const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
     }
 
     return (
-        <div className='postcards rounded-lg flex flex-wrap justify-center mx-auto'>
+        <div className='postcards rounded-lg flex flex-wrap justify-center mx-auto w-full'>
 
             {Array.isArray(postsData) && postsData.map((post) => (
 
-                <article key={post.id} className={post.categories?.map((category: Category) => category.title).join(' ') + ' card w-9/12 flex flex-row p-3 mt-4 rounded-md transition-all duration-75 nice-shadow box-border'}>
+                <article key={post.id} className={post.categories?.map((category: Category) => category.title).join(' ') + ' card w-full md:w-5/12 md:m-4 lg:w-9/12 flex flex-col lg:flex-row p-3 mt-4 rounded-md transition-all duration-75 nice-shadow box-border'}>
 
                     <figure className='flex flex-col '>
 
                         {post.hero.lowImpactMedia ? (
-                            <img className='card__photo rounded-md h-40 min-w-52 ' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (
+                            <img className='card__photo rounded-md lg:h-40 min-w-52 ' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (
                                 post.hero.lowImpactMedia as MediaExtended)?.url.replace(/\.jpg/g, '-400x300.jpg')}`} alt={post.title + 'card__hero-photo'} />
                         ) : (
 
-                            <div className='flex flex-col items-center justify-center w-52 h-40 bg-slate-900 text-white rounded-md z-10 bg-opacity-25'>
+                            <div className='hidden lg:flex flex-col items-center justify-center w-52 md:h-40 bg-slate-900 text-white rounded-md z-10 bg-opacity-25'>
 
                                 <span className='block clear-both font-bold uppercase leading-6'>{formatDateTimePosts(post.publishedAt, 'month')}</span>
                                 <span className='text-3xl'>{formatDateTimePosts(post.publishedAt, 'day')}</span>
@@ -45,7 +45,7 @@ const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
 
                     </figure>
 
-                    <div className='h-40 box-border flex flex-col justify-around items-start text-left ml-3 w-full'>
+                    <div className='lg:h-40 p-2 lg:p-0 box-border flex flex-col justify-around items-start text-left lg:ml-3 w-full h-full'>
 
 
 
@@ -53,7 +53,7 @@ const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
                         <h3 className=''><Link className="text-gray-700 text-xl hover:text-amber-800 transition-all duration-75 font-bold" href={`${process.env.NEXT_PUBLIC_SERVER_URL}/posts/${post.slug}`}>
                             {post.title}</Link></h3>
 
-                        <div className='card__excerpt text-gray-500 grow mt-2'>{post.hero.excerpt}</div>
+                        <div className='card__excerpt text-gray-500 grow mb-2 lg:mb-0 mt-2'>{post.hero.excerpt}</div>
 
                         <div className='flex flex-row justify-between w-full text-gray-900 '><span className='card__date text-sm p-1 rounded-md bg-slate-50'>{formatDateTime(post.publishedAt)}{/* <span className='card__date--update'>Updated: {formatDateTime(post.updatedAt)}</span> */} — {post.populatedAuthors && post.populatedAuthors.length > 0 ? post.populatedAuthors[0].name : 'admin'}</span>
 
