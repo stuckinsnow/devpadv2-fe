@@ -1,31 +1,52 @@
-import Link from 'next/link'
-import './_css/globals.scss';
+import React from 'react';
+import HeroBar from './_components/HeroBar';
+import { getDocs } from './_api/getDocs'
+import PostCards from './_components/PostCards';
 import SearchAndFilter from './_components/SearchAndFilter';
+import PaginationButton from './_components/PaginationButton';
+import About from './_components/About';
+
+import './_css/globals.scss';
+
+export const dynamic = 'force-dynamic'
 
 
+export default async function PostsPage({ searchParams }: { searchParams: { page: string, category: string, type: string } }) {
 
-export default async function Home() {
-
-
-    const bug = 'happy happy';
 
     try {
 
-        return (
-            <div>
-                <h1>Blog example</h1>
-                {bug}
-                <p>
-                    {'This is a '}
-                    <Link href="/posts/" target="" rel="noopener noreferrer">
-                        Posts
-                    </Link>
-                    {' Page'}
-                </p>
+        const page = parseInt(searchParams.page) || 1;
+        const categoryId = parseInt(searchParams.category) || 0;
 
-            </div>
-        )
+        const postsLowImpact = await getDocs("posts", page, categoryId, "lowImpact");
+        const postsHighImpact = await getDocs("postshighimpact", undefined, undefined, undefined);
+        // const postsFeatured = await getDocs("posts", 1, categoryId, "featured");
+
+        const cats = await getDocs("cats", undefined, undefined, undefined);
+
+        const paramCat: number = categoryId;
+
+        return (
+            <React.Fragment>
+
+                <About />
+
+                <HeroBar postsHighImpact={postsHighImpact} />
+
+                <div className='content'>
+                    <SearchAndFilter cats={cats} />
+
+                    <PostCards posts={postsLowImpact} />
+
+                    <PaginationButton searchParams={searchParams.page} posts={postsLowImpact} paramCat={paramCat} />
+
+                </div>
+            </React.Fragment>
+        );
+
     } catch (error) {
         console.error(error);
     }
+
 }

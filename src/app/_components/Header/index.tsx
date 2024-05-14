@@ -12,9 +12,6 @@ const Header: React.FC = () => {
                     <li className='px-4 text-slate-50 bg-slate-700 hover:text-slate-800 hover:bg-slate-100 transition-all duration-75 rounded-md'>
                         <Link href="/">Home</Link>
                     </li>
-                    <li className='px-4 text-slate-50 bg-slate-700 hover:text-slate-800 hover:bg-slate-100 transition-all duration-75  rounded-md ml-2'>
-                        <Link href="/posts">Posts</Link>
-                    </li>
                 </ul>
             </nav>
         </header>
