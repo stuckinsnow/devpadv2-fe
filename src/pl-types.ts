@@ -34,27 +34,15 @@ export interface Post {
     name?: string | null;
   }[]
   | null;
-  postFeature: string;
   hero: {
-    type: 'highImpact' | 'lowImpact';
+    type: 'featured' | 'highImpact' | 'lowImpact';
     richText: {
-      root: {
-        children: {
-          type: string;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        type: string;
-        version: number;
-      };
       [k: string]: unknown;
-    };
+    }[];
     excerpt?: string | null;
     ManualExcerpt?: boolean | null;
     media?: number | Media | null;
+    lowImpactMedia?: number | Media | null;
   };
   layout: (
     | {
@@ -62,20 +50,8 @@ export interface Post {
       | {
         size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
         richText: {
-          root: {
-            children: {
-              type: string;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            type: string;
-            version: number;
-          };
           [k: string]: unknown;
-        };
+        }[];
         enableLink?: boolean | null;
         id?: string | null;
       }[]
@@ -189,25 +165,14 @@ export interface Page {
   title: string;
   publishedAt?: string | null;
   hero: {
-    type: 'highImpact' | 'lowImpact';
+    type: 'featured' | 'highImpact' | 'lowImpact';
     richText: {
-      root: {
-        children: {
-          type: string;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        type: string;
-        version: number;
-      };
       [k: string]: unknown;
-    };
+    }[];
     excerpt?: string | null;
     ManualExcerpt?: boolean | null;
     media?: number | Media | null;
+    lowImpactMedia?: number | Media | null;
   };
   layout: (
     | {
@@ -215,20 +180,8 @@ export interface Page {
       | {
         size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
         richText: {
-          root: {
-            children: {
-              type: string;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            type: string;
-            version: number;
-          };
           [k: string]: unknown;
-        };
+        }[];
         enableLink?: boolean | null;
         id?: string | null;
       }[]
@@ -284,4 +237,4 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
-}
+} 
