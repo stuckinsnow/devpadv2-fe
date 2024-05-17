@@ -112,7 +112,6 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                 switch (_node.type) {
 
                     case 'upload': {
-                        console.log('upload node', _node)
                         return <img key={index} className='my-4' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL}${(_node as SerializedUploadNode).value?.url}`} />
                     }
 
