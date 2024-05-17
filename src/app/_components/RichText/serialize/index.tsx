@@ -1,4 +1,7 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
+
+/* eslint-disable */
+
 import type { SerializedListItemNode, SerializedListNode } from '@lexical/list'
 import type { SerializedHeadingNode, SerializedQuoteNode } from '@lexical/rich-text'
 import type { LinkFields, SerializedLinkNode } from '@payloadcms/richtext-lexical'

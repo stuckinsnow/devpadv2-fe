@@ -5,7 +5,7 @@ export const About: React.FC<{}> = () => {
     return (
         <div className='flex flex-col justify-center items-center'>
 
-            <h1 className=''>Hello! I'm Philip, a web developer.</h1>
+            <h1 className=''>Hello! I&apos;m Philip, a web developer.</h1>
             <p>Welcome to devpad; a place where I yap about technology.</p>
             <div className='flex flex-row p-4'>
                 <Link href="https://www.linkedin.com/in/lswr/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-linkedin mr-4" viewBox="0 0 16 16">
