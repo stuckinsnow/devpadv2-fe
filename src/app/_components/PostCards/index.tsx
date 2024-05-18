@@ -4,6 +4,7 @@ import { PostsWithDocs, MediaExtended } from '../../../more-types';
 import { Category } from '../../../pl-types';
 import { formatDateTime, formatDateTimePosts } from '../../_utilities/formatDateTime';
 // import RichText from '../../_components/RichText';
+import Image from 'next/image';
 import CategoryIcons from '../CategoryIcons';
 
 import './postCards.scss';
@@ -28,20 +29,29 @@ const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
 
                 <article key={post.id} className={post.categories?.map((category: Category) => category.title).join(' ') + ' card w-full md:w-5/12 md:m-2 lg:w-9/12 flex flex-col lg:flex-row p-3 mt-4 rounded-md transition-all duration-75 nice-shadow box-border'}>
 
-                    <figure className='flex flex-col '>
+                    <figure className='relative card__photo rounded-md lg:h-40 min-w-52 '>
 
                         {post.hero.lowImpactMedia ? (
-                            <img className='card__photo rounded-md lg:h-40 min-w-52 ' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (
-                                post.hero.lowImpactMedia as MediaExtended)?.url.replace(/\.jpg/g, '-400x300.jpg')}`} alt={post.title + 'card__hero-photo'} />
+
+                            <Image
+                                src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (post.hero.lowImpactMedia as MediaExtended)?.url.replace(/\.jpg/g, '-768x1024.jpg')}`}
+                                alt={post.title + 'card__hero-photo'}
+                                fill
+                                style={{ objectFit: "cover" }}
+                            />
+
+                            // <img className='card__photo rounded-md lg:h-40 min-w-52' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (
+                            //     post.hero.lowImpactMedia as MediaExtended)?.url.replace(/\.jpg/g, '-400x300.jpg')}`} alt={post.title + 'card__hero-photo'} />
+
                         ) : (
 
-                            <div className='hidden lg:flex flex-col items-center justify-center w-52 md:h-40 bg-slate-900 text-white rounded-md z-10 bg-opacity-25'>
+                            <figcaption className='hidden lg:flex flex-col items-center justify-center w-52 md:h-40 bg-slate-900 text-white rounded-md z-10 bg-opacity-25'>
 
                                 <span className='block clear-both font-bold uppercase leading-6'>{formatDateTimePosts(post.publishedAt, 'month')}</span>
                                 <span className='text-3xl'>{formatDateTimePosts(post.publishedAt, 'day')}</span>
                                 <span className='text-sm'>{formatDateTimePosts(post.publishedAt, 'year')}</span>
 
-                            </div>)}
+                            </figcaption>)}
 
                     </figure>
 

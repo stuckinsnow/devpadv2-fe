@@ -5,9 +5,12 @@ import type { SerializedHeadingNode, SerializedQuoteNode } from '@lexical/rich-t
 import type { LinkFields, SerializedLinkNode } from '@payloadcms/richtext-lexical'
 import type { SerializedElementNode, SerializedLexicalNode, SerializedTextNode } from 'lexical'
 
+import './serialize.scss'
+
 import escapeHTML from 'escape-html'
 import Link from 'next/link'
 import React, { Fragment } from 'react'
+import Image from 'next/image'
 
 import { Label } from '../../Label'
 import {
@@ -27,6 +30,11 @@ interface Props {
 interface SerializedUploadNode extends SerializedLexicalNode {
     value: {
         url: string;
+        alt: string;
+        height: number;
+        width: number;
+        focalX: number;
+        focalY: number;
     };
 }
 
@@ -112,7 +120,30 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                 switch (_node.type) {
 
                     case 'upload': {
-                        return <img key={index} className='my-4' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL}${(_node as SerializedUploadNode).value?.url}`} />
+
+                        const value = (_node as SerializedUploadNode).value;
+                        // console.log('bebop', (_node as SerializedUploadNode).value);
+                        return (
+                            <div key={index} className=' flex flex-col my-4' >
+
+                                <figure className='serializedUpload relative '>
+                                    <Image
+                                        src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (_node as SerializedUploadNode).value?.url}`}
+                                        alt={value.alt}
+                                        fill
+                                        // width={value?.width}
+                                        // height={value?.height}
+                                        quality={80}
+                                        style={{ objectFit: "cover", padding: '1rem', objectPosition: `${value?.focalX}% ${value?.focalY}%` }}
+                                    />
+                                </figure>
+
+                                {/* <img className='my-4' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL}${(_node as SerializedUploadNode).value?.url}`} alt={alt} /> */}
+
+                                <h3 className='text-slate-400 text-sm mx-auto'>{value.alt}</h3>
+
+                            </div>
+                        );
                     }
 
 

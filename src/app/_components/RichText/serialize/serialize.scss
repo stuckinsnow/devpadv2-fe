@@ -1,0 +1,14 @@
+@use '../../../_css/mixins.scss' as *;
+
+.serializedUpload {
+    height: 18rem;
+
+    @include tablet {
+        height: 32rem;
+    }
+
+    @include desktop {
+        height: 40rem;
+    }
+
+}

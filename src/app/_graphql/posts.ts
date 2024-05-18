@@ -110,6 +110,8 @@ query Posts{
         excerpt
         media {
           url
+          focalX
+          focalY
         }
       }  
 
@@ -139,6 +141,8 @@ query Posts($slug: String!) {
               richText
               media {
                 url
+                focalX
+                focalY
               }
           }
 

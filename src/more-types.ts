@@ -17,4 +17,6 @@ export interface PostsWithDocs {
 export interface MediaExtended extends Media {
     url: string;
     excerpt: string;
+    focalX: number;
+    focalY: number;
 }

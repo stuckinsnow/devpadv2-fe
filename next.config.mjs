@@ -2,6 +2,7 @@
 const nextConfig = {
 
     images: {
+        domains: ['api.devpad.net'],
         remotePatterns: [
             {
                 protocol: "https",
@@ -9,7 +10,11 @@ const nextConfig = {
             }
         ]
     }
-
 };
 
 export default nextConfig;
+
+
+
+// next.config.js
+
