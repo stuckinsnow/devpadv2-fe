@@ -1,9 +1,6 @@
 import { PAGE } from '../_graphql/pages';
 import { POST } from '../_graphql/posts';
 import { PostsWithDocs } from '../../more-types';
-import { Config } from '../../pl-types';
-
-// todo: add types
 
 const queryMap = {
     pages: PAGE,
@@ -12,8 +9,8 @@ const queryMap = {
 
 export async function getDoc(
     collection: keyof typeof queryMap,
-    slug: string)
-    : Promise<PostsWithDocs | undefined> {
+    slug: string | undefined)
+    : Promise<PostsWithDocs> {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/graphql`, {
             method: 'POST',
@@ -27,8 +24,6 @@ export async function getDoc(
                 variables: slug ? { slug } : undefined,
             }),
         });
-
-        // console.log('slug', slug);
 
         const { data, errors } = await res.json();
 

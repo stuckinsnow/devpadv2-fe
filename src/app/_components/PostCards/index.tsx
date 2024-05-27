@@ -14,8 +14,6 @@ import '../../_css/globals.scss';
 
 const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
 
-    // console.log(posts[2]?.hero.richText + posts[2]?.title);
-
     const postsData = posts.Posts.docs;
 
     if (!posts) {
