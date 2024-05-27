@@ -122,7 +122,6 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                     case 'upload': {
 
                         const value = (_node as SerializedUploadNode).value;
-                        // console.log('bebop', (_node as SerializedUploadNode).value);
                         return (
                             <div key={index} className=' flex flex-col my-4' >
 
@@ -137,8 +136,6 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                                         style={{ objectFit: "cover", padding: '1rem', objectPosition: `${value?.focalX}% ${value?.focalY}%` }}
                                     />
                                 </figure>
-
-                                {/* <img className='my-4' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL}${(_node as SerializedUploadNode).value?.url}`} alt={alt} /> */}
 
                                 <h3 className='text-slate-400 text-sm mx-auto'>{value.alt}</h3>
 
@@ -186,10 +183,6 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                     }
                     case 'label':
                         return <Label key={index}>{serializedChildren}</Label>
-
-                    // case 'largeBody': {
-                    //     return <LargeBody key={index}>{serializedChildren}</LargeBody>
-                    // }
 
                     case 'list': {
                         const node = _node as SerializedListNode
@@ -243,8 +236,6 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                         }
                     }
                     case 'quote': {
-                        // const node = _node as SerializedQuoteNode
-
                         return <blockquote key={index} className='mt-6 max-w-screen-lg m-auto bg-teal-100 border-l-2 pl-6 itali'>{serializedChildren}</blockquote>
                     }
                     case 'link': {
