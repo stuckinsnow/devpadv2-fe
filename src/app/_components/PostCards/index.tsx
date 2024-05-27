@@ -3,14 +3,11 @@ import Link from 'next/link';
 import { PostsWithDocs, MediaExtended } from '../../../more-types';
 import { Category } from '../../../pl-types';
 import { formatDateTime, formatDateTimePosts } from '../../_utilities/formatDateTime';
-// import RichText from '../../_components/RichText';
 import Image from 'next/image';
 import CategoryIcons from '../CategoryIcons';
 
 import './postCards.scss';
 import '../../_css/globals.scss';
-
-// leave the commented code, 6 + 65-75
 
 const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
 
@@ -52,27 +49,17 @@ const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
 
                     <div className='lg:h-40 p-2 lg:p-0 box-border flex flex-col justify-around items-start text-left lg:ml-3 w-full h-full'>
 
-
-
-
-                        <h3 className=''><Link className="text-gray-700 text-xl hover:text-amber-800 transition-all duration-75 font-bold" href={`${process.env.NEXT_PUBLIC_SERVER_URL}/posts/${post.slug}`}>
-                            {post.title}</Link></h3>
+                        <h3 className=''>
+                            <Link className="text-gray-700 text-xl hover:text-amber-800 transition-all duration-75 font-bold" href={`${process.env.NEXT_PUBLIC_SERVER_URL}/posts/${post.slug}`}>{post.title}</Link>
+                        </h3>
 
                         <div className='card__excerpt text-gray-500 grow mb-2 lg:mb-0 mt-2'>{post.hero.excerpt}</div>
 
-                        <div className='flex flex-row justify-between w-full text-gray-900 '><span className='card__date text-sm p-1 rounded-md bg-slate-50'>{formatDateTime(post.publishedAt)}{/* <span className='card__date--update'>Updated: {formatDateTime(post.updatedAt)}</span> */} — {post.populatedAuthors && post.populatedAuthors.length > 0 ? post.populatedAuthors[0].name : 'admin'}</span>
+                        <div className='flex flex-row justify-between w-full text-gray-900 '>
 
-                            {/* <div>
-                                {Array.isArray(post.categories) && post.categories.length > 0 ? (
-                                    post.categories.map((category: Category) => (
-
-                                        <Link key={category.id} href={`${process.env.NEXT_PUBLIC_SERVER_URL}/posts/?page=1&category=${category.id}`} className='card__category text-sm p-1 ml-2 rounded-md hover:text-orange-700 bg-slate-50 capitalize '>{category.title}</Link>
-
-                                    ))
-                                ) : (
-                                    <span className='card__category text-sm text-slate-300 capitalize'>No Category</span>
-                                )}
-                            </div> */}
+                            <span className='card__date text-sm p-1 rounded-md bg-slate-50'>
+                                {formatDateTime(post.publishedAt)} — {post.populatedAuthors && post.populatedAuthors.length > 0 ? post.populatedAuthors[0].name : 'admin'}
+                            </span>
 
                             <CategoryIcons post={post} />
 
@@ -80,8 +67,7 @@ const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
                     </div>
 
                 </article>
-            ))
-            }
+            ))}
         </div >
     );
 };
