@@ -10,7 +10,7 @@ import CategoryIcons from '../CategoryIcons';
 import './postCards.scss';
 import '../../_css/globals.scss';
 
-
+// leave the commented code, 6 + 65-75
 
 const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
 
@@ -38,9 +38,6 @@ const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
                                 style={{ objectFit: "cover" }}
                             />
 
-                            // <img className='card__photo rounded-md lg:h-40 min-w-52' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (
-                            //     post.hero.lowImpactMedia as MediaExtended)?.url.replace(/\.jpg/g, '-400x300.jpg')}`} alt={post.title + 'card__hero-photo'} />
-
                         ) : (
 
                             <figcaption className='hidden lg:flex flex-col items-center justify-center w-52 md:h-40 bg-slate-900 text-white rounded-md z-10 bg-opacity-25'>
@@ -66,7 +63,6 @@ const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
                         <div className='flex flex-row justify-between w-full text-gray-900 '><span className='card__date text-sm p-1 rounded-md bg-slate-50'>{formatDateTime(post.publishedAt)}{/* <span className='card__date--update'>Updated: {formatDateTime(post.updatedAt)}</span> */} — {post.populatedAuthors && post.populatedAuthors.length > 0 ? post.populatedAuthors[0].name : 'admin'}</span>
 
                             {/* <div>
-
                                 {Array.isArray(post.categories) && post.categories.length > 0 ? (
                                     post.categories.map((category: Category) => (
 
@@ -76,7 +72,6 @@ const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
                                 ) : (
                                     <span className='card__category text-sm text-slate-300 capitalize'>No Category</span>
                                 )}
-
                             </div> */}
 
                             <CategoryIcons post={post} />
@@ -84,9 +79,6 @@ const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
                         </div>
                     </div>
 
-
-                    {/* <div className='card__date'></div> */}
-                    {/* <RichText content={post.hero.richText} /> */}
                 </article>
             ))
             }

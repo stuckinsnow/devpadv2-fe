@@ -10,9 +10,7 @@ import './_css/globals.scss';
 
 export const dynamic = 'force-dynamic'
 
-
 export default async function PostsPage({ searchParams }: { searchParams: { page: string, category: string, type: string } }) {
-
 
     try {
 
@@ -31,17 +29,16 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
             <React.Fragment>
 
                 <About />
-
                 <HeroBar postsHighImpact={postsHighImpact} />
 
                 <div className='content'>
+
                     <SearchAndFilter cats={cats} />
-
                     <PostCards posts={postsLowImpact} />
-
                     <PaginationButton searchParams={searchParams.page} posts={postsLowImpact} paramCat={paramCat} />
 
                 </div>
+
             </React.Fragment>
         );
 
