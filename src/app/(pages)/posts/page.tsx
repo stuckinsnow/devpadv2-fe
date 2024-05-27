@@ -1,18 +1,16 @@
 import React from 'react';
-import HeroBar from '../../_components/HeroBar';
 import { getDocs } from '../../_api/getDocs'
+import About from '../../_components/About';
+import HeroBar from '../../_components/HeroBar';
+import PaginationButton from '../../_components/PaginationButton';
 import PostCards from '../../_components/PostCards';
 import SearchAndFilter from '../../_components/SearchAndFilter';
-import PaginationButton from '../../_components/PaginationButton';
-import About from '../../_components/About';
 
 import '../../_css/globals.scss';
 
 export const dynamic = 'force-dynamic'
 
-
 export default async function PostsPage({ searchParams }: { searchParams: { page: string, category: string, type: string } }) {
-
 
     try {
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import HeroBar from './_components/HeroBar';
 import { getDocs } from './_api/getDocs'
-import PostCards from './_components/PostCards';
-import SearchAndFilter from './_components/SearchAndFilter';
-import PaginationButton from './_components/PaginationButton';
 import About from './_components/About';
+import HeroBar from './_components/HeroBar';
+import SearchAndFilter from './_components/SearchAndFilter';
+import PostCards from './_components/PostCards';
+import PaginationButton from './_components/PaginationButton';
 
 import './_css/globals.scss';
 

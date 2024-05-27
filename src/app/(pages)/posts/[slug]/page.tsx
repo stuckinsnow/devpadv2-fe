@@ -1,10 +1,11 @@
 import React from 'react';
-import '../../../_css/globals.scss';
 import { getDoc } from '../../../_api/getDoc';
 import RichText from '../../../_components/RichText';
-import { formatDateTime } from '../../../_utilities/formatDateTime';
 import { Category } from '../../../../pl-types';
+import { formatDateTime } from '../../../_utilities/formatDateTime';
 import ContentAndMediaBlock from '../../../_blocks/ContentAndMediaBlock';
+
+import '../../../_css/globals.scss';
 
 export const dynamic = 'force-dynamic'
 
@@ -18,7 +19,6 @@ export default async function PostPage({ params }: { params: { slug: string } })
 
             <React.Fragment>
                 <div className="max-w-screen-xl mx-auto">
-
 
                     <div className='m-auto max-w-screen-lg my-8 flex flex-col items-start'>
 
@@ -35,7 +35,6 @@ export default async function PostPage({ params }: { params: { slug: string } })
 
                     <RichText content={rData.hero.richText} />
                     <ContentAndMediaBlock rData={rData} />
-
 
                 </div>
 
