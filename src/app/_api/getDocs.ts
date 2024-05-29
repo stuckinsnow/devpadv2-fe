@@ -1,11 +1,13 @@
 import { PAGES } from '../_graphql/pages';
 import { POSTS, POSTSHIGHIMPACT } from '../_graphql/posts';
+import { DISCORD_THREADS } from '../_graphql/discordThreads';
 import { CATEGORIES } from '../_graphql/categories';
 import { PostsWithDocs } from '../../more-types';
 
 const queryMap = {
     pages: PAGES,
     posts: POSTS,
+    discordthreads: DISCORD_THREADS,
     cats: CATEGORIES,
     postshighimpact: POSTSHIGHIMPACT,
 };

@@ -2,7 +2,7 @@
 const nextConfig = {
 
     images: {
-        domains: ['api.devpad.net'],
+        domains: ['api.devpad.net', 'localhost'],
         remotePatterns: [
             {
                 protocol: "https",

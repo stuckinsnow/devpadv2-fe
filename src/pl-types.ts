@@ -13,6 +13,7 @@ export interface Config {
     users: User;
     categories: Category;
     media: Media;
+    'discord-community': DiscordCommunity;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -37,8 +38,20 @@ export interface Post {
   hero: {
     type: 'featured' | 'highImpact' | 'lowImpact';
     richText: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
       [k: string]: unknown;
-    }[];
+    };
     excerpt?: string | null;
     ManualExcerpt?: boolean | null;
     media?: number | Media | null;
@@ -50,8 +63,20 @@ export interface Post {
       | {
         size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
         richText: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
           [k: string]: unknown;
-        }[];
+        };
         enableLink?: boolean | null;
         id?: string | null;
       }[]
@@ -129,6 +154,8 @@ export interface Media {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
   sizes?: {
     thumbnail?: {
       url?: string | null;
@@ -167,8 +194,20 @@ export interface Page {
   hero: {
     type: 'featured' | 'highImpact' | 'lowImpact';
     richText: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
       [k: string]: unknown;
-    }[];
+    };
     excerpt?: string | null;
     ManualExcerpt?: boolean | null;
     media?: number | Media | null;
@@ -180,8 +219,20 @@ export interface Page {
       | {
         size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
         richText: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
           [k: string]: unknown;
-        }[];
+        };
         enableLink?: boolean | null;
         id?: string | null;
       }[]
@@ -203,6 +254,30 @@ export interface Page {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "discord-community".
+ */
+export interface DiscordCommunity {
+  id: number;
+  title?: string | null;
+  discordCommunity?: ('discord' | 'discord-showcase') | null;
+  discordID?: string | null;
+  discordCommunityJSON:
+  | {
+    [k: string]: unknown;
+  }
+  | unknown[]
+  | string
+  | number
+  | boolean
+  | null;
+  introDescription?: string | null;
+  slug?: string | null;
+  helpful?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -237,4 +312,9 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
-} 
+}
+
+
+declare module 'payload' {
+  export interface GeneratedTypes extends Config { }
+}

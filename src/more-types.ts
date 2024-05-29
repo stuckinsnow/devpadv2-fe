@@ -11,6 +11,10 @@ export interface PostsWithDocs {
     Categories: {
         docs: Config;
     };
+    DiscordCommunities: {
+        docs: Config;
+    };
+
 
 }
 
