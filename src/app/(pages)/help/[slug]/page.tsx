@@ -1,5 +1,5 @@
 import React from 'react';
-import { getDocs } from '../../../_api/getDocs';
+import { getDoc } from '../../../_api/getDoc';
 
 import '../../../_css/globals.scss';
 import './../page.scss';
@@ -48,20 +48,23 @@ async function renderThread(thread: any) {
 
 export const dynamic = 'force-dynamic';
 
-export default async function UniqueHelpPage() {
-    const discordThreadData = await getDocs('discordthreads', undefined, undefined, undefined);
-    const threads = discordThreadData?.DiscordCommunities.docs || [];
 
-    const renderedThreads = await Promise.all(
-        Array.isArray(threads) ? threads.map(async (thread: any) => await renderThread(thread)) : []
+export default async function UniqueHelpPage({ params }: { params: { slug: string } }) {
+    const discordThreadData = await getDoc('discordthread', params.slug);
+    const thread = discordThreadData?.DiscordCommunities.docs || [];
+
+    const renderedThread = await Promise.all(
+        Array.isArray(thread) ? thread.map(async (thread: any) => await renderThread(thread)) : []
     );
+
+    console.log('bebop', discordThreadData.DiscordCommunities.docs);
 
     return (
         <React.Fragment>
             <h1>Help</h1>
             <div className="content">
                 <div className="rounded-lg flex flex-col mx-auto w-full max-w-screen-lg">
-                    {renderedThreads.map((thread: any) => (
+                    {renderedThread.map((thread: any) => (
                         <article key={thread.id} className={Array.isArray(thread.title) ? thread.title.join(' ') + 'aa' : 'mt-4'}>
                             <div className="p-2 border-solid border-2 border-slate-800">
                                 <div key={thread.discordID}>

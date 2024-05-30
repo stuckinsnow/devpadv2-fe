@@ -1,10 +1,12 @@
 import { PAGE } from '../_graphql/pages';
 import { POST } from '../_graphql/posts';
+import { DISCORD_THREAD } from '../_graphql/discordThreads';
 import { PostsWithDocs } from '../../more-types';
 
 const queryMap = {
     pages: PAGE,
     posts: POST,
+    discordthread: DISCORD_THREAD,
 };
 
 export async function getDoc(
