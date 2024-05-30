@@ -1,29 +1,28 @@
 import React from 'react';
 import { getDocs } from '../../_api/getDocs';
-import { codeToHtml } from 'shiki';
+
 import '../../_css/globals.scss';
+import './page.scss';
 
 
-async function renderCode(content: string, lang = 'javascript', theme = 'catppuccin-macchiato') {
-    const codeRegex = /<pre><code.*?>([\s\S]*?)<\/code><\/pre>/g;
+async function renderCode(content: string) {
+    const codeRegex = /<pre><code class="hljs.*?">([\s\S]*?)<\/code><\/pre>/g;
     const matches = content.split(codeRegex);
     const renderedContent = [];
 
     for (let i = 0; i < matches.length; i++) {
-        if (i % 2 === 0) {
-            renderedContent.push(matches[i]);
+        const currentBlock = matches[i];
+
+        if (i % 2 === 1) {
+            renderedContent.push(`<pre class="hljs" ><code class="">${currentBlock}</code></pre>`);
         } else {
-
-            const codeBlock = `<pre><code class="${lang}">${matches[i]}</code></pre>`;
-            renderedContent.push(codeBlock);
-
-            // const html = await codeToHtml(matches[i], { lang, theme });
-            // renderedContent.push(html);
+            renderedContent.push(`<p>${currentBlock}</p>`);
         }
     }
 
-    return renderedContent;
+    return renderedContent.join('');
 }
+
 
 export const dynamic = 'force-dynamic';
 
@@ -77,8 +76,8 @@ export default async function HelpPage() {
                                     </div>
                                     <div>
                                         {renderedMessages[thread.id] ? renderedMessages[thread.id].map((json, i) => (
-                                            <div key={i} className="flex flex-col message-box bg-slate-800 text-fuchsia-400 mt-4">
-                                                <div dangerouslySetInnerHTML={{ __html: json.renderedContent.join('') }} />
+                                            <div key={i} className="flex flex-col message-box mt-4">
+                                                <div dangerouslySetInnerHTML={{ __html: json.renderedContent }} />
                                                 <p>Author Name: {json.globalName}{json.authorID.toString().slice(-4)}</p>
                                                 <p>Created At: {new Date(json.createdAtDate).toLocaleString()}</p>
                                                 <div>Attachments: {json.fileAttachments.length > 0 ? json.fileAttachments.join(', ') : 'None'}</div>
