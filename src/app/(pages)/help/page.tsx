@@ -46,13 +46,13 @@ export default async function HelpPage() {
             <div className="content">
                 <div className="rounded-lg flex flex-col mx-auto w-full max-w-screen-lg">
                     {renderedThreads.map((thread: any) => (
-                        <article key={thread.id} className={Array.isArray(thread.title) ? thread.title.join(' ') + 'aa' : 'mt-4'}>
-                            <div className="p-2 border-solid border-2 border-slate-800">
-                                <div key={thread.discordID}>
-                                    <Link href={`/help/${thread.slug}`}>
+                        <article key={thread.id} className={Array.isArray(thread.title) ? thread.title.join(' ') + 'aa' : 'w-full md:w-5/12 md:m-2 lg:w-9/12 flex flex-col lg:flex-row p-3 mt-4 rounded-md transition-all duration-75 nice-shadow box-border'}>
+                            <div className="lg:h-40 p-2 lg:p-0 box-border flex flex-col justify-around items-start text-left lg:ml-3 w-full h-full">
+                                <div className='w-full' key={thread.discordID}>
+                                    <Link className='w-full' href={`/help/${thread.slug}`}>
                                         <div>
                                             name
-                                            <span className="capitalise"> {thread.discordCommunityJSON.intro.globalName}{thread.discordCommunityJSON.intro.authorID.toString().slice(-4)}</span>
+                                            <span className="capitalize"> {thread.discordCommunityJSON.intro.globalName}{thread.discordCommunityJSON.intro.authorID.toString().slice(-4)}</span>
                                         </div>
                                         <p>Title: {thread.title}</p>
                                         <div>Slug: {thread.slug}</div>
