@@ -57,7 +57,7 @@ export default async function UniqueHelpPage({ params }: { params: { slug: strin
         Array.isArray(thread) ? thread.map(async (thread: any) => await renderThread(thread)) : []
     );
 
-    console.log('bebop', discordThreadData.DiscordCommunities.docs);
+    // console.log('bebop', discordThreadData.DiscordCommunities.docs);
 
     return (
         <React.Fragment>

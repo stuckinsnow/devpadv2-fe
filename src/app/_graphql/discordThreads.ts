@@ -1,6 +1,6 @@
 export const DISCORD_THREADS = `
-query {
-  DiscordCommunities {
+query DiscordThreads($type: DiscordCommunity_discordCommunity_Input!) {
+  DiscordCommunities(where: { discordCommunity: { equals: $type } }) {
     docs {
       id
       title
@@ -8,7 +8,7 @@ query {
       discordID
       discordCommunityJSON 
       slug
-      helpful
+      published
       updatedAt
       createdAt
       introDescription
@@ -16,7 +16,6 @@ query {
   }
 }
 `
-
 
 export const DISCORD_THREAD = `
 query DiscordThread($slug: String!){
@@ -28,7 +27,7 @@ query DiscordThread($slug: String!){
       discordID
       discordCommunityJSON 
       slug
-      helpful
+      published
       updatedAt
       createdAt
       introDescription

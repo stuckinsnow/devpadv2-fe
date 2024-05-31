@@ -17,7 +17,9 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  globals: {};
+  globals: {
+    footer: Footer;
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -114,30 +116,12 @@ export interface Post {
 export interface Category {
   id: number;
   title?: string | null;
+  slug?: string | null;
+  SVG?: number | Media | null;
+  discordHelpTag?: string | null;
+  discordShowcaseTag?: string | null;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
- */
-export interface User {
-  id: number;
-  name?: string | null;
-  roles?: ('admin' | 'user')[] | null;
-  updatedAt: string;
-  createdAt: string;
-  enableAPIKey?: boolean | null;
-  apiKey?: string | null;
-  apiKeyIndex?: string | null;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -182,6 +166,28 @@ export interface Media {
       filename?: string | null;
     };
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: number;
+  name?: string | null;
+  roles?: ('admin' | 'user')[] | null;
+  updatedAt: string;
+  createdAt: string;
+  enableAPIKey?: boolean | null;
+  apiKey?: string | null;
+  apiKeyIndex?: string | null;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -262,7 +268,7 @@ export interface Page {
 export interface DiscordCommunity {
   id: number;
   title?: string | null;
-  discordCommunity?: ('discord' | 'discord-showcase') | null;
+  discordCommunity?: ('discordHelp' | 'discordShowcase') | null;
   discordID?: string | null;
   discordCommunityJSON:
   | {
@@ -275,7 +281,7 @@ export interface DiscordCommunity {
   | null;
   introDescription?: string | null;
   slug?: string | null;
-  helpful?: boolean | null;
+  published?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -312,6 +318,36 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface Footer {
+  id: number;
+  columns?:
+  | {
+    label: string;
+    navItems?:
+    | {
+      link: {
+        type?: ('reference' | 'custom') | null;
+        newTab?: boolean | null;
+        reference?: {
+          relationTo: 'pages';
+          value: number | Page;
+        } | null;
+        url?: string | null;
+        label: string;
+      };
+      id?: string | null;
+    }[]
+    | null;
+    id?: string | null;
+  }[]
+  | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 
 

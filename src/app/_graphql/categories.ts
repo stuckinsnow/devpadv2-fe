@@ -4,5 +4,10 @@ query categories {
     docs {
       id
       title
+      slug
+      discordHelpTag
+      discordShowcaseTag
+      updatedAt
+      createdAt
     }
 } } `
