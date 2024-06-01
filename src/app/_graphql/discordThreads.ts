@@ -6,12 +6,18 @@ query DiscordThreads($type: DiscordCommunity_discordCommunity_Input!) {
       title
       discordCommunity
       discordID
-      discordCommunityJSON 
+      excerpt
+      discordArray {
+        id 
+        discordInfo
+        discordIntro 
+        discordMessages
+
+      }  
       slug
       published
       updatedAt
-      createdAt
-      introDescription
+      createdAt 
     }
   }
 }
@@ -25,12 +31,19 @@ query DiscordThread($slug: String!){
       title
       discordCommunity
       discordID
-      discordCommunityJSON 
+      excerpt
+      discordArray {
+        id
+        discordContent
+        discordInfo
+        discordIntro 
+        discordMessages
+
+      }  
       slug
       published
       updatedAt
-      createdAt
-      introDescription
+      createdAt 
     } 
   }
 }

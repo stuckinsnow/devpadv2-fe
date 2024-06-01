@@ -10,10 +10,11 @@ export async function renderCode(content: string, noCode: boolean) {
 
         if (i % 2 === 1) {
             if (!noCode) {
-                renderedContent.push(`<pre class="hljs" ><code class="">${currentBlock}</code></pre>`);
+                renderedContent.push(`<pre class="hljs overflow-auto" ><code class="">${currentBlock}</code></pre>`);
             }
         } else {
-            renderedContent.push(`<p>${extractDescription(currentBlock)}</p>`);
+            // renderedContent.push(`<p>${extractDescription(currentBlock)}</p>`);
+            renderedContent.push(`<p>${currentBlock}</p>`);
         }
     }
 

@@ -13,6 +13,7 @@ export interface Config {
     users: User;
     categories: Category;
     media: Media;
+    graphics: Graphic;
     'discord-community': DiscordCommunity;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -117,7 +118,7 @@ export interface Category {
   id: number;
   title?: string | null;
   slug?: string | null;
-  SVG?: number | Media | null;
+  SVG?: number | Graphic | null;
   discordHelpTag?: string | null;
   discordShowcaseTag?: string | null;
   updatedAt: string;
@@ -125,9 +126,9 @@ export interface Category {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
+ * via the `definition` "graphics".
  */
-export interface Media {
+export interface Graphic {
   id: number;
   alt?: string | null;
   updatedAt: string;
@@ -188,6 +189,50 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    card?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    tablet?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -270,16 +315,52 @@ export interface DiscordCommunity {
   title?: string | null;
   discordCommunity?: ('discordHelp' | 'discordShowcase') | null;
   discordID?: string | null;
-  discordCommunityJSON:
+  excerpt?: string | null;
+  discordMessageCount?: number | null;
+  discordArray?:
   | {
-    [k: string]: unknown;
-  }
-  | unknown[]
-  | string
-  | number
-  | boolean
+    discordID?: string | null;
+    discordContent?: string | null;
+    discordMessages?:
+    | {
+      [k: string]: unknown;
+    }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+    discordInfo?:
+    | {
+      [k: string]: unknown;
+    }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+    discordIntro?:
+    | {
+      [k: string]: unknown;
+    }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+    discordCommunityJSON?:
+    | {
+      [k: string]: unknown;
+    }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+    discordMessageCount?: number | null;
+    id?: string | null;
+  }[]
   | null;
-  introDescription?: string | null;
   slug?: string | null;
   published?: boolean | null;
   updatedAt: string;
