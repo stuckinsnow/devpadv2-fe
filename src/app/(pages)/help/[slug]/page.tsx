@@ -61,7 +61,6 @@ export default async function UniqueHelpPage({ params }: { params: { slug: strin
                             </h2>
                             <div dangerouslySetInnerHTML={{ __html: thread.renderedContent }} />
 
-                            {thread.discordArray[0].discordContent}
                         </div>
                         <div className="capitalize">
                             {thread.renderedMessages.map((json: any, i: number) => (
@@ -71,7 +70,6 @@ export default async function UniqueHelpPage({ params }: { params: { slug: strin
                                         <span className='text-gray-600'> - {new Date(json.createdAtDate).toLocaleString()}</span>
                                     </h2>
                                     <div dangerouslySetInnerHTML={{ __html: json.renderedContent }} />
-                                    {/* {renderCode(json.renderedContent, true)} */}
 
                                 </div>
                             ))}

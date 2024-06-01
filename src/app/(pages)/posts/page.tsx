@@ -26,8 +26,6 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
 
         const paramCat: number = categoryId;
 
-        // console.log(cats.Categories.docs[0].SVG.filename);
-
         return (
             <React.Fragment>
                 <About />

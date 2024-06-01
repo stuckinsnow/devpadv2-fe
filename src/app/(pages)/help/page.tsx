@@ -1,7 +1,6 @@
 import React from 'react';
 import { getDocs } from '../../_api/getDocs';
 import { formatDateTime } from '../../_utilities/formatDateTime';
-import { renderCode } from '../../_utilities/renderCode';
 
 import '../../_css/globals.scss';
 import './page.scss';
@@ -33,7 +32,7 @@ export default async function HelpPage() {
                 <div className="rounded-lg flex flex-col mx-auto w-full max-w-screen-lg">
                     {Array.isArray(threads) && threads.map((thread: any) => (
                         <article key={thread.id} className={Array.isArray(thread.title) ? thread.title.join(' ') + 'aa' : 'w-full md:w-5/12 md:m-2 lg:w-9/12 flex flex-col lg:flex-row p-3 mt-4 rounded-md transition-all duration-75 nice-shadow box-border'}>
-                            <div className="lg:h-40 p-2 lg:p-0 box-border flex flex-col justify-around items-start text-left lg:ml-3 w-full h-full">
+                            <div className="lg:h-auto p-2 lg:p-0 box-border flex flex-col justify-around items-start text-left lg:ml-3 w-full h-full">
                                 <div className='w-full' key={thread.discordID}>
                                     <Link className='w-full' href={`/help/${thread.slug}`}>
                                         <h2 className=' text-3xl font-bold first-letter:capitalize text-gray-700' >{thread.title}</h2>
@@ -46,11 +45,10 @@ export default async function HelpPage() {
 
                                         <div className='text-gray-400 text-sm'>Comments: {thread.discordArray[0].discordInfo.messageCount}</div>
 
-                                        <div className="text-gray-400 font-bold text-sm"> <span>
-                                            {formatDateTime(thread.createdAt)}
-                                        </span>
-                                            <span className='ml-2' >Messages: {thread.discordArray[0].discordInfo.messageCount}
-                                            </span>
+                                        <div className="flex flex-col text-gray-400 font-bold text-sm">
+                                            <span>{formatDateTime(thread.createdAt)}</span>
+                                            <span className='' >Messages: {thread.discordArray[0].discordInfo.messageCount}</span>
+                                            <span>Replies: {thread.discordMessageCount} </span>
                                         </div>
 
                                         <div>

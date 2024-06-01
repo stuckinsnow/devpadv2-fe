@@ -7,6 +7,7 @@ query DiscordThreads($type: DiscordCommunity_discordCommunity_Input!) {
       discordCommunity
       discordID
       excerpt
+      discordMessageCount
       discordArray {
         id 
         discordInfo

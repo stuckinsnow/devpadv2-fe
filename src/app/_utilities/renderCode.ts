@@ -1,5 +1,3 @@
-import { extractDescription } from './extractDescription';
-
 export async function renderCode(content: string, noCode: boolean) {
     const codeRegex = /<pre><code class="hljs.*?">([\s\S]*?)<\/code><\/pre>/g;
     const matches = content.split(codeRegex);
