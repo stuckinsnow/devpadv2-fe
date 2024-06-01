@@ -12,6 +12,7 @@ export const dynamic = 'force-dynamic'
 
 export default async function PostsPage({ searchParams }: { searchParams: { page: string, category: string, type: string } }) {
 
+
     try {
 
         const page = parseInt(searchParams.page) || 1;
@@ -25,9 +26,10 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
 
         const paramCat: number = categoryId;
 
+        // console.log(cats.Categories.docs[0].SVG.filename);
+
         return (
             <React.Fragment>
-
                 <About />
 
                 <HeroBar postsHighImpact={postsHighImpact} />

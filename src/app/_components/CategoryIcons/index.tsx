@@ -3,7 +3,12 @@ import Link from 'next/link';
 import { Post } from '../../../pl-types';
 
 const CategoryIcons: React.FC<{ post: Post }> = ({ post }) => {
+
+    // console.log(post.categories);
+
+
     return (
+
         <div className='hidden md:flex gap-2'>
             {Array.isArray(post.categories) && post.categories.map((category: any, index) => (
                 <React.Fragment key={index}>

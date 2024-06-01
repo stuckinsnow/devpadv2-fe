@@ -1,36 +1,19 @@
 import React from 'react';
 import { getDoc } from '../../../_api/getDoc';
+import { renderCode } from '../../../_utilities/renderCode';
 
 import '../../../_css/globals.scss';
 import './../page.scss';
 
-async function renderCode(content: string) {
-    const codeRegex = /<pre><code class="hljs.*?">([\s\S]*?)<\/code><\/pre>/g;
-    const matches = content.split(codeRegex);
-    const renderedContent = [];
-
-    for (let i = 0; i < matches.length; i++) {
-        const currentBlock = matches[i];
-
-        if (i % 2 === 1) {
-            renderedContent.push(`<pre class="hljs p-4 overflow-auto" ><code class="">${currentBlock}</code></pre>`);
-        } else {
-            renderedContent.push(`<p class="text-gray-600 " >${currentBlock}</p>`);
-        }
-    }
-
-    return renderedContent.join('');
-}
-
 async function renderThread(thread: any) {
     const rawContent = thread.discordCommunityJSON.intro.content;
-    const renderedContent = await renderCode(rawContent); // Await renderCode here
+    const renderedContent = await renderCode(rawContent, false); // Await renderCode here
     const paragraphs = rawContent.split('<br>').map((paragraph: string, index: number) => (
         <p key={index} className="mt-2 ">{paragraph}</p>
     ));
 
     const renderedMessages = await Promise.all(thread.discordCommunityJSON.messages.map(async (json: any) => {
-        const rendered = await renderCode(json.content);
+        const rendered = await renderCode(json.content, false);
         return {
             renderedContent: rendered,
             ...json,
@@ -41,7 +24,7 @@ async function renderThread(thread: any) {
         ...thread,
         rawContent,
         paragraphs,
-        renderedContent, // Include renderedContent here
+        renderedContent,
         renderedMessages,
     };
 }

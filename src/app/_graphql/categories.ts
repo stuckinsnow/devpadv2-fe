@@ -5,6 +5,9 @@ query categories {
       id
       title
       slug
+      SVG {
+        filename
+      }
       discordHelpTag
       discordShowcaseTag
       updatedAt

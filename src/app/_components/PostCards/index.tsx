@@ -16,7 +16,6 @@ const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
     if (!posts) {
         return <div>No posts available</div>;
     }
-
     return (
         <div className='postcards rounded-lg flex flex-wrap justify-center mx-auto w-full'>
 
