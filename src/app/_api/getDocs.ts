@@ -3,6 +3,7 @@ import { POSTS, POSTSHIGHIMPACT } from '../_graphql/posts';
 import { DISCORD_THREADS } from '../_graphql/discordThreads';
 import { CATEGORIES } from '../_graphql/categories';
 import { PostsWithDocs } from '../../more-types';
+import { HEADERITEMS } from '../_graphql/headerMenuItems';
 
 const queryMap = {
     pages: PAGES,
@@ -10,6 +11,7 @@ const queryMap = {
     discordthreads: DISCORD_THREADS,
     cats: CATEGORIES,
     postshighimpact: POSTSHIGHIMPACT,
+    headeritems: HEADERITEMS,
 };
 
 export async function getDocs(

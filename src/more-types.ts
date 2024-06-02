@@ -1,4 +1,4 @@
-import { Config, Media } from './pl-types';
+import { Config, Media, Header } from './pl-types';
 
 export interface PostsWithDocs {
     Posts: {
@@ -14,8 +14,20 @@ export interface PostsWithDocs {
     DiscordCommunities: {
         docs: Config;
     };
+    Header: {
+        docs: Header;
 
-
+        columns: {
+            navItems: {
+                title: string;
+                url: string;
+                link: {
+                    url: string;
+                    label: string;
+                };
+            }[];
+        }[];
+    };
 }
 
 export interface MediaExtended extends Media {
