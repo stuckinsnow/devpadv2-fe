@@ -1,6 +1,16 @@
 export const DISCORD_THREADS = `
-query DiscordThreads($type: DiscordCommunity_discordCommunity_Input!) {
-  DiscordCommunities(where: { discordCommunity: { equals: $type } }) {
+query DiscordThreads($page: Int!, $type: DiscordCommunity_discordCommunity_Input!) {
+  DiscordCommunities(page: $page, limit: 4, sort: "-publishedAt", where: { discordCommunity: { equals: $type } }) {
+    hasNextPage 
+    hasPrevPage 
+    limit
+    nextPage
+    offset
+    page
+    pagingCounter
+    prevPage
+    totalDocs
+    totalPages
     docs {
       id
       title

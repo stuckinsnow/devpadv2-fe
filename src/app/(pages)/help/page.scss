@@ -1,3 +1,11 @@
+@use '../../_css/mixins.scss' as *;
+@use '../../_css/colours.scss' as *;
+
+.aa {
+    font-family: Barlow;
+}
+
+
 .hljs {
     background: #23241f;
     color: #f8f8f2;

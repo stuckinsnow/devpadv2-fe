@@ -25,6 +25,10 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
 
         const paramCat: number = categoryId;
 
+        const urlName: string = 'posts';
+
+        // console.log('bebop', postsLowImpact)
+
         return (
             <React.Fragment>
                 <About />
@@ -36,7 +40,7 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
 
                     <PostCards posts={postsLowImpact} />
 
-                    <PaginationButton searchParams={searchParams.page} posts={postsLowImpact} paramCat={paramCat} />
+                    <PaginationButton searchParams={searchParams.page} docData={postsLowImpact.Posts} paramCat={paramCat} urlName={urlName} />
 
                 </div>
             </React.Fragment>

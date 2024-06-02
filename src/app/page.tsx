@@ -25,6 +25,8 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
 
         const paramCat: number = categoryId;
 
+        const urlName: string = 'posts';
+
         return (
             <React.Fragment>
 
@@ -35,7 +37,7 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
 
                     <SearchAndFilter cats={cats} />
                     <PostCards posts={postsLowImpact} />
-                    <PaginationButton searchParams={searchParams.page} posts={postsLowImpact} paramCat={paramCat} />
+                    <PaginationButton searchParams={searchParams.page} docData={postsLowImpact.Posts} paramCat={paramCat} urlName={urlName} />
 
                 </div>
 

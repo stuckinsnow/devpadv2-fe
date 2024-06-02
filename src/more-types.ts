@@ -1,6 +1,7 @@
 import { Config, Media, Header } from './pl-types';
 
 export interface PostsWithDocs {
+
     Posts: {
         docs: Config | undefined;
         totalPages: number;
