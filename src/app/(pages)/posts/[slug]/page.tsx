@@ -26,9 +26,9 @@ export default async function PostPage({ params }: { params: { slug: string } })
                             {rData.categories && rData.categories.length > 0 ? rData.categories.map((cat: Category) => <span className=' [&:not(:first-child)]:ml-2 text-slate-700 capitalize' key={cat.id}>#{cat.title}</span>) : 'No category'}
                         </div>
 
-                        <h1 className='text-center text-slate-800 scroll-m-20 text-4xl font-medium tracking-tight lg:text-5xl mt-2 capitalize'>{rData.title}</h1>
+                        <h1 className='text-slate-800 scroll-m-20 text-4xl font-medium tracking-tight lg:text-5xl mt-2 capitalize'>{rData.title}</h1>
 
-                        <div className='mt-4 text-slate-700'>{formatDateTime(rData.publishedAt ?? ' ')} by {rData.populatedAuthors && rData.populatedAuthors.length > 0 ? rData.populatedAuthors[0].name : 'Admin'}</div>
+                        <div className='mt-4 text-slate-700'>{formatDateTime(rData.publishedAt ?? ' ')} - {rData.populatedAuthors && rData.populatedAuthors.length > 0 ? rData.populatedAuthors[0].name : 'Admin'}</div>
                         <div className='text-slate-700'>Updated: {formatDateTime(rData.updatedAt)}</div>
 
                     </div>

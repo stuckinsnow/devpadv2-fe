@@ -44,28 +44,36 @@ export default async function UniqueHelpPage({ params }: { params: { slug: strin
     const guildID = thread[0].discordArray[0].discordInfo.guildID;
     const discordID = thread[0].discordID;
     const lastMessageID = thread[0].discordArray[0].discordInfo.lastMessageID;
+    const theOriginalID = thread[0].discordArray[0].discordIntro.authorID;
 
     return (
         <React.Fragment>
-            <h1>Help</h1>
-            <div className="rounded-lg flex flex-col mx-auto w-full max-w-screen-lg">
+            <div className="rounded-lg flex flex-col mx-auto w-full max-w-screen-lg ">
                 <div key={discordID} className="p-2 w-full">
-                    <div>
-                        <h1 className='text-lg text-lime-400 font-bold uppercase'>{thread[0].title}</h1>
-                        <h2>
-                            <span className="capitalize font-bold">
-                                {thread[0].discordArray[0].discordIntro.globalName}
-                            </span>
-                            <span className="text-gray-600">
-                                - {new Date(thread[0].discordArray[0].discordIntro.createdAtDate).toLocaleString()}
-                            </span>
-                        </h2>
+                    <h1 className=' p-2 text-slate-800 scroll-m-20 text-4xl font-medium tracking-tight lg:text-5xl mt-2 capitalize'>{thread[0].title}</h1>
+
+                    <div className=' p-2 text-slate-700'>
+                        <span className="capitalize font-bold">{thread[0].discordArray[0].discordIntro.globalName}{theOriginalID.toString().slice(-4)}  </span>
+                        <span className="text-gray-600"> - {new Date(thread[0].discordArray[0].discordIntro.createdAtDate).toLocaleString()}</span>
+                    </div>
+
+                    <div className='p-2 border-2 rounded-md border-transparent '>
+
                         <div dangerouslySetInnerHTML={{ __html: renderedThread[0].renderedContent }} />
 
                     </div>
-                    <div className="capitalize">
+
+                    <div className=' text-xl font-bold text-slate-800 hover:text-amber-800 text-center uppercase transition-all duration-75' >
+
+                        <Link href={'https://discord.com/channels/' + guildID + '/' + discordID + '/' + lastMessageID}>Post Comment</Link>
+
+                    </div>
+
+                    <div className="capitalize pl-16 ">
                         {renderedThread[0].renderedMessages.map((json: any, i: number) => (
-                            <div key={i} className="flex flex-col message-box mt-4 p-2 border-2 odd:bg-slate-50 even:bg-slate-100">
+
+                            <div key={i} className={json.authorID === theOriginalID ? ' flex flex-col message-box mt-4 p-2 border-2 rounded-md border-slate-200' :
+                                ' flex flex-col message-box mt-4 p-2 border-2 rounded-md border-slate-50 '}>
                                 <h2>
                                     <span className='font-bold'>{json.globalName}{json.authorID.toString().slice(-4)}</span>
                                     <span className='text-gray-600'> - {new Date(json.createdAtDate).toLocaleString()}</span>
@@ -79,11 +87,7 @@ export default async function UniqueHelpPage({ params }: { params: { slug: strin
                 </div>
             </div>
 
-            <div className=' text-2xl font-bold text-emerald-500 text-center' >
 
-                <Link href={'https://discord.com/channels/' + guildID + '/' + discordID + '/' + lastMessageID}>Continue at discord</Link>
-
-            </div>
         </React.Fragment>
     );
 }

@@ -48,8 +48,8 @@ const PostCards: React.FC<{ posts: PostsWithDocs }> = ({ posts }) => {
 
                     <div className='lg:h-40 p-2 lg:p-0 box-border flex flex-col justify-around items-start text-left lg:ml-3 w-full h-full'>
 
-                        <h3 className=''>
-                            <Link className="text-gray-700 text-xl hover:text-amber-800 transition-all duration-75 font-bold" href={`${process.env.NEXT_PUBLIC_SERVER_URL}/posts/${post.slug}`}>{post.title}</Link>
+                        <h3 className='text-gray-700 first-letter:capitalize text-xl hover:text-amber-800 transition-all duration-75 font-bold'>
+                            <Link className="" href={`/posts/${post.slug}`}>{post.title}</Link>
                         </h3>
 
                         <div className='card__excerpt text-gray-500 grow mb-2 lg:mb-0 mt-2'>{post.hero.excerpt}</div>
