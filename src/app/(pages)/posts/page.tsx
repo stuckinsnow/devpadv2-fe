@@ -27,8 +27,6 @@ export default async function PostsPage({ searchParams }: { searchParams: { page
 
         const urlName: string = 'posts';
 
-        // console.log('bebop', postsLowImpact)
-
         return (
             <React.Fragment>
                 <About />

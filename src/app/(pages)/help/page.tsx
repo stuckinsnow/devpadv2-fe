@@ -4,7 +4,9 @@ import { formatDateTime, formatDateTimePosts } from '../../_utilities/formatDate
 import PaginationButton from '../../_components/PaginationButton';
 
 import '../../_css/globals.scss';
+
 import './page.scss';
+
 import Link from 'next/link';
 import { Category } from '../../../pl-types';
 import About from '@/app/_components/About';

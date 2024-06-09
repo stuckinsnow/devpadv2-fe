@@ -1,6 +1,10 @@
 @use '../../_css/mixins.scss' as *;
 @use '../../_css/colours.scss' as *;
 
+html {
+    overflow-y: scroll;
+}
+
 .aa {
     font-family: Barlow;
 }
