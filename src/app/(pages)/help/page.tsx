@@ -7,25 +7,9 @@ import '../../_css/globals.scss';
 import './page.scss';
 import Link from 'next/link';
 import { Category } from '../../../pl-types';
-import { PostsWithDocs } from '@/more-types';
 import About from '@/app/_components/About';
 
-
-
 export const dynamic = 'force-dynamic';
-
-
-// const page = parseInt(searchParams.page) || 1;
-// const categoryId = parseInt(searchParams.category) || 0;
-
-// const postsLowImpact = await getDocs("posts", page, categoryId, "lowImpact");
-// const postsHighImpact = await getDocs("postshighimpact", undefined, undefined, undefined);
-// // const postsFeatured = await getDocs("posts", 1, categoryId, "featured");
-
-// const cats = await getDocs("cats", undefined, undefined, undefined);
-
-// const paramCat: number = categoryId;
-
 
 export default async function HelpPage({ searchParams }: { searchParams: { page: string } }) {
     const page = parseInt(searchParams.page) || 1;
@@ -41,13 +25,17 @@ export default async function HelpPage({ searchParams }: { searchParams: { page:
 
     if (Array.isArray(cats.Categories.docs)) {
         cats.Categories.docs.forEach((cat: Category) => {
-            if (cat.discordHelpTag !== null && cat.discordHelpTag !== undefined) {
-                numberToWordMap[cat.discordHelpTag] = cat.title || '';
+
+            if (Array.isArray(cat.discordChannel)) {
+                cat.discordChannel.forEach((channel) => {
+
+                    if (channel.discordTagID !== null && channel.discordTagID !== undefined) {
+                        numberToWordMap[channel.discordTagID] = cat.title || '';
+                    }
+                });
             }
         });
     }
-
-    // console.log(discordThreadData.DiscordCommunities);
 
     return (
 

@@ -120,8 +120,14 @@ export interface Category {
   title?: string | null;
   slug?: string | null;
   SVG?: number | Graphic | null;
-  discordHelpTag?: string | null;
-  discordShowcaseTag?: string | null;
+  blogCategory?: boolean | null;
+  discordChannel?:
+  | {
+    discordChannelName?: string | null;
+    discordTagID?: string | null;
+    id?: string | null;
+  }[]
+  | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -242,7 +248,9 @@ export interface Media {
 export interface Page {
   id: number;
   title: string;
+  categories?: (number | Category)[] | null;
   publishedAt?: string | null;
+  DiscordThreadID?: string | null;
   hero: {
     type: 'featured' | 'highImpact' | 'lowImpact';
     richText: {
@@ -302,6 +310,15 @@ export interface Page {
       blockType: 'mediaBlock';
     }
   )[];
+  discordComment?:
+  | {
+    publishedAt?: string | null;
+    discordContent?: string | null;
+    discordUsername?: string | null;
+    discordUserID?: string | null;
+    id?: string | null;
+  }[]
+  | null;
   slug?: string | null;
   updatedAt: string;
   createdAt: string;

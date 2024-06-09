@@ -5,11 +5,15 @@ query categories {
       id
       title
       slug
+      blogCategory
       SVG {
         filename
       }
-      discordHelpTag
-      discordShowcaseTag
+      discordChannel {
+        id
+        discordChannelName
+        discordTagID
+      }
       updatedAt
       createdAt
     }
