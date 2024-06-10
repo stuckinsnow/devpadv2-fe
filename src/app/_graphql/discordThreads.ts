@@ -17,13 +17,13 @@ query DiscordThreads($page: Int!, $type: DiscordCommunity_discordCommunity_Input
       discordCommunity
       discordID
       excerpt
+      discordFirstMessageLink
       discordMessageCount
       discordArray {
         id 
         discordInfo
         discordIntro 
         discordMessages
-
       }  
       slug
       published

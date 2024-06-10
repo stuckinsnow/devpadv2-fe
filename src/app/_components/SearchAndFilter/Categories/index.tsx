@@ -8,8 +8,6 @@ const Categories: React.FC<{ newCats: Config }> = ({ newCats }) => {
 
     const catsArray = Array.isArray(newCats) ? newCats : [];
 
-    console.log('catsArray', catsArray)
-
     return (
         <React.Fragment>
             {catsArray.map((cat) => {
