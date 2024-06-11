@@ -10,6 +10,7 @@ import './page.scss';
 import Link from 'next/link';
 import { Category } from '../../../pl-types';
 import About from '@/app/_components/About';
+import Showcase from '@/app/_components/Showcase';
 
 export const dynamic = 'force-dynamic';
 
@@ -47,10 +48,13 @@ export default async function HelpPage({ searchParams }: { searchParams: { page:
 
             <div className="content">
 
+                <Showcase searchParams={searchParams} />
+
                 <div className='rounded-lg flex flex-wrap justify-center mx-auto w-full'>
 
                     {Array.isArray(threads) && threads.map((thread: any) => (
-                        <article key={thread.id} className={Array.isArray(thread.title) ? thread.title.join(' ') + 'aa' : 'aa w-full md:w-5/12 md:m-2 lg:w-9/12 flex flex-col lg:flex-row p-3 mt-4 rounded-md transition-all duration-75 nice-shadow box-border'}>
+
+                        <article key={thread.id} className={Array.isArray(thread.title) ? thread.title.join(' ') : 'w-full md:w-5/12 md:m-2 lg:w-9/12 flex flex-col lg:flex-row p-3 mt-4 rounded-md transition-all duration-75 nice-shadow box-border'}>
 
                             <figure className='relative card__photo rounded-md lg:h-40 min-w-52 '>
 

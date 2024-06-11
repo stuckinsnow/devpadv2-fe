@@ -309,13 +309,20 @@ export interface Page {
       blockName?: string | null;
       blockType: 'mediaBlock';
     }
+    | {
+      code?: string | null;
+      position?: ('default' | 'fullscreen') | null;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'Code';
+    }
   )[];
   discordComment?:
   | {
     publishedAt?: string | null;
-    discordContent?: string | null;
     discordUsername?: string | null;
     discordUserID?: string | null;
+    discordContent?: string | null;
     id?: string | null;
   }[]
   | null;
@@ -334,6 +341,7 @@ export interface DiscordCommunity {
   discordCommunity?: ('discordHelp' | 'discordShowcase') | null;
   discordID?: string | null;
   excerpt?: string | null;
+  discordFirstMessageLink?: string | null;
   discordMessageCount?: number | null;
   discordArray?:
   | {

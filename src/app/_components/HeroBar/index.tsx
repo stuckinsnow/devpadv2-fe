@@ -27,40 +27,25 @@ const HeroBar: React.FC<{ postsHighImpact: PostsWithDocs }> = ({ postsHighImpact
                             <p className='text-start '>{post.hero.excerpt}</p>
                         </div>
 
-
                         <figure className="relative card__photo flex flex-col md:flex-row min-h-80 w-full md:w-5/6 rounded-lg">
 
                             <Image
                                 src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (post.hero.media as MediaExtended)?.url}`}
-                                // src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (post.hero.media as MediaExtended)?.url.replace(/\.jpg/g, '-768x1024.jpg')}`}
                                 alt={post.title + 'card__hero-photo'}
-                                // className='card__photo hidden md:flex rounded-lg'
-                                // className='card__photo hidden md:flex h-40 w-60 lg:h-full lg:max-h-80 lg:w-3/6 rounded-lg'
-                                // width={500}
-                                // height={500}
                                 fill
                                 quality={80}
 
                                 style={{ objectFit: "cover" }}
-
-                                // objectPosition="1% 1%"
                                 objectPosition={`${post.hero.media?.focalX}% ${post.hero.media?.focalY}%`}
                             />
 
                         </figure>
-
-                        {/* <img className='card__photo hidden md:flex h-40 w-60 lg:h-full lg:max-h-80 lg:w-3/6 rounded-lg' src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL + (
-                            post.hero.media as MediaExtended)?.url.replace(/\.jpg/g, '-768x1024.jpg')}`} alt={post.title + 'card__hero-photo'} /> */}
-
-                        {/* <div className="w-2/6 order-3 p-16 ">This will one day spark joy but today isn't that day obviously</div> */}
                     </div>
 
                 ))
                 }
 
             </div >
-
-            {/* <div className='w-2/6 h-80 ml-4 nice-shadow rounded-md p-4'>This area is incomplete</div> */}
 
         </div>
 

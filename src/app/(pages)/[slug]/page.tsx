@@ -2,11 +2,12 @@ import Head from 'next/head';
 import { getDoc } from '../../_api/getDoc';
 import Image from 'next/image';
 import { Page as PageType } from '../../../pl-types';
+import RichText from '@/app/_components/RichText';
+import ContentAndMediaBlock from '../../_blocks/ContentAndMediaBlock';
 
 import './page.scss';
 
-import RichText from '@/app/_components/RichText';
-import ContentAndMediaBlock from '../../_blocks/ContentAndMediaBlock';
+import { formatDateTime } from '../../_utilities/formatDateTime';
 
 export const dynamic = 'force-dynamic';
 
@@ -17,11 +18,11 @@ export type MediaBlock = Extract<PageType['layout'][number], { blockType: 'media
 
 export default async function Page({ params }: { params: { slug: string } }) {
     try {
-        const data = await getDoc("pages", params.slug);
+        const data = await getDoc("pages", params.slug) as any;
 
-        const dataType = data as any;
-        const page = dataType?.Pages?.docs[0] || null;
+        const rData = Array.isArray(data?.Pages.docs) ? data.Pages.docs[0] : undefined;
 
+        const page = data?.Pages?.docs[0] || null;
 
         if (!page) {
             return (
@@ -38,41 +39,42 @@ export default async function Page({ params }: { params: { slug: string } }) {
         }
 
         return (
-            <div>
-                <Head>
-                    <title>{page.title}</title>
-                    <meta name="description" content="Your description here" />
-                    <link rel="icon" href="/favicon.ico" />
-                </Head>
 
-                <main>
 
-                    <div key={page.id}>
-                        <h2>{page.title}</h2>
-                        <div className='highlight'><h2>main hero image</h2></div>
-                        {page.hero && page.hero.media &&
-                            (
-                                <Image
-                                    className="great-hero"
-                                    src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL}${page.hero.media.url}`}
-                                    key={'heroImage'}
-                                    alt="Hero Image"
-                                    width={640}
-                                    height={480}
-                                    sizes="(max-width: 268px) 200px, 400px"
-                                />
-                            )}
 
+            <div className="max-w-screen-xl mx-auto">
+
+                <div className='m-auto max-w-screen-lg my-8 flex flex-col items-start'>
+                    <h1 className='text-slate-800 scroll-m-20 text-4xl font-medium tracking-tight lg:text-5xl mt-2 capitalize'>{page.title}</h1>
+                    {page.hero && page.hero.media &&
+                        (
+                            <Image
+                                className="great-hero"
+                                src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL}${page.hero.media.url}`}
+                                key={'heroImage'}
+                                alt="Hero Image"
+                                width={640}
+                                height={480}
+                                sizes="(max-width: 268px) 200px, 400px"
+                            />
+                        )}
+
+
+                    <div className='text-slate-700'>Published: {formatDateTime(data?.publishedAt)}</div>
+                    <div className='text-slate-700'>Updated: {formatDateTime(data?.updatedAt)}
+                        <span> - {rData.populatedAuthors && rData.populatedAuthors.length > 0 ? rData.populatedAuthors[0].name : 'Admin'}</span>
                     </div>
 
-                    <div className='ab1'><h2>main hero richText</h2></div>
-                    <RichText content={page.hero && page.hero.media && page.hero.richText} />
-                    <div className='ab2'><h2>main content richText</h2></div>
-                    <ContentAndMediaBlock rData={dataType.Pages.docs[0]} />
+
+                </div>
+
+                <RichText content={rData.hero.richText} />
+                <ContentAndMediaBlock rData={page} />
 
 
-                </main>
             </div>
+
+
         );
     } catch (error) {
         console.error('Error fetching page:', error);

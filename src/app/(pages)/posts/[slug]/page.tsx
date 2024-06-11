@@ -17,28 +17,28 @@ export default async function PostPage({ params }: { params: { slug: string } })
 
         return (
 
-            <React.Fragment>
-                <div className="max-w-screen-xl mx-auto">
 
-                    <div className='m-auto max-w-screen-lg my-8 flex flex-col items-start'>
+            <div className="max-w-screen-xl mx-auto">
 
-                        <div className='w-fit text-sm'>
-                            {rData.categories && rData.categories.length > 0 ? rData.categories.map((cat: Category) => <span className=' [&:not(:first-child)]:ml-2 text-slate-700 capitalize' key={cat.id}>#{cat.title}</span>) : 'No category'}
-                        </div>
+                <div className='m-auto max-w-screen-lg my-8 flex flex-col items-start'>
 
-                        <h1 className='text-slate-800 scroll-m-20 text-4xl font-medium tracking-tight lg:text-5xl mt-2 capitalize'>{rData.title}</h1>
-
-                        <div className='mt-4 text-slate-700'>{formatDateTime(rData.publishedAt ?? ' ')} - {rData.populatedAuthors && rData.populatedAuthors.length > 0 ? rData.populatedAuthors[0].name : 'Admin'}</div>
-                        <div className='text-slate-700'>Updated: {formatDateTime(rData.updatedAt)}</div>
-
+                    <div className='w-fit text-sm'>
+                        {rData.categories && rData.categories.length > 0 ? rData.categories.map((cat: Category) => <span className=' [&:not(:first-child)]:ml-2 text-slate-700 capitalize' key={cat.id}>#{cat.title}</span>) : 'No category'}
                     </div>
 
-                    <RichText content={rData.hero.richText} />
-                    <ContentAndMediaBlock rData={rData} />
+                    <h1 className='text-slate-800 scroll-m-20 text-4xl font-medium tracking-tight lg:text-5xl mt-2 capitalize'>{rData.title}</h1>
+
+                    <div className='mt-4 text-slate-700'>{formatDateTime(rData.publishedAt ?? ' ')} - {rData.populatedAuthors && rData.populatedAuthors.length > 0 ? rData.populatedAuthors[0].name : 'Admin'}</div>
+                    <div className='text-slate-700'>Updated: {formatDateTime(rData.updatedAt)}</div>
 
                 </div>
 
-            </React.Fragment>
+                <RichText content={rData.hero.richText} />
+                <ContentAndMediaBlock rData={rData} />
+
+            </div>
+
+
 
         );
     } catch (error) {

@@ -11,7 +11,6 @@ type ContentOrMediaBlockLayout = Extract<Post['layout'][number], { blockType: 'c
 
 const ContentAndMediaBlock: React.FC<any> = (rData) => {
 
-
     // const renderCode = async (code: string, lang = "javascript", theme = "github-light") => {
     // const renderCode = async (code: string, lang = "javascript", theme = "light-plus") => {
     // const renderCode = async (code: string, lang = "javascript", theme = "material-theme-lighter") => {
